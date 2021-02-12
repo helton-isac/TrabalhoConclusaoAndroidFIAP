@@ -1,4 +1,4 @@
-package com.hitg.meurole.ui.login
+package com.fiap.meurole.ui.login
 
 /**
  * Data validation state of the login form.

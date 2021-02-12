@@ -1,4 +1,4 @@
-package com.hitg.meurole.ui.login
+package com.fiap.meurole.ui.login
 
 /**
  * Authentication result : success (user details) or error message.

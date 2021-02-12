@@ -1,9 +1,9 @@
-package com.hitg.meurole.ui.login
+package com.fiap.meurole.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.hitg.meurole.data.LoginDataSource
-import com.hitg.meurole.data.LoginRepository
+import com.fiap.meurole.data.LoginDataSource
+import com.fiap.meurole.data.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

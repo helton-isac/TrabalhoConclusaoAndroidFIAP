@@ -1,4 +1,4 @@
-package com.hitg.meurole.ui.login
+package com.fiap.meurole.ui.login
 
 import android.app.Activity
 import androidx.lifecycle.Observer
@@ -15,7 +15,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 
-import com.hitg.meurole.R
+import com.fiap.meurole.R
 
 class LoginActivity : AppCompatActivity() {
 

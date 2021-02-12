@@ -1,4 +1,4 @@
-package com.hitg.meurole
+package com.fiap.meurole
 
 import org.junit.Test
 

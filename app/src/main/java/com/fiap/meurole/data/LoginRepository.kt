@@ -1,6 +1,6 @@
-package com.hitg.meurole.data
+package com.fiap.meurole.data
 
-import com.hitg.meurole.data.model.LoggedInUser
+import com.fiap.meurole.data.model.LoggedInUser
 
 /**
  * Class that requests authentication and user information from the remote data source and

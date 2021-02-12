@@ -1,13 +1,13 @@
-package com.hitg.meurole.ui.login
+package com.fiap.meurole.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
-import com.hitg.meurole.data.LoginRepository
-import com.hitg.meurole.data.Result
+import com.fiap.meurole.data.LoginRepository
+import com.fiap.meurole.data.Result
 
-import com.hitg.meurole.R
+import com.fiap.meurole.R
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 

@@ -1,4 +1,4 @@
-package com.hitg.meurole.data
+package com.fiap.meurole.data
 
 /**
  * A generic class that holds a value with its loading status.
