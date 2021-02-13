@@ -2,8 +2,8 @@ package com.fiap.meurole.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.fiap.meurole.data.LoginDataSource
-import com.fiap.meurole.data.LoginRepository
+import com.fiap.data.datasource.LoginDataSourceImpl
+import com.fiap.data.repository.LoginRepositoryImpl
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
@@ -15,9 +15,9 @@ class LoginViewModelFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(
-                    loginRepository = LoginRepository(
-                            dataSource = LoginDataSource()
-                    )
+                loginRepository = LoginRepositoryImpl(
+                    dataSource = LoginDataSourceImpl()
+                )
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
