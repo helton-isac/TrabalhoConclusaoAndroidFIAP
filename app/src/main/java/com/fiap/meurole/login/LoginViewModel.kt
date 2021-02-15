@@ -1,4 +1,4 @@
-package com.fiap.meurole.ui.login
+package com.fiap.meurole.login
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData

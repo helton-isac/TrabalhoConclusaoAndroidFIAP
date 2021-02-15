@@ -1,8 +1,8 @@
-package com.fiap.meurole.ui.login
+package com.fiap.meurole.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.fiap.data.datasource.LoginDataSourceImpl
+import com.fiap.data.remote.datasource.LoginDataSourceImpl
 import com.fiap.data.repository.LoginRepositoryImpl
 
 /**

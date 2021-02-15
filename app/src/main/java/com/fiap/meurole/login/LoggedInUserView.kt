@@ -1,4 +1,4 @@
-package com.fiap.meurole.ui.login
+package com.fiap.meurole.login
 
 /**
  * User details post authentication that is exposed to the UI

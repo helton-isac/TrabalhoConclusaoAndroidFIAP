@@ -1,6 +1,6 @@
 package com.fiap.data.repository
 
-import com.fiap.data.datasource.LoginDataSourceImpl
+import com.fiap.data.remote.datasource.LoginDataSourceImpl
 import com.hitg.domain.entity.LoggedInUser
 import com.hitg.domain.entity.RequestState
 import com.hitg.domain.repository.LoginRepository
