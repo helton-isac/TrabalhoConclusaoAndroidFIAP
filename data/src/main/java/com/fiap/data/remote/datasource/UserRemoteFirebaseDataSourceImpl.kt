@@ -15,7 +15,6 @@ class UserRemoteFirebaseDataSourceImpl(
 ) : UserRemoteDataSource {
 
     override suspend fun getUserLogged(): RequestState<User> {
-
         mAuth.currentUser?.reload()
 
         val firebaseUser = mAuth.currentUser
