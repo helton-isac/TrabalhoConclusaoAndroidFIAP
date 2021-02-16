@@ -8,6 +8,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:text="HOME FRAGMENT"
+        android:textAlignment="center"
+        android:padding="20dp"
+        android:textSize="40sp" />
 
 </FrameLayout>
