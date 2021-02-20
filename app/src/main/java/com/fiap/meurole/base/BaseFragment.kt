@@ -8,6 +8,7 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.fiap.meurole.R
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
@@ -34,6 +35,8 @@ abstract class BaseFragment : Fragment() {
         val screenRootView = FrameLayout(requireContext())
 
         val screenView = inflater.inflate(layout, container, false)
+
+        loadingView = inflater.inflate(R.layout.include_loading, container, false)
 
         screenRootView.addView(screenView)
 

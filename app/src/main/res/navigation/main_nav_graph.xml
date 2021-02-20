@@ -10,4 +10,6 @@
         android:name="com.fiap.meurole.home.HomeFragment"
         android:label="home_fragment"
         tools:layout="@layout/home_fragment" />
+
+    <include app:graph="@navigation/login_nav_graph" />
 </navigation>

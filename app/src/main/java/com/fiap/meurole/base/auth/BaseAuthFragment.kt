@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.fiap.data.remote.datasource.UserRemoteFirebaseDataSourceImpl
 import com.fiap.data.repository.UserRepositoryImpl
+import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -15,6 +18,8 @@ import com.google.firebase.ktx.Firebase
 import com.hitg.domain.entity.RequestState
 import com.hitg.domain.usecases.GetUserLoggedUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+
+const val NAVIGATION_KEY = "NAV_KEY"
 
 @ExperimentalCoroutinesApi
 abstract class BaseAuthFragment : BaseFragment() {
@@ -49,7 +54,6 @@ abstract class BaseAuthFragment : BaseFragment() {
     }
 
     private fun registerObserver() {
-
         baseAuthViewModel.userLoggedState.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is RequestState.Loading -> {
@@ -62,12 +66,11 @@ abstract class BaseAuthFragment : BaseFragment() {
 
                 is RequestState.Error -> {
                     hideLoading()
-
-//                    findNavController().navigate(
-//                        R.id.login_nav_graph, bundleOf(
-//                            NAVIGATION_KEY to findNavController().currentDestination?.id
-//                        )
-//                    )
+                    findNavController().navigate(
+                        R.id.login_nav_graph, bundleOf(
+                            NAVIGATION_KEY to findNavController().currentDestination?.id
+                        )
+                    )
                 }
             }
         })
