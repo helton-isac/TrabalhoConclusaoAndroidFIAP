@@ -1,5 +1,8 @@
 package com.fiap.meurole.home
 
+import android.os.Bundle
+import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
 import com.fiap.data.remote.datasource.UserRemoteFirebaseDataSourceImpl
 import com.fiap.data.repository.UserRepositoryImpl
@@ -30,5 +33,19 @@ class HomeFragment : BaseAuthFragment() {
                 )
             )
         ).get(HomeViewModel::class.java)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        registerBackPressedAction()
+    }
+
+    private fun registerBackPressedAction() {
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                activity?.finish()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 }

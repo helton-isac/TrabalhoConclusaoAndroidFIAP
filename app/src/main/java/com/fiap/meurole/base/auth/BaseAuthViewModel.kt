@@ -16,6 +16,7 @@ class BaseAuthViewModel(
 
     fun getUserLogged() {
         viewModelScope.launch {
+            userLoggedState.value = RequestState.Loading
             userLoggedState.value = getUserLoggedUseCase.getUserLogged()
         }
     }
