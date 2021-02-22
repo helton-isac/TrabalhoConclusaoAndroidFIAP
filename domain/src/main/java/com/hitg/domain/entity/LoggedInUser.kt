@@ -1,4 +1,4 @@
-package com.fiap.meurole.data.model
+package com.hitg.domain.entity
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
