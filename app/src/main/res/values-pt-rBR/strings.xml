@@ -6,4 +6,6 @@
     <string name="label_password">Senha</string>
     <string name="label_email">E-mail</string>
     <string name="create_your_account"><u>Crie sua conta</u></string>
+    <string name="name">Nome</string>
+    <string name="create_account">Criar Conta</string>
 </resources>

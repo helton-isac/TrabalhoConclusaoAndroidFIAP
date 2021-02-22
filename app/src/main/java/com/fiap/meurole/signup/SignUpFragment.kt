@@ -4,17 +4,38 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.fiap.data.remote.datasource.UserRemoteFirebaseDataSourceImpl
+import com.fiap.data.repository.UserRepositoryImpl
 import com.fiap.meurole.R
+import com.fiap.meurole.base.BaseFragment
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.hitg.domain.usecases.CreateUserUseCase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-class SignUpFragment : Fragment() {
+@ExperimentalCoroutinesApi
+class SignUpFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() = SignUpFragment()
+    override val layout = R.layout.sign_up_fragment
+
+    private val signUpViewModel: SignUpViewModel by lazy {
+        ViewModelProvider(
+            this,
+            SignUpViewModelFactory(
+                CreateUserUseCase(
+                    UserRepositoryImpl(
+                        UserRemoteFirebaseDataSourceImpl(
+                            Firebase.auth,
+                            Firebase.firestore
+                        )
+                    )
+                )
+            )
+        ).get(SignUpViewModel::class.java)
     }
 
-    private lateinit var viewModel: SignUpViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +46,7 @@ class SignUpFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
+        //viewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

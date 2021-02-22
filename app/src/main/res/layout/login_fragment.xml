@@ -25,34 +25,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTip" />
 
-    <EditText
-        android:id="@+id/etPasswordLogin"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPasswordLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
-        android:hint="@string/label_password"
-        android:imeOptions="actionDone"
-        android:inputType="textPassword"
-        android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmailLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/tilEmailLogin">
 
-    <EditText
-        android:id="@+id/etEmailLogin"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPasswordLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/label_password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmailLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="96dp"
         android:layout_marginEnd="24dp"
-        android:hint="@string/label_email"
-        android:inputType="textEmailAddress"
-        android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmailLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/label_email"
+            android:inputType="textEmailAddress"
+            android:selectAllOnFocus="true" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tvTip"
@@ -61,9 +74,9 @@
         android:layout_marginTop="24dp"
         android:text="Test:\n\nuser: user@user.com.br\npass: 123456"
         android:textAlignment="textStart"
-        app:layout_constraintEnd_toEndOf="@+id/etPasswordLogin"
-        app:layout_constraintStart_toStartOf="@+id/etPasswordLogin"
-        app:layout_constraintTop_toBottomOf="@+id/etPasswordLogin" />
+        app:layout_constraintEnd_toEndOf="@+id/tilPasswordLogin"
+        app:layout_constraintStart_toStartOf="@+id/tilPasswordLogin"
+        app:layout_constraintTop_toBottomOf="@+id/tilPasswordLogin" />
 
     <TextView
         android:id="@+id/tvNewAccount"
@@ -76,5 +89,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btLogin"
         app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
