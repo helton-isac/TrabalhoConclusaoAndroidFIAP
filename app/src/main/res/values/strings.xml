@@ -4,4 +4,5 @@
     <string name="button_login">Log in</string>
     <string name="label_password">Password</string>
     <string name="label_email">E-mail</string>
+    <string name="create_your_account"><u>Create Your Account</u></string>
 </resources>
