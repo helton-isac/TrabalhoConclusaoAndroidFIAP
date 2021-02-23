@@ -23,7 +23,7 @@
         android:text="@string/button_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTip" />
+        app:layout_constraintTop_toBottomOf="@+id/tilPasswordLogin" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPasswordLogin"
@@ -66,17 +66,6 @@
             android:inputType="textEmailAddress"
             android:selectAllOnFocus="true" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/tvTip"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Test:\n\nuser: user@user.com.br\npass: 123456"
-        android:textAlignment="textStart"
-        app:layout_constraintEnd_toEndOf="@+id/tilPasswordLogin"
-        app:layout_constraintStart_toStartOf="@+id/tilPasswordLogin"
-        app:layout_constraintTop_toBottomOf="@+id/tilPasswordLogin" />
 
     <TextView
         android:id="@+id/tvNewAccount"
