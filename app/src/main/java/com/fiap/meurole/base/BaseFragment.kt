@@ -40,6 +40,7 @@ abstract class BaseFragment : Fragment() {
         loadingView = inflater.inflate(R.layout.include_loading, container, false)
 
         screenRootView.addView(screenView)
+        screenRootView.addView(loadingView)
 
         return screenRootView
     }

@@ -16,6 +16,7 @@ class SignUpViewModel(
 
     fun create(name: String, email: String, password: String) {
         viewModelScope.launch {
+            newUserState.value = RequestState.Loading
             newUserState.value = createUserUseCase.create(
                 NewUser(
                     name,
