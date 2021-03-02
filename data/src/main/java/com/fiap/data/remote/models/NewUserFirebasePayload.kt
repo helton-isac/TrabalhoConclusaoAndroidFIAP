@@ -7,6 +7,5 @@ import com.google.firebase.firestore.IgnoreExtraProperties
 data class NewUserFirebasePayload(
     val name: String? = null,
     val email: String? = null,
-    val phone: String? = null,
     @get:Exclude val password: String? = null
 )

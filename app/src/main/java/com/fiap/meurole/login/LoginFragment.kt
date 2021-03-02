@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -28,6 +29,7 @@ class LoginFragment : BaseFragment() {
     private lateinit var btLogin: Button
     private lateinit var etEmailLogin: EditText
     private lateinit var etPasswordLogin: EditText
+    private lateinit var tvNewAccount: TextView
 
     private val loginViewModel: LoginViewModel by lazy {
         ViewModelProvider(
@@ -57,12 +59,16 @@ class LoginFragment : BaseFragment() {
         btLogin = view.findViewById(R.id.btLogin)
         etEmailLogin = view.findViewById(R.id.etEmailLogin)
         etPasswordLogin = view.findViewById(R.id.etPasswordLogin)
+        tvNewAccount = view.findViewById(R.id.tvNewAccount)
 
         btLogin.setOnClickListener {
             loginViewModel.doLogin(
                 etEmailLogin.text.toString(),
                 etPasswordLogin.text.toString()
             )
+        }
+        tvNewAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
     }
 

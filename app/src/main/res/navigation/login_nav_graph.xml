@@ -9,5 +9,14 @@
         android:id="@+id/loginFragment"
         android:name="com.fiap.meurole.login.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/login_fragment" />
+        tools:layout="@layout/login_fragment">
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.fiap.meurole.signup.SignUpFragment"
+        android:label="sign_up_fragment"
+        tools:layout="@layout/sign_up_fragment" />
 </navigation>
