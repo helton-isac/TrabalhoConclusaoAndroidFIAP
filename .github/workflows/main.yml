@@ -6,18 +6,6 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
-    name: Run Unit Tests
-    runs-on: ubuntu-latest  
-    steps:
-    - uses: actions/checkout@v1
-    - name: set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    - name: Unit tests
-      run: ./gradlew test --stacktrace
-  
   build-and-generate-apk:
     runs-on: ubuntu-latest
     steps:
@@ -25,7 +13,11 @@ jobs:
     - name: set up JDK 1.8
       uses: actions/setup-java@v1
       with:
-        java-version: 1.8       
+        java-version: 1.8
+    - name: Decode google-services.json
+      env:
+        FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
+      run: echo $FIREBASE_SECRET > app/google-services.json
     - name: Install NDK
       run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
     - name: Build Debug 
