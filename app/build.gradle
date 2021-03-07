@@ -8,7 +8,7 @@ android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
     compileSdkVersion globalConfiguration["compileSDK"]
-    buildToolsVersion globalConfiguration["buildTools"]
+    buildToolsVersion globalConfiguration["buildToolsVersion"]
 
     defaultConfig {
         applicationId "com.fiap.meurole"
@@ -52,7 +52,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewmodelKtxVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationFragmentKtxVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationUiKtxVersion"
-    implementation "androidx.legacy:legacy-support-v4:$legacySupportV4"
+    implementation "androidx.legacy:legacy-support-v4:$legacySupportV4Version"
 
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
