@@ -38,7 +38,7 @@ class SplashFragment : Fragment() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             findNavController().navigate(
-                R.id.login_nav_graph, bundleOf(
+                R.id.homeFragment, bundleOf(
                     NAVIGATION_KEY to findNavController().currentDestination?.id
                 )
             )
