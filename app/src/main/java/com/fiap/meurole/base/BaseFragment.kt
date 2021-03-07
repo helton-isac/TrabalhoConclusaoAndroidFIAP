@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.fiap.meurole.R
@@ -26,6 +27,10 @@ abstract class BaseFragment : Fragment() {
         ).get(BaseViewModel::class.java)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as AppCompatActivity?)!!.supportActionBar?.show()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
