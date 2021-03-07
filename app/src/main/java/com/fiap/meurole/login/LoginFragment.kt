@@ -7,19 +7,13 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.fiap.data.remote.datasource.UserRemoteFirebaseDataSourceImpl
-import com.fiap.data.repository.UserRepositoryImpl
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
 import com.fiap.meurole.base.auth.NAVIGATION_KEY
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.hitg.domain.entity.RequestState
-import com.hitg.domain.usecases.LoginUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @ExperimentalCoroutinesApi
 class LoginFragment : BaseFragment() {
@@ -31,21 +25,7 @@ class LoginFragment : BaseFragment() {
     private lateinit var etPasswordLogin: EditText
     private lateinit var tvNewAccount: TextView
 
-    private val loginViewModel: LoginViewModel by lazy {
-        ViewModelProvider(
-            this,
-            LoginViewModelFactory(
-                LoginUseCase(
-                    UserRepositoryImpl(
-                        UserRemoteFirebaseDataSourceImpl(
-                            Firebase.auth,
-                            Firebase.firestore
-                        )
-                    )
-                )
-            )
-        ).get(LoginViewModel::class.java)
-    }
+    private val loginViewModel: LoginViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

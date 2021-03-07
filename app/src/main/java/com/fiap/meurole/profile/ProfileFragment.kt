@@ -4,19 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.fiap.data.remote.datasource.UserRemoteFirebaseDataSourceImpl
-import com.fiap.data.repository.UserRepositoryImpl
 import com.fiap.meurole.R
 import com.fiap.meurole.base.auth.BaseAuthFragment
 import com.fiap.meurole.base.auth.NAVIGATION_KEY
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.hitg.domain.usecases.GetUserLoggedUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @ExperimentalCoroutinesApi
 class ProfileFragment : BaseAuthFragment() {
@@ -26,21 +20,7 @@ class ProfileFragment : BaseAuthFragment() {
 
     private lateinit var bnvProfile: BottomNavigationView
 
-    private val profileViewModel: ProfileViewModel by lazy {
-        ViewModelProvider(
-            this,
-            ProfileViewModelFactory(
-                GetUserLoggedUseCase(
-                    UserRepositoryImpl(
-                        UserRemoteFirebaseDataSourceImpl(
-                            Firebase.auth,
-                            Firebase.firestore
-                        )
-                    )
-                )
-            )
-        ).get(ProfileViewModel::class.java)
-    }
+    private val profileViewModel: ProfileViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
