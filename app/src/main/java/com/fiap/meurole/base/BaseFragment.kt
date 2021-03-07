@@ -9,9 +9,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.fiap.meurole.R
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @ExperimentalCoroutinesApi
 abstract class BaseFragment : Fragment() {
@@ -20,12 +20,7 @@ abstract class BaseFragment : Fragment() {
 
     private lateinit var loadingView: View
 
-    private val baseViewModel: BaseViewModel by lazy {
-        ViewModelProvider(
-            this,
-            BaseViewModelFactory()
-        ).get(BaseViewModel::class.java)
-    }
+    private val baseViewModel: BaseViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

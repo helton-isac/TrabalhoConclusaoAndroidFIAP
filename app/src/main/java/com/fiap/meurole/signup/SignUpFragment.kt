@@ -5,39 +5,19 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
-import com.fiap.data.remote.datasource.UserRemoteFirebaseDataSourceImpl
-import com.fiap.data.repository.UserRepositoryImpl
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.hitg.domain.entity.RequestState
-import com.hitg.domain.usecases.CreateUserUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @ExperimentalCoroutinesApi
 class SignUpFragment : BaseFragment() {
 
     override val layout = R.layout.sign_up_fragment
 
-    private val signUpViewModel: SignUpViewModel by lazy {
-        ViewModelProvider(
-            this,
-            SignUpViewModelFactory(
-                CreateUserUseCase(
-                    UserRepositoryImpl(
-                        UserRemoteFirebaseDataSourceImpl(
-                            Firebase.auth,
-                            Firebase.firestore
-                        )
-                    )
-                )
-            )
-        ).get(SignUpViewModel::class.java)
-    }
+    private val signUpViewModel: SignUpViewModel by viewModel()
 
     private lateinit var etName: EditText
     private lateinit var etEmail: EditText
