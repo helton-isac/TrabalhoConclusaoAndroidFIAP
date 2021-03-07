@@ -1,4 +1,4 @@
-package com.fiap.meurole.home
+package com.fiap.meurole.profile
 
 import android.os.Bundle
 import android.view.View
@@ -19,16 +19,17 @@ import com.hitg.domain.usecases.GetUserLoggedUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
-class HomeFragment : BaseAuthFragment() {
+class ProfileFragment : BaseAuthFragment() {
 
-    override val layout = R.layout.home_fragment
 
-    private lateinit var bnvHome: BottomNavigationView
+    override val layout = R.layout.profile_fragment
 
-    private val homeViewModel: HomeViewModel by lazy {
+    private lateinit var bnvProfile: BottomNavigationView
+
+    private val profileViewModel: ProfileViewModel by lazy {
         ViewModelProvider(
             this,
-            HomeViewModelFactory(
+            ProfileViewModelFactory(
                 GetUserLoggedUseCase(
                     UserRepositoryImpl(
                         UserRemoteFirebaseDataSourceImpl(
@@ -38,7 +39,7 @@ class HomeFragment : BaseAuthFragment() {
                     )
                 )
             )
-        ).get(HomeViewModel::class.java)
+        ).get(ProfileViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,19 +50,19 @@ class HomeFragment : BaseAuthFragment() {
     }
 
     private fun setUpView(view: View) {
-        bnvHome = view.findViewById(R.id.bnvHome)
-        bnvHome.selectedItemId = R.id.navigation_home
-        bnvHome.setOnNavigationItemSelectedListener { item ->
+        bnvProfile = view.findViewById(R.id.bnvHome)
+        bnvProfile.selectedItemId = R.id.navigation_profile
+        bnvProfile.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
-                    true
-                }
-                R.id.navigation_profile -> {
                     findNavController().navigate(
-                        R.id.profileFragment, bundleOf(
+                        R.id.homeFragment, bundleOf(
                             NAVIGATION_KEY to findNavController().currentDestination?.id
                         )
                     )
+                    true
+                }
+                R.id.navigation_profile -> {
                     true
                 }
                 else -> false

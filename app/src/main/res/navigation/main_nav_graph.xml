@@ -22,4 +22,9 @@
         tools:layout="@layout/home_fragment" />
 
     <include app:graph="@navigation/login_nav_graph" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.fiap.meurole.profile.ProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/profile_fragment" />
 </navigation>

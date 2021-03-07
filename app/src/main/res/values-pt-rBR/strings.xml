@@ -8,4 +8,6 @@
     <string name="create_your_account"><u>Crie sua conta</u></string>
     <string name="name">Nome</string>
     <string name="create_account">Criar Conta</string>
+    <string name="menu_home_home">Home</string>
+    <string name="menu_home_profile">Perfil</string>
 </resources>
