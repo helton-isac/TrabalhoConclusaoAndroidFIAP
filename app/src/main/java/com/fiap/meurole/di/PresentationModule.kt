@@ -29,7 +29,8 @@ val presentationModule = module {
     }
     viewModel {
         ProfileViewModel(
-            getUserLoggedUseCase = get()
+            getUserLoggedUseCase = get(),
+            loginUseCase = get()
         )
     }
     viewModel {

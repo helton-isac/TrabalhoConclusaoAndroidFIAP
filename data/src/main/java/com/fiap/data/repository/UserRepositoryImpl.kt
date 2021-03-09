@@ -22,4 +22,8 @@ class UserRepositoryImpl(
     override suspend fun create(newUser: NewUser): RequestState<User> {
         return userRemoteDataSource.create(newUser)
     }
+
+    override suspend fun doLogout(): RequestState<Boolean> {
+        return userRemoteDataSource.doLogout()
+    }
 }

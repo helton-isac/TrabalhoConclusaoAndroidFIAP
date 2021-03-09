@@ -25,4 +25,8 @@ class LoginUseCase(
 
     }
 
+    suspend fun doLogout(): RequestState<Boolean> {
+        return userRepository.doLogout()
+    }
+
 }

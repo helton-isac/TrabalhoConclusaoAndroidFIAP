@@ -2,13 +2,17 @@ package com.fiap.meurole.profile
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.auth.BaseAuthFragment
 import com.fiap.meurole.base.auth.NAVIGATION_KEY
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.hitg.domain.entity.RequestState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,6 +23,8 @@ class ProfileFragment : BaseAuthFragment() {
     override val layout = R.layout.profile_fragment
 
     private lateinit var bnvProfile: BottomNavigationView
+    private lateinit var tvUserName: TextView
+    private lateinit var bvSignOut: Button
 
     private val profileViewModel: ProfileViewModel by viewModel()
 
@@ -27,10 +33,17 @@ class ProfileFragment : BaseAuthFragment() {
         registerBackPressedAction()
 
         setUpView(view)
+
+        registerObserver()
+
+        profileViewModel.getUserLogged()
     }
 
     private fun setUpView(view: View) {
         bnvProfile = view.findViewById(R.id.bnvHome)
+        tvUserName = view.findViewById(R.id.tvUserName)
+        bvSignOut = view.findViewById(R.id.bvSignOut)
+
         bnvProfile.selectedItemId = R.id.navigation_profile
         bnvProfile.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -48,6 +61,10 @@ class ProfileFragment : BaseAuthFragment() {
                 else -> false
             }
         }
+
+        bvSignOut.setOnClickListener {
+            profileViewModel.doLogout()
+        }
     }
 
     private fun registerBackPressedAction() {
@@ -57,5 +74,40 @@ class ProfileFragment : BaseAuthFragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
+    private fun registerObserver() {
+        profileViewModel.userLoggedState.observe(viewLifecycleOwner, Observer { it ->
+            when (it) {
+                is RequestState.Loading -> {
+                    showLoading()
+                }
+
+                is RequestState.Success -> {
+                    hideLoading()
+                    it.data.name
+                }
+
+                is RequestState.Error -> {
+                    hideLoading()
+                    showMessage("Error: " + it.throwable.message)
+                }
+            }
+        })
+
+        profileViewModel.logoutResponse.observe(viewLifecycleOwner, { it ->
+            when (it) {
+                is RequestState.Success -> {
+                    baseAuthViewModel.getUserLogged()
+                }
+                is RequestState.Loading -> {
+                    showLoading()
+                }
+                is RequestState.Error -> {
+                    showMessage("Error: " + it.throwable.message)
+                }
+            }
+        })
+
     }
 }
