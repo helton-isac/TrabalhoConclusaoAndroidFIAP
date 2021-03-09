@@ -2,6 +2,8 @@ package com.fiap.meurole.home
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
@@ -17,6 +19,9 @@ class HomeFragment : BaseAuthFragment() {
 
     override val layout = R.layout.home_fragment
 
+    private lateinit var btRoadmaps: Button
+    private lateinit var btSearchMap: Button
+    private lateinit var btCreateRoadmap: Button
     private lateinit var bnvHome: BottomNavigationView
 
     private val homeViewModel: HomeViewModel by viewModel()
@@ -29,6 +34,18 @@ class HomeFragment : BaseAuthFragment() {
     }
 
     private fun setUpView(view: View) {
+        btRoadmaps = view.findViewById(R.id.btRoadmaps)
+        btSearchMap = view.findViewById(R.id.btSearchMap)
+        btCreateRoadmap = view.findViewById(R.id.btCreateRoadmap)
+
+        btSearchMap.setOnClickListener {
+            findNavController().navigate(
+                R.id.mapFragment, bundleOf(
+                    NAVIGATION_KEY to findNavController().currentDestination?.id
+                )
+            )
+        }
+
         bnvHome = view.findViewById(R.id.bnvHome)
         bnvHome.selectedItemId = R.id.navigation_home
         bnvHome.setOnNavigationItemSelectedListener { item ->
