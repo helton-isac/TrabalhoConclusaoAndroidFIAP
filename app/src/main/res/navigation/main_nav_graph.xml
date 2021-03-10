@@ -19,7 +19,11 @@
         android:id="@+id/homeFragment"
         android:name="com.fiap.meurole.home.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
 
     <include app:graph="@navigation/login_nav_graph" />
     <fragment
@@ -27,4 +31,10 @@
         android:name="com.fiap.meurole.profile.ProfileFragment"
         android:label="profile_fragment"
         tools:layout="@layout/profile_fragment" />
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.fiap.meurole.map.MapFragment"
+        android:label="map_fragment"
+        tools:layout="@layout/map_fragment" />
 </navigation>
