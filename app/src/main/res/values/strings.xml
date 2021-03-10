@@ -10,4 +10,7 @@
     <string name="menu_home_home">Home</string>
     <string name="menu_home_profile">Profile</string>
     <string name="logout">Log out</string>
+    <string name="button_search_roadmaps">Search roadmaps</string>
+    <string name="button_search_maps">Search on maps</string>
+    <string name="button_create_roadmaps">Create new roadmap</string>
 </resources>
