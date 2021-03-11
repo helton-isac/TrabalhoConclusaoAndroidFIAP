@@ -10,6 +10,7 @@
     <string name="create_account">Criar Conta</string>
     <string name="menu_home_home">Home</string>
     <string name="menu_home_profile">Perfil</string>
+    <string name="logout">Sair</string>
     <string name="button_search_roadmaps">Encontrar roteiros</string>
     <string name="button_search_maps">Pesquisar no mapa</string>
     <string name="button_create_roadmaps">Criar roteiro</string>

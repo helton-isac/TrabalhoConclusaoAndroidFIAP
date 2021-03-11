@@ -79,4 +79,13 @@ class UserRemoteFirebaseDataSourceImpl(
             RequestState.Error(e)
         }
     }
+
+    override suspend fun doLogout(): RequestState<Boolean> {
+        return try {
+            mAuth.signOut()
+            RequestState.Success(true)
+        } catch (e: java.lang.Exception) {
+            RequestState.Error(e)
+        }
+    }
 }

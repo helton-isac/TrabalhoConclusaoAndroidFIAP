@@ -18,7 +18,7 @@ const val NAVIGATION_KEY = "NAV_KEY"
 @ExperimentalCoroutinesApi
 abstract class BaseAuthFragment : BaseFragment() {
 
-    private val baseAuthViewModel: BaseAuthViewModel by viewModel()
+    protected val baseAuthViewModel: BaseAuthViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
