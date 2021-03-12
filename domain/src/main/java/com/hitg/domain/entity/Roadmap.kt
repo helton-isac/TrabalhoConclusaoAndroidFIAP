@@ -4,5 +4,5 @@ data class Roadmap (
     var id: String = "",
     var name: String = "",
     var pointOfInterests: Array<PointOfInterest>,
-    var creator: User
+    var creatorId: String
 )
