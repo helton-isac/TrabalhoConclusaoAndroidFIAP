@@ -53,7 +53,7 @@ abstract class BaseFragment : Fragment() {
     private fun registerObserver() {
     }
 
-    fun showLoading(message: String = "Processando a requisição") {
+    fun showLoading(message: String = getString(R.string.wait)) {
         loadingView.visibility = View.VISIBLE
 
         if (message.isNotEmpty()) {
