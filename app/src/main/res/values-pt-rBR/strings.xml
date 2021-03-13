@@ -14,4 +14,14 @@
     <string name="button_search_roadmaps">Encontrar roteiros</string>
     <string name="button_search_maps">Pesquisar no mapa</string>
     <string name="button_create_roadmaps">Criar roteiro</string>
+    <string name="prompt_info_subtitle">Faça o Login</string>
+    <string name="prompt_info_use_app_password">Use sua senha</string>
+    <string name="already_signedin">Usuário já está logado</string>
+    <string name="use_biometrics">Usar biometria</string>
+    <string name="register_biometric_login">Gostaria de cadastrar a biometria?</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="authenticating">Autenticando...</string>
+    <string name="processing">Processando...</string>
+    <string name="wait">Aguarde...</string>
 </resources>
