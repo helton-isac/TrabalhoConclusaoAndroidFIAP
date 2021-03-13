@@ -25,4 +25,6 @@
     <string name="wait">Aguarde...</string>
     <string name="later">Depois</string>
     <string name="dont_ask_again">Não perguntar novamente</string>
+    <string name="login_to_continue">Faça o login para continuar</string>
+    <string name="use_app_password">Utilizar usuário e senha</string>
 </resources>

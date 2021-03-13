@@ -24,4 +24,6 @@
     <string name="wait">Wait...</string>
     <string name="later">Later</string>
     <string name="dont_ask_again">Don\'t ask again</string>
+    <string name="login_to_continue">Please login to get access</string>
+    <string name="use_app_password">Use App password</string>
 </resources>
