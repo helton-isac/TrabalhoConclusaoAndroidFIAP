@@ -31,10 +31,31 @@ class LoginViewModel(
         }
     }
 
-    fun registerBiometricsForUser(email: String, password: String) {
+    fun dontAskForBiometrics() {
         viewModelScope.launch {
             biometricsState.value =
-                biometricsUseCase.registerBiometricsForUser(UserLogin(email, password))
+                biometricsUseCase.dontAskBiometricsAgain()
+        }
+    }
+
+    fun biometricLoginRegistered() {
+        viewModelScope.launch {
+            biometricsState.value =
+                biometricsUseCase.biometricLoginRegistered()
+        }
+    }
+
+    fun markBiometricsUnavailable() {
+        viewModelScope.launch {
+            biometricsState.value =
+                biometricsUseCase.markBiometricsUnavailable()
+        }
+    }
+
+    fun markBiometricsNotInUse() {
+        viewModelScope.launch {
+            biometricsState.value =
+                biometricsUseCase.markBiometricsNotInUse()
         }
     }
 }

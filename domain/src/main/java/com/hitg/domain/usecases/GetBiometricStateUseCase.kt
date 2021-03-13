@@ -2,9 +2,6 @@ package com.hitg.domain.usecases
 
 import com.hitg.domain.entity.Biometrics
 import com.hitg.domain.entity.RequestState
-import com.hitg.domain.entity.UserLogin
-import com.hitg.domain.exception.EmptyEmailException
-import com.hitg.domain.exception.EmptyPasswordException
 import com.hitg.domain.repository.BiometricsRepository
 
 class BiometricsUseCase(
@@ -15,16 +12,19 @@ class BiometricsUseCase(
         return biometricsRepository.getBiometricsState()
     }
 
-    suspend fun registerBiometricsForUser(userLogin: UserLogin): RequestState<Biometrics> {
+    suspend fun biometricLoginRegistered(): RequestState<Biometrics> {
+        return biometricsRepository.biometricLoginRegistered()
+    }
 
-        if (userLogin.email.isBlank()) {
-            RequestState.Error(EmptyEmailException())
-        }
+    suspend fun dontAskBiometricsAgain(): RequestState<Biometrics> {
+        return biometricsRepository.dontAskBiometricsAgain()
+    }
 
-        if (userLogin.password.isBlank()) {
-            RequestState.Error(EmptyPasswordException())
-        }
+    suspend fun markBiometricsUnavailable(): RequestState<Biometrics>? {
+        return biometricsRepository.markBiometricsUnavailable()
+    }
 
-        return biometricsRepository.registerBiometrics(userLogin)
+    suspend fun markBiometricsNotInUse(): RequestState<Biometrics>? {
+        return biometricsRepository.markBiometricsNotInUse()
     }
 }

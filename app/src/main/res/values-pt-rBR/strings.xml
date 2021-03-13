@@ -20,8 +20,9 @@
     <string name="use_biometrics">Usar biometria</string>
     <string name="register_biometric_login">Gostaria de cadastrar a biometria?</string>
     <string name="yes">Sim</string>
-    <string name="no">Não</string>
     <string name="authenticating">Autenticando...</string>
     <string name="processing">Processando...</string>
     <string name="wait">Aguarde...</string>
+    <string name="later">Depois</string>
+    <string name="dont_ask_again">Não perguntar novamente</string>
 </resources>

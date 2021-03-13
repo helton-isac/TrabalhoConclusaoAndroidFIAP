@@ -2,12 +2,16 @@ package com.hitg.domain.repository
 
 import com.hitg.domain.entity.Biometrics
 import com.hitg.domain.entity.RequestState
-import com.hitg.domain.entity.UserLogin
 
 interface BiometricsRepository {
 
-    suspend fun registerBiometrics(userLogin: UserLogin): RequestState<Biometrics>
-
     suspend fun getBiometricsState(): RequestState<Biometrics>
 
+    suspend fun dontAskBiometricsAgain(): RequestState<Biometrics>
+
+    suspend fun biometricLoginRegistered(): RequestState<Biometrics>
+
+    suspend fun markBiometricsUnavailable(): RequestState<Biometrics>?
+
+    suspend fun markBiometricsNotInUse(): RequestState<Biometrics>?
 }
