@@ -1,24 +1,27 @@
 package com.fiap.meurole.about
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.TextView
+import com.fiap.meurole.BuildConfig
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 class AboutFragment : BaseFragment() {
 
     override val layout = R.layout.about_fragment
 
-    private val aboutViewModel: AboutViewModel by viewModel()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.about_fragment, container, false)
+        setUpView(view)
+    }
+
+    private fun setUpView(view: View) {
+        val tvVersion: TextView = view.findViewById(R.id.tvVersion)
+        tvVersion.text = getString(R.string.version, BuildConfig.VERSION_NAME)
     }
 
 

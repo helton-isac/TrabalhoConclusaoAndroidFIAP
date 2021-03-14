@@ -28,7 +28,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/home_menu" />
+        app:menu="@menu/home_menu_bottom_bar" />
 
     <TextView
         android:id="@+id/tvUserName"
