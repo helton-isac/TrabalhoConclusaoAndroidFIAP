@@ -31,12 +31,12 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: app
-          path: app/build/outputs/apk/debug/app-prd-debug.apk
+          path: app/build/outputs/apk/prd/debug/app-prd-debug.apk
       - name: Upload DEV APK
         uses: actions/upload-artifact@v1
         with:
           name: app
-          path: app/build/outputs/apk/debug/app-dev-debug.apk
+          path: app/build/outputs/apk/dev/debug/app-dev-debug.apk
       - name: upload PRD artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
         with:
