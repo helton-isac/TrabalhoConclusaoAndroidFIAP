@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">MeuRole</string>
+    <string name="app_name" translatable="false">Meu Rolê</string>
+    <string name="helton_isac" translatable="false">Helton Isac</string>
+    <string name="helton_souza" translatable="false">Helton Souza</string>
+    <string name="lyan_masterson" translatable="false">Lyan Masterson</string>
+    <string name="ricardo_kerr" translatable="false">Ricardo Kerr</string>
     <string name="loading_message_processing">Processing...</string>
     <string name="button_login">Log in</string>
     <string name="label_password">Password</string>
@@ -13,4 +17,20 @@
     <string name="button_search_roadmaps">Search roadmaps</string>
     <string name="button_search_maps">Search on maps</string>
     <string name="button_create_roadmaps">Create new roadmap</string>
+    <string name="prompt_info_subtitle">Please login to get access</string>
+    <string name="prompt_info_use_app_password">Use app password</string>
+    <string name="already_signedin">already signed in</string>
+    <string name="use_biometrics">Use biometrics</string>
+    <string name="register_biometric_login">Do you want to register a Biometric Login?</string>
+    <string name="yes">Yes</string>
+    <string name="authenticating">Authenticating...</string>
+    <string name="processing">Processing...</string>
+    <string name="wait">Wait...</string>
+    <string name="later">Later</string>
+    <string name="dont_ask_again">Don\'t ask again</string>
+    <string name="login_to_continue">Please login to get access</string>
+    <string name="use_app_password">Use App password</string>
+    <string name="founders">Founders</string>
+    <string name="version">Version: %1$s</string>
+    <string name="about">About</string>
 </resources>

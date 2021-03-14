@@ -1,5 +1,6 @@
 package com.hitg.domain.di
 
+import com.hitg.domain.usecases.BiometricsUseCase
 import com.hitg.domain.usecases.CreateUserUseCase
 import com.hitg.domain.usecases.GetUserLoggedUseCase
 import com.hitg.domain.usecases.LoginUseCase
@@ -19,6 +20,11 @@ val useCaseModule = module {
     factory {
         CreateUserUseCase(
             userRepository = get()
+        )
+    }
+    factory {
+        BiometricsUseCase(
+            biometricsRepository = get()
         )
     }
 }

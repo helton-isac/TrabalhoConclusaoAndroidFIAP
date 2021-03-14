@@ -1,10 +1,13 @@
 package com.fiap.meurole.home
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
@@ -13,6 +16,7 @@ import com.fiap.meurole.base.auth.NAVIGATION_KEY
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 @ExperimentalCoroutinesApi
 class HomeFragment : BaseAuthFragment() {
@@ -25,6 +29,21 @@ class HomeFragment : BaseAuthFragment() {
     private lateinit var bnvHome: BottomNavigationView
 
     private val homeViewModel: HomeViewModel by viewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity?)!!.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_menu_action_bar, menu);
+        super.onCreateOptionsMenu(menu, inflater)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -73,5 +92,18 @@ class HomeFragment : BaseAuthFragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.home_action_menu_about -> {
+                findNavController().navigate(
+                    R.id.aboutFragment, bundleOf(
+                        NAVIGATION_KEY to findNavController().currentDestination?.id
+                    )
+                )
+            }
+        }
+        return true
     }
 }
