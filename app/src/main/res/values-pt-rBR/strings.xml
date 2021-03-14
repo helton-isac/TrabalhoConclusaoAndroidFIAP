@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MeuRole</string>
     <string name="loading_message_processing">Processando...</string>
     <string name="button_login">Logar</string>
     <string name="label_password">Senha</string>
@@ -27,4 +26,7 @@
     <string name="dont_ask_again">Não perguntar novamente</string>
     <string name="login_to_continue">Faça o login para continuar</string>
     <string name="use_app_password">Utilizar usuário e senha</string>
+    <string name="founders">Fundadores</string>
+    <string name="version">Versão: %1$s</string>
+    <string name="about">Sobre</string>
 </resources>

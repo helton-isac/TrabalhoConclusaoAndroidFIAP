@@ -2,6 +2,7 @@ package com.fiap.meurole.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -22,10 +23,17 @@ abstract class BaseFragment : Fragment() {
 
     private val baseViewModel: BaseViewModel by viewModel()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity?)?.supportActionBar?.show()
+        (activity as AppCompatActivity?)!!.supportActionBar?.show()
+        (activity as AppCompatActivity?)!!.supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,5 +75,12 @@ abstract class BaseFragment : Fragment() {
 
     fun showMessage(message: String?) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> activity?.onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -27,6 +28,11 @@ class ProfileFragment : BaseAuthFragment() {
     private lateinit var bvSignOut: Button
 
     private val profileViewModel: ProfileViewModel by viewModel()
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity?)!!.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

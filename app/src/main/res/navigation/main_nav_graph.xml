@@ -37,4 +37,9 @@
         android:name="com.fiap.meurole.map.MapFragment"
         android:label="map_fragment"
         tools:layout="@layout/map_fragment" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.fiap.meurole.about.AboutFragment"
+        android:label="about_fragment"
+        tools:layout="@layout/about_fragment" />
 </navigation>

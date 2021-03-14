@@ -17,7 +17,7 @@ android {
         minSdkVersion globalConfiguration["minSDK"]
         targetSdkVersion globalConfiguration["targetSDK"]
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -57,15 +57,16 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationFragmentKtxVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationUiKtxVersion"
     implementation "androidx.legacy:legacy-support-v4:$legacySupportV4Version"
+    implementation "androidx.cardview:cardview:$cardviewVersion"
 
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
-    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation "com.google.android.gms:play-services-maps:$playServicesMapsVersion"
+    implementation "com.google.android.gms:play-services-location:$playServicesLocation"
 
-    implementation 'com.github.helton-isac:SimpleBiometricAPI:1.0.0'
+    implementation "com.github.helton-isac:SimpleBiometricAPI:$simpleBiometricAPIVersion"
 
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"

@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">MeuRole</string>
+    <string name="app_name" translatable="false">Meu Rolê</string>
+    <string name="helton_isac" translatable="false">Helton Isac</string>
+    <string name="helton_souza" translatable="false">Helton Souza</string>
+    <string name="lyan_masterson" translatable="false">Lyan Masterson</string>
+    <string name="ricardo_kerr" translatable="false">Ricardo Kerr</string>
     <string name="loading_message_processing">Processing...</string>
     <string name="button_login">Log in</string>
     <string name="label_password">Password</string>
@@ -26,4 +30,7 @@
     <string name="dont_ask_again">Don\'t ask again</string>
     <string name="login_to_continue">Please login to get access</string>
     <string name="use_app_password">Use App password</string>
+    <string name="founders">Founders</string>
+    <string name="version">Version: %1$s</string>
+    <string name="about">About</string>
 </resources>
