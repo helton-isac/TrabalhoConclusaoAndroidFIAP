@@ -24,7 +24,8 @@ val presentationModule = module {
     }
     viewModel {
         LoginViewModel(
-            loginUseCase = get()
+            loginUseCase = get(),
+            biometricsUseCase = get()
         )
     }
     viewModel {

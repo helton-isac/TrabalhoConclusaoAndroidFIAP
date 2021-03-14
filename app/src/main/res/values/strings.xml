@@ -13,4 +13,17 @@
     <string name="button_search_roadmaps">Search roadmaps</string>
     <string name="button_search_maps">Search on maps</string>
     <string name="button_create_roadmaps">Create new roadmap</string>
+    <string name="prompt_info_subtitle">Please login to get access</string>
+    <string name="prompt_info_use_app_password">Use app password</string>
+    <string name="already_signedin">already signed in</string>
+    <string name="use_biometrics">Use biometrics</string>
+    <string name="register_biometric_login">Do you want to register a Biometric Login?</string>
+    <string name="yes">Yes</string>
+    <string name="authenticating">Authenticating...</string>
+    <string name="processing">Processing...</string>
+    <string name="wait">Wait...</string>
+    <string name="later">Later</string>
+    <string name="dont_ask_again">Don\'t ask again</string>
+    <string name="login_to_continue">Please login to get access</string>
+    <string name="use_app_password">Use App password</string>
 </resources>
