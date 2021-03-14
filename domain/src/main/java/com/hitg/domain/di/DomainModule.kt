@@ -30,6 +30,11 @@ val useCaseModule = module {
             roadmapRepository = get()
         )
     }
+    factory {
+        CreatePointOfInterestUseCase(
+            poiRepository = get()
+        )
+    }
 }
 
 val domainModule = listOf(useCaseModule)

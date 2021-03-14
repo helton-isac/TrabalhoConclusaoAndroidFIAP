@@ -2,6 +2,7 @@ package com.fiap.meurole.roadmap
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
@@ -19,6 +20,8 @@ class CreateRoadmapFragment: BaseFragment() {
 
     override val layout = R.layout.create_roadmap_fragment
 
+    private lateinit var btCreatePoi: Button
+
     private val createRoadmapViewModel: CreateRoadmapViewModel by viewModel()
 
     private lateinit var pointOfInterests: Array<PointOfInterest>
@@ -33,7 +36,14 @@ class CreateRoadmapFragment: BaseFragment() {
     }
 
     private fun setUpView(view: View) {
-
+        btCreatePoi = view.findViewById(R.id.btAddPointOfInterest)
+        btCreatePoi.setOnClickListener {
+            findNavController().navigate(
+                R.id.createPointOfInterest, bundleOf(
+                    NAVIGATION_KEY to findNavController().currentDestination?.id
+                )
+            )
+        }
     }
 
     private fun registerBackPressedAction() {

@@ -50,6 +50,15 @@
         android:id="@+id/createRoadmapFragment"
         android:name="com.fiap.meurole.roadmap.CreateRoadmapFragment"
         android:label="create_roadmap_fragment"
-        tools:layout="@layout/create_roadmap_fragment"/>
+        tools:layout="@layout/create_roadmap_fragment">
+        <action
+            android:id="@+id/action_createRoadmapFragment_to_createPointOfInterest"
+            app:destination="@id/createPointOfInterest" />
+    </fragment>
+    <fragment
+        android:id="@+id/createPointOfInterest"
+        android:name="com.fiap.meurole.pointOfInterest.CreatePointOfInterestFragment"
+        android:label="createPointOfInterest"
+        tools:layout="@layout/create_point_of_interest"/>
 
 </navigation>
