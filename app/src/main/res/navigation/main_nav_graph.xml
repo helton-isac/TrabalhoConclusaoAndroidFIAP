@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_homeFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_createRoadmapFragment"
+            app:destination="@id/createRoadmapFragment" />
     </fragment>
 
     <include app:graph="@navigation/login_nav_graph" />
@@ -42,4 +45,11 @@
         android:name="com.fiap.meurole.about.AboutFragment"
         android:label="about_fragment"
         tools:layout="@layout/about_fragment" />
+
+    <fragment
+        android:id="@+id/createRoadmapFragment"
+        android:name="com.fiap.meurole.roadmap.CreateRoadmapFragment"
+        android:label="create_roadmap_fragment"
+        tools:layout="@layout/create_roadmap_fragment"/>
+
 </navigation>

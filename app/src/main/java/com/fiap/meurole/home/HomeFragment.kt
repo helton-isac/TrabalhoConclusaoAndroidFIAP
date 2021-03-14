@@ -65,6 +65,14 @@ class HomeFragment : BaseAuthFragment() {
             )
         }
 
+        btCreateRoadmap.setOnClickListener {
+            findNavController().navigate(
+                R.id.createRoadmapFragment, bundleOf(
+                    NAVIGATION_KEY to findNavController().currentDestination?.id
+                )
+            )
+        }
+
         bnvHome = view.findViewById(R.id.bnvHome)
         bnvHome.selectedItemId = R.id.navigation_home
         bnvHome.setOnNavigationItemSelectedListener { item ->
