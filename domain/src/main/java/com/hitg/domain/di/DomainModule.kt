@@ -1,9 +1,6 @@
 package com.hitg.domain.di
 
-import com.hitg.domain.usecases.BiometricsUseCase
-import com.hitg.domain.usecases.CreateUserUseCase
-import com.hitg.domain.usecases.GetUserLoggedUseCase
-import com.hitg.domain.usecases.LoginUseCase
+import com.hitg.domain.usecases.*
 import org.koin.dsl.module
 
 val useCaseModule = module {
@@ -25,6 +22,12 @@ val useCaseModule = module {
     factory {
         BiometricsUseCase(
             biometricsRepository = get()
+        )
+    }
+    factory {
+        CreateRoadmapUseCase(
+            getUserLoggedUseCase = get(),
+            roadmapRepository = get()
         )
     }
 }
