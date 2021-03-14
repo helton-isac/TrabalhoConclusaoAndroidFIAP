@@ -18,22 +18,36 @@ jobs:
       - name: Creating local.properties
         env:
           MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
-        run: echo MAPS_API_KEY=$MAPS_API_KEY > local.properties          
+        run: echo MAPS_API_KEY=$MAPS_API_KEY > local.properties
       - name: Decode google-services.json
         env:
           FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
         run: echo $FIREBASE_SECRET > app/google-services.json
-      - name: Build debug APK
-        run: bash ./gradlew assembleDebug
-      - name: Upload APK
+      - name: Build PRD debug APK
+        run: bash ./gradlew assemblePrd
+      - name: Build DEV debug APK
+        run: bash ./gradlew assembleDev
+      - name: Upload PRD debug APK
         uses: actions/upload-artifact@v1
         with:
           name: app
-          path: app/build/outputs/apk/debug/app-debug.apk
-      - name: upload artifact to Firebase App Distribution
+          path: app/build/outputs/apk/debug/app-prd-debug.apk
+      - name: Upload DEV APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: app
+          path: app/build/outputs/apk/debug/app-dev-debug.apk
+      - name: upload PRD artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: testers
-          file: app/build/outputs/apk/debug/app-debug.apk
+          file: app/build/outputs/apk/debug/app-prd-debug.apk
+      - name: upload DEV artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          groups: testers
+          file: app/build/outputs/apk/debug/app-dev-debug.apk
