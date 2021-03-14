@@ -22,9 +22,9 @@ abstract class BaseFragment : Fragment() {
 
     private val baseViewModel: BaseViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (activity as AppCompatActivity?)!!.supportActionBar?.show()
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity?)?.supportActionBar?.show()
     }
 
     override fun onCreateView(
