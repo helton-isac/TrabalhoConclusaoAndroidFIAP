@@ -6,33 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".home.HomeFragment">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchRoadmap"
+        android:layout_width="317dp"
+        android:layout_height="66dp"
+        android:textColorHint="@color/wedgewood"
+        app:boxStrokeColor="@color/wedgewood"
+        android:layout_marginTop="100dp"
+        android:hint="@string/label_search_roadmap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/editTextSearchRoadmap"
+            android:layout_width="318dp"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="87dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btRoadmaps"
-        android:layout_width="210dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        style="@style/button"
+        android:layout_marginTop="20dp"
         android:text="@string/button_search_roadmaps"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.821"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/searchRoadmap" />
 
     <Button
         android:id="@+id/btSearchMap"
-        android:layout_width="210dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        style="@style/button_large"
+        android:layout_marginTop="148dp"
         android:text="@string/button_search_maps"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btRoadmaps" />
 
     <Button
+        style="@style/button_large"
         android:id="@+id/btCreateRoadmap"
-        android:layout_width="210dp"
-        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/button_create_roadmaps"
+        android:text="@string/button_create_roadmap"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btSearchMap" />
@@ -46,5 +64,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/home_menu_bottom_bar" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
