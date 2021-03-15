@@ -1,6 +1,8 @@
 package com.fiap.data.remote.datasource
 
+import android.os.Bundle
 import com.fiap.data.remote.mapper.NewUserFirebasePayloadMapper
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hitg.domain.entity.NewUser
@@ -11,7 +13,8 @@ import kotlinx.coroutines.tasks.await
 
 class UserRemoteFirebaseDataSourceImpl(
     private val mAuth: FirebaseAuth,
-    private val firebaseFirestore: FirebaseFirestore
+    private val firebaseFirestore: FirebaseFirestore,
+    private val firebaseAnalytics: FirebaseAnalytics
 ) : UserRemoteDataSource {
 
     override suspend fun getUserLogged(): RequestState<User> {
@@ -45,6 +48,13 @@ class UserRemoteFirebaseDataSourceImpl(
             if (firebaseUser == null) {
                 RequestState.Error(Exception("Usuário ou senha inválido"))
             } else {
+                val bundle = Bundle()
+                bundle.putString(
+                    FirebaseAnalytics.Param.METHOD,
+                    "UserRemoteFirebaseDataSourceImpl.doLogin"
+                )
+                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle)
+
                 RequestState.Success(User(firebaseUser.displayName ?: ""))
             }
 
@@ -72,6 +82,13 @@ class UserRemoteFirebaseDataSourceImpl(
                     .document(userId)
                     .set(newUserFirebasePayload)
                     .await()
+
+                val bundle = Bundle()
+                bundle.putString(
+                    FirebaseAnalytics.Param.METHOD,
+                    "UserRemoteFirebaseDataSourceImpl.create"
+                )
+                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP, bundle)
 
                 RequestState.Success(NewUserFirebasePayloadMapper.mapToUser(newUserFirebasePayload))
             }

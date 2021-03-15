@@ -8,6 +8,7 @@ import com.fiap.data.repository.BiometricsRepositoryImpl
 import com.fiap.data.repository.PointOfInterestRepositoryImpl
 import com.fiap.data.repository.RoadmapRepositoryImpl
 import com.fiap.data.repository.UserRepositoryImpl
+import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -31,7 +32,8 @@ val repositoryModule = module {
     factory<UserRemoteDataSource> {
         UserRemoteFirebaseDataSourceImpl(
             Firebase.auth,
-            Firebase.firestore
+            Firebase.firestore,
+            Firebase.analytics
         )
     }
     factory<RoadmapRemoteDataSource> {

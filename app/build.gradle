@@ -36,6 +36,20 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    flavorDimensions "app"
+
+    productFlavors {
+        dev {
+            applicationIdSuffix ".dev"
+            buildConfigField 'String', 'CHAVE', '"VALOR"'
+        }
+
+        prd {
+            buildConfigField 'String', 'CHAVE', '"VALOR"'
+        }
+    }
+
 }
 
 dependencies {
@@ -45,8 +59,8 @@ dependencies {
     implementation platform("com.google.firebase:firebase-bom:$firebaseBomVersion")
     implementation "com.google.firebase:firebase-auth-ktx"
     implementation "com.google.firebase:firebase-firestore-ktx"
-    implementation 'com.google.firebase:firebase-crashlytics'
-    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
     implementation "androidx.core:core-ktx:$coreKtxVersion"
     implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
