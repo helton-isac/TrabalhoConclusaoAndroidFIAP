@@ -23,7 +23,7 @@ class CreateRoadmapViewModel(
                     saveRoadmapState.value = RequestState.Success(roadmap)
                 }
                 is RequestState.Error -> {
-                    saveRoadmapState.value = RequestState.Error(Exception("Roadmap save failed."))
+                    saveRoadmapState.value = response
                 }
                 is RequestState.Loading -> {
                     saveRoadmapState.value = RequestState.Loading

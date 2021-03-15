@@ -32,10 +32,10 @@ class CreateRoadmapUseCase(
                     if (point.description.isBlank()) {
                         return RequestState.Error(EmptyDescriptionException())
                     }
-                    if (point.latitude > -90 && point.latitude < 90) {
+                    if (point.latitude < -90.0 && point.latitude > 90.0) {
                         return RequestState.Error(InvalidLatLongException())
                     }
-                    if (point.longitude > -180 && point.longitude < 180) {
+                    if (point.longitude < -180.0 && point.longitude > 180.0) {
                         return RequestState.Error(InvalidLatLongException())
                     }
                 }
