@@ -46,9 +46,8 @@ class CreatePointOfInterestFragment : BaseFragment() {
                 etDescription.text.toString(),
                 "")
 
-            val bundle: Bundle
-            bundle.putSerializable()
             setFragmentResult("addPoi", bundleOf("newPoi" to pointOfInterest))
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 

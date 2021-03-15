@@ -82,6 +82,7 @@ class CreateRoadmapFragment: BaseFragment() {
         setFragmentResultListener("addPoi") { requestKey, bundle ->
             val poi = bundle.get("newPoi") as PointOfInterest
             pointOfInterests.add(poi)
+            rvPointOfInterest.adapter?.notifyDataSetChanged()
         }
     }
 

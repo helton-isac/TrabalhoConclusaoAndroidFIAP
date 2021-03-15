@@ -17,7 +17,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 @ExperimentalCoroutinesApi
 class HomeFragment : BaseAuthFragment() {
 

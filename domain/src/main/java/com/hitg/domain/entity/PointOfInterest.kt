@@ -1,8 +1,7 @@
 package com.hitg.domain.entity
 
-import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
-@Parcelize
 data class PointOfInterest(
     var id: String = "",
     var latitude: Double,
@@ -10,4 +9,4 @@ data class PointOfInterest(
     var name: String = "",
     var description: String = "",
     var roadmapId: String = ""
-): android.os.Parcelable
+): Serializable
