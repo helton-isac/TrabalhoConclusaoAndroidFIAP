@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etRoadmapDescription"
+        android:id="@+id/etPointOfInterestDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -42,29 +42,23 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRoadmapDescription">
+        app:layout_constraintTop_toBottomOf="@+id/etPointOfInterestDescription">
 
         <EditText
             android:id="@+id/etLatitude"
             android:layout_width="96dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="12dp"
             android:hint="Latitude" />
 
         <EditText
             android:id="@+id/etLongitude"
             android:layout_width="96dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:layout_toLeftOf="@id/etLatitude"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_toStartOf="@id/etLatitude"
             android:hint="Longitude" />
     </RelativeLayout>
 

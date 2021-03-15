@@ -5,12 +5,14 @@ import android.view.View
 import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
 import com.fiap.meurole.base.auth.NAVIGATION_KEY
-import com.google.android.gms.maps.model.PointOfInterest
+import com.hitg.domain.entity.PointOfInterest
 import com.hitg.domain.entity.RequestState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -20,11 +22,12 @@ class CreateRoadmapFragment: BaseFragment() {
 
     override val layout = R.layout.create_roadmap_fragment
 
+    private lateinit var rvPointOfInterest: RecyclerView
     private lateinit var btCreatePoi: Button
 
     private val createRoadmapViewModel: CreateRoadmapViewModel by viewModel()
 
-    private lateinit var pointOfInterests: Array<PointOfInterest>
+    private var pointOfInterests: MutableList<PointOfInterest> = arrayListOf()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,6 +47,9 @@ class CreateRoadmapFragment: BaseFragment() {
                 )
             )
         }
+
+        rvPointOfInterest = view.findViewById(R.id.rvPointOfInterests)
+        rvPointOfInterest.adapter = RoadmapAdapter(pointOfInterests)
     }
 
     private fun registerBackPressedAction() {
@@ -72,6 +78,11 @@ class CreateRoadmapFragment: BaseFragment() {
                 }
             }
         })
+
+        setFragmentResultListener("addPoi") { requestKey, bundle ->
+            val poi = bundle.get("newPoi") as PointOfInterest
+            pointOfInterests.add(poi)
+        }
     }
 
 }
