@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="wedgewood">#457B9D</color>
+    <color name="aqua_island">#A8DADC</color>
+    <color name="cello">#1D3557</color>
+    <color name="cello_pressed">#1D3560</color>
+    <color name="Peppermint">#F1FAEE</color>
+    <color name="editText">#3A3D3F</color>
 </resources>

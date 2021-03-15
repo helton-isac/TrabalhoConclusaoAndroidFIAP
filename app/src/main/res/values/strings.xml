@@ -14,9 +14,9 @@
     <string name="menu_home_home">Home</string>
     <string name="menu_home_profile">Profile</string>
     <string name="logout">Log out</string>
-    <string name="button_search_roadmaps">Search roadmaps</string>
-    <string name="button_search_maps">Search on maps</string>
-    <string name="button_create_roadmaps">Create new roadmap</string>
+    <string name="button_search_roadmaps">Search a roadmap</string>
+    <string name="button_search_maps">Discover a roadmap</string>
+    <string name="button_create_roadmap">Register a roadmap</string>
     <string name="prompt_info_subtitle">Please login to get access</string>
     <string name="prompt_info_use_app_password">Use app password</string>
     <string name="already_signedin">already signed in</string>
@@ -33,4 +33,5 @@
     <string name="founders">Founders</string>
     <string name="version">Version: %1$s</string>
     <string name="about">About</string>
+    <string name="label_search_roadmap">Where are we going?</string>
 </resources>
