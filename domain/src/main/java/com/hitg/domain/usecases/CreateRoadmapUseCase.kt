@@ -45,10 +45,10 @@ class CreateRoadmapUseCase(
                 return when (state) {
                     is RequestState.Success -> {
                         for (poi in roadmap.pointOfInterests) {
-                            poi.roadmapId = state.data.id
+                            poi.roadmapId = state.data
                             poiRepository.create(poi)
                         }
-                        return state
+                        return RequestState.Success(roadmap)
                     }
                     is RequestState.Loading -> {
                         return RequestState.Loading

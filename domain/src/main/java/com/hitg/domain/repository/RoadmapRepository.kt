@@ -4,5 +4,5 @@ import com.hitg.domain.entity.RequestState
 import com.hitg.domain.entity.Roadmap
 
 interface RoadmapRepository {
-    suspend fun create(roadmap: Roadmap): RequestState<Roadmap>
+    suspend fun create(roadmap: Roadmap): RequestState<String>
 }

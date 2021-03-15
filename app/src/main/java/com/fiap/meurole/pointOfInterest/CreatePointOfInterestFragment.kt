@@ -39,7 +39,6 @@ class CreatePointOfInterestFragment : BaseFragment() {
 
         btAdd.setOnClickListener {
             val pointOfInterest = PointOfInterest(
-                "",
                 etLat.text.toString().toDouble(),
                 etLong.text.toString().toDouble(),
                 etName.text.toString(),
