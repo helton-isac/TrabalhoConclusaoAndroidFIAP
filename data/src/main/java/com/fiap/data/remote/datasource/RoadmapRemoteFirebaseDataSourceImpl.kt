@@ -10,9 +10,10 @@ class RoadmapRemoteFirebaseDataSourceImpl(
 
     override suspend fun create(roadmap: Roadmap): RequestState<Roadmap> {
         return try {
-            firebaseFirestore.collection("roadmaps")
+            val document = firebaseFirestore.collection("roadmaps")
                 .add(roadmap)
                 .await()
+            roadmap.id = document.id
             RequestState.Success(roadmap)
         } catch (e: Exception) {
             RequestState.Error(e)

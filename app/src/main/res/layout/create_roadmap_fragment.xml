@@ -16,7 +16,8 @@
         android:hint="Digite o título do roteiro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/etRoadmapDescription"/>
 
     <EditText
         android:id="@+id/etRoadmapDescription"
@@ -29,7 +30,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRoadmapName" />
+        app:layout_constraintTop_toBottomOf="@+id/etRoadmapName"
+        app:layout_constraintBottom_toTopOf="@id/rvPointOfInterests"/>
 
     <Button
         android:id="@+id/btAddPointOfInterest"
@@ -40,10 +42,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="32dp"
         android:text="Add point of interest"
-        app:layout_constraintBottom_toTopOf="@id/btSaveRoadmap"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvPointOfInterests" />
+        app:layout_constraintTop_toBottomOf="@+id/rvPointOfInterests"
+        app:layout_constraintBottom_toTopOf="@id/btSaveRoadmap"/>
 
     <Button
         android:id="@+id/btSaveRoadmap"
@@ -52,6 +54,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="Save roadmap"
+        app:layout_constraintTop_toBottomOf="@id/btAddPointOfInterest"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -59,14 +62,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPointOfInterests"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btAddPointOfInterest"
         app:layout_constraintTop_toBottomOf="@+id/etRoadmapDescription"
         app:spanCount="2"
         tools:listitem="@layout/point_of_interest_item"/>

@@ -6,11 +6,13 @@ import com.hitg.domain.exception.EmptyDescriptionException
 import com.hitg.domain.exception.EmptyNameException
 import com.hitg.domain.exception.EmptyPointOfInterestException
 import com.hitg.domain.exception.InvalidLatLongException
+import com.hitg.domain.repository.PointOfInterestRepository
 import com.hitg.domain.repository.RoadmapRepository
 
 class CreateRoadmapUseCase(
     private val getUserLoggedUseCase: GetUserLoggedUseCase,
-    private val roadmapRepository: RoadmapRepository
+    private val roadmapRepository: RoadmapRepository,
+    private val poiRepository: PointOfInterestRepository
 ) {
 
     suspend fun create(roadmap: Roadmap): RequestState<Roadmap> {
@@ -38,15 +40,31 @@ class CreateRoadmapUseCase(
                     }
                 }
                 roadmap.creatorId = userLogged.data.id
-                return roadmapRepository.create(roadmap)
+
+                val state = roadmapRepository.create(roadmap)
+                return when (state) {
+                    is RequestState.Success -> {
+                        for (poi in roadmap.pointOfInterests) {
+                            poi.roadmapId = state.data.id
+                            poiRepository.create(poi)
+                        }
+                        return state
+                    }
+                    is RequestState.Loading -> {
+                        return RequestState.Loading
+                    }
+                    is RequestState.Error -> {
+                        return RequestState.Error(Exception("Erro ao criar o roteiro"))
+                    }
+                }
             }
 
             is RequestState.Loading -> {
-                RequestState.Loading
+                return RequestState.Loading
             }
 
             is RequestState.Error -> {
-                RequestState.Error(Exception("Usuário não encontrado para associar o carro"))
+                return RequestState.Error(Exception("Usuário não encontrado para associar o roteiro"))
             }
         }
 
