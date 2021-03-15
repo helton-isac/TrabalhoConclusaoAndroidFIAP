@@ -12,7 +12,7 @@
     <string name="logout">Sair</string>
     <string name="button_search_roadmaps">Encontrar roteiros</string>
     <string name="button_search_maps">Pesquisar no mapa</string>
-    <string name="button_create_roadmaps">Criar roteiro</string>
+    <string name="button_create_roadmap">Criar roteiro</string>
     <string name="prompt_info_subtitle">Faça o Login</string>
     <string name="prompt_info_use_app_password">Use sua senha</string>
     <string name="already_signedin">Usuário já está logado</string>
@@ -29,4 +29,5 @@
     <string name="founders">Fundadores</string>
     <string name="version">Versão: %1$s</string>
     <string name="about">Sobre</string>
+    <string name="label_search_roadmap">Para onde vamos?</string>
 </resources>
