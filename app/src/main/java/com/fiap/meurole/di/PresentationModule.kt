@@ -6,6 +6,7 @@ import com.fiap.meurole.home.HomeViewModel
 import com.fiap.meurole.login.LoginViewModel
 import com.fiap.meurole.map.MapViewModel
 import com.fiap.meurole.profile.ProfileViewModel
+import com.fiap.meurole.roadmap.CreateRoadmapViewModel
 import com.fiap.meurole.signup.SignUpViewModel
 import com.fiap.meurole.splash.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -40,6 +41,11 @@ val presentationModule = module {
     viewModel {
         SignUpViewModel(
             createUserUseCase = get()
+        )
+    }
+    viewModel {
+        CreateRoadmapViewModel(
+            createRoadmapUseCase = get()
         )
     }
 }

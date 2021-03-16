@@ -17,6 +17,7 @@ ext {
     playServicesLocation = '18.0.0'
 
     coreKtxVersion = '1.3.2'
+    fragmentKtxVersion = '1.3.1'
     lifecycleLivedataKtxVersion = '2.3.0'
     lifecycleViewmodelKtxVersion = '2.3.0'
     navigationFragmentKtxVersion = '2.3.3'

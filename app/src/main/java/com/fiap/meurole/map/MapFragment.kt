@@ -90,11 +90,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
     private fun registerBackPressedAction() {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                findNavController().navigate(
-                    R.id.homeFragment, bundleOf(
-                        NAVIGATION_KEY to findNavController().currentDestination?.id
-                    )
-                )
+                requireActivity().supportFragmentManager.popBackStack()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)

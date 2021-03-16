@@ -17,7 +17,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 @ExperimentalCoroutinesApi
 class HomeFragment : BaseAuthFragment() {
 
@@ -60,6 +59,14 @@ class HomeFragment : BaseAuthFragment() {
         btSearchMap.setOnClickListener {
             findNavController().navigate(
                 R.id.mapFragment, bundleOf(
+                    NAVIGATION_KEY to findNavController().currentDestination?.id
+                )
+            )
+        }
+
+        btCreateRoadmap.setOnClickListener {
+            findNavController().navigate(
+                R.id.createRoadmapFragment, bundleOf(
                     NAVIGATION_KEY to findNavController().currentDestination?.id
                 )
             )
