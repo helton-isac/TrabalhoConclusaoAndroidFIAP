@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
 import com.fiap.meurole.base.auth.NAVIGATION_KEY
+import com.google.android.material.textfield.TextInputEditText
 import com.hitg.domain.entity.PointOfInterest
 import com.hitg.domain.entity.RequestState
 import com.hitg.domain.entity.Roadmap
@@ -24,7 +25,7 @@ class CreateRoadmapFragment : BaseFragment() {
 
     override val layout = R.layout.create_roadmap_fragment
 
-    private lateinit var etRoadmapName: EditText
+    private lateinit var etRoadmapName: TextInputEditText
     private lateinit var etRoadmapDescription: EditText
     private lateinit var rvPointOfInterest: RecyclerView
     private lateinit var btCreatePoi: Button
