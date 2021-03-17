@@ -1,6 +1,7 @@
 package com.fiap.data.remote.datasource
 
 import com.fiap.data.remote.mapper.NewPointOfInterestPayloadMapper
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hitg.domain.entity.PointOfInterest
 import com.hitg.domain.entity.RequestState
@@ -14,19 +15,20 @@ class PointOfInterestRemoteFirebaseDataSourceImpl(
     override suspend fun create(poi: PointOfInterest): RequestState<PointOfInterest> {
         return try {
             val payload = NewPointOfInterestPayloadMapper.mapToNewPointOfInterest(poi)
-            firebaseFirestore.collection("pointOfInterest")
+            val document = firebaseFirestore.collection("pointOfInterest")
                 .add(payload)
                 .await()
+            poi.id = document.id
             RequestState.Success(poi)
         } catch (e: Exception) {
             RequestState.Error(e)
         }
     }
 
-    override suspend fun fetch(roadmapId: String): RequestState<List<PointOfInterest>> {
+    override suspend fun fetch(idList: List<String>): RequestState<List<PointOfInterest>> {
         return try {
             val result = firebaseFirestore.collection("pointOfInterest")
-                .whereEqualTo("roadmapId", roadmapId)
+                .whereIn(FieldPath.documentId(), idList)
                 .get()
                 .await()
                 .documents
@@ -37,8 +39,7 @@ class PointOfInterestRemoteFirebaseDataSourceImpl(
                     name = it.getString("name") ?: "",
                     description = it.getString("description") ?: "",
                     latitude = it.getDouble("latitude") ?: 0.0,
-                    longitude = it.getDouble("longitude") ?: 0.0,
-                    roadmapId = it.getString("roadmapId") ?: "",
+                    longitude = it.getDouble("longitude") ?: 0.0
                 )
                 poi
             }

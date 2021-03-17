@@ -27,7 +27,12 @@ val useCaseModule = module {
     factory {
         CreateRoadmapUseCase(
             getUserLoggedUseCase = get(),
-            roadmapRepository = get(),
+            roadmapRepository = get()
+        )
+    }
+    factory {
+        CreatePointOfInterestUseCase(
+            getUserLoggedUseCase = get(),
             poiRepository = get()
         )
     }

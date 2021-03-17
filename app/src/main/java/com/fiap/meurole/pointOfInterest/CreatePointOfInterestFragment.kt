@@ -7,10 +7,13 @@ import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
+import androidx.lifecycle.Observer
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
 import com.hitg.domain.entity.PointOfInterest
+import com.hitg.domain.entity.RequestState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @ExperimentalCoroutinesApi
 class CreatePointOfInterestFragment : BaseFragment() {
@@ -23,9 +26,13 @@ class CreatePointOfInterestFragment : BaseFragment() {
     private lateinit var etLong: EditText
     private lateinit var btAdd: Button
 
+    private val viewModel: CreatePointOfInterestViewModel by viewModel()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         registerBackPressedAction()
+
+        registerObserver()
 
         setUpView(view)
     }
@@ -38,16 +45,14 @@ class CreatePointOfInterestFragment : BaseFragment() {
         btAdd = view.findViewById(R.id.btSavePointOfInterest)
 
         btAdd.setOnClickListener {
-            val pointOfInterest = PointOfInterest(
+            val poi = PointOfInterest(
                 id = "",
                 latitude = etLat.text.toString().toDouble(),
                 longitude = etLong.text.toString().toDouble(),
                 name = etName.text.toString(),
-                description = etDescription.text.toString(),
-                "")
+                description = etDescription.text.toString())
 
-            setFragmentResult("addPoi", bundleOf("newPoi" to pointOfInterest))
-            requireActivity().supportFragmentManager.popBackStack()
+            viewModel.createPointOfInterest(poi)
         }
     }
 
@@ -58,6 +63,27 @@ class CreatePointOfInterestFragment : BaseFragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
+    private fun registerObserver() {
+        viewModel.poiState.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is RequestState.Success -> {
+                    hideLoading()
+                    showMessage("Ponto de interesse cadastrado")
+
+                    setFragmentResult("addPoi", bundleOf("newPoi" to it.data))
+                    requireActivity().supportFragmentManager.popBackStack()
+                }
+                is RequestState.Error -> {
+                    hideLoading()
+                    showMessage(it.throwable.message)
+                }
+                is RequestState.Loading -> {
+                    showLoading()
+                }
+            }
+        })
     }
 
 }

@@ -14,12 +14,12 @@ class FetchRoadmapsUseCase(
         val roadmaps = roadmapRepository.fetch()
         return when (roadmaps) {
             is RequestState.Success -> {
-                val roadmapsPoi: List<Roadmap> = roadmaps.data.map {
-                    val pointOfInterests = poiRepository.fetch(it.id)
+                val roadmapsPoi: List<Roadmap> = roadmaps.data.map { roadmap ->
+                    val pointOfInterests = poiRepository.fetch(roadmap.pointOfInterests.map { it.id })
                     when (pointOfInterests) {
                         is RequestState.Success -> {
-                            it.pointOfInterests = pointOfInterests.data
-                            it
+                            roadmap.pointOfInterests = pointOfInterests.data
+                            roadmap
                         }
                         is RequestState.Loading -> {
                             return RequestState.Loading

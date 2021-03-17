@@ -9,8 +9,7 @@ object NewPointOfInterestPayloadMapper {
         name = poi.name,
         description = poi.description,
         latitude = poi.latitude,
-        longitude = poi.longitude,
-        roadmapId = poi.roadmapId
+        longitude = poi.longitude
     )
 
 }

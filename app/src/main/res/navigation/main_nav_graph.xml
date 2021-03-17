@@ -65,7 +65,7 @@
         tools:layout="@layout/create_point_of_interest_fragment"/>
     <fragment
         android:id="@+id/roadmapList"
-        android:name="com.fiap.meurole.roadmap.RoadmapListFragment"
+        android:name="com.fiap.meurole.roadmapList.RoadmapListFragment"
         android:label="roadmapList"
         tools:layout="@layout/roadmap_list_fragment"/>
 
