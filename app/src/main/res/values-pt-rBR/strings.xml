@@ -30,4 +30,6 @@
     <string name="version">Versão: %1$s</string>
     <string name="about">Sobre</string>
     <string name="label_search_roadmap">Para onde vamos?</string>
+    <string name="default_notification_channel_name">Canal de notificações Gerais</string>
+    <string name="default_notification_channel_description">Notificações gerais</string>
 </resources>
