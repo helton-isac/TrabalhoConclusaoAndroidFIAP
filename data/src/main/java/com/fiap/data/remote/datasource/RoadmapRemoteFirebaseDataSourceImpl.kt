@@ -30,10 +30,12 @@ class RoadmapRemoteFirebaseDataSourceImpl(
                 .documents
 
             val roadmaps = result.map {
+                val poiIds: List<String> = it.get ("pointOfInterests") as List<String>
                 val roadmap = Roadmap(
                     id = it.id,
                     name = it.getString("name") ?: "",
                     description = it.getString("description") ?: "",
+                    pointOfInterests = poiIds.map { id -> PointOfInterest(id = id) },
                     creatorId = it.getString("creatorId") ?: ""
                 )
                 roadmap

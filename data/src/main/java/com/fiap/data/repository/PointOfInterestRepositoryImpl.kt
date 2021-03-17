@@ -13,8 +13,8 @@ class PointOfInterestRepositoryImpl(
         return poiRemoteDataSource.create(poi)
     }
 
-    override suspend fun fetch(roadmapId: String): RequestState<List<PointOfInterest>> {
-        return poiRemoteDataSource.fetch(roadmapId)
+    override suspend fun fetch(idList: List<String>): RequestState<List<PointOfInterest>> {
+        return poiRemoteDataSource.fetch(idList)
     }
 
 }
