@@ -8,51 +8,35 @@ import com.hitg.domain.exception.InvalidLatLongException
 import com.hitg.domain.repository.PointOfInterestRepository
 
 class CreatePointOfInterestUseCase(
-    private val getUserLoggedUseCase: GetUserLoggedUseCase,
     private val poiRepository: PointOfInterestRepository
 ) {
 
     suspend fun create(poi: PointOfInterest): RequestState<PointOfInterest> {
-        val userLogged = getUserLoggedUseCase.getUserLogged()
+        if (poi.name.isBlank()) {
+            return RequestState.Error(EmptyNameException())
+        }
+        if (poi.description.isBlank()) {
+            return RequestState.Error(EmptyDescriptionException())
+        }
+        if (poi.latitude < -90.0 && poi.latitude > 90.0) {
+            return RequestState.Error(InvalidLatLongException())
+        }
+        if (poi.longitude < -180.0 && poi.longitude > 180.0) {
+            return RequestState.Error(InvalidLatLongException())
+        }
 
-        return when (userLogged) {
+        val state = poiRepository.create(poi)
+        return when (state) {
             is RequestState.Success -> {
-                if (poi.name.isBlank()) {
-                    return RequestState.Error(EmptyNameException())
-                }
-                if (poi.description.isBlank()) {
-                    return RequestState.Error(EmptyDescriptionException())
-                }
-                if (poi.latitude < -90.0 && poi.latitude > 90.0) {
-                    return RequestState.Error(InvalidLatLongException())
-                }
-                if (poi.longitude < -180.0 && poi.longitude > 180.0) {
-                    return RequestState.Error(InvalidLatLongException())
-                }
-
-                val state = poiRepository.create(poi)
-                return when (state) {
-                    is RequestState.Success -> {
-                        return state
-                    }
-                    is RequestState.Loading -> {
-                        return RequestState.Loading
-                    }
-                    is RequestState.Error -> {
-                        return RequestState.Error(Exception("Point of interest could not be created"))
-                    }
-                }
+                return state
             }
-
             is RequestState.Loading -> {
                 return RequestState.Loading
             }
-
             is RequestState.Error -> {
-                return RequestState.Error(Exception("Usuário não encontrado para associar o roteiro"))
+                return RequestState.Error(Exception("Point of interest could not be created"))
             }
         }
-
     }
 
 }

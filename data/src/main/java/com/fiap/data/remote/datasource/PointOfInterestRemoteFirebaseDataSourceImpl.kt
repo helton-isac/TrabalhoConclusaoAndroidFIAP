@@ -57,11 +57,28 @@ class PointOfInterestRemoteFirebaseDataSourceImpl(
 
     override suspend fun delete(id: String): RequestState<String> {
         return try {
-            val document = firebaseFirestore.collection("pointOfInterest")
+            firebaseFirestore.collection("pointOfInterest")
                 .document(id)
                 .delete()
                 .await()
             RequestState.Success(id)
+        } catch (e: Exception) {
+            RequestState.Error(e)
+        }
+    }
+
+    override suspend fun edit(poi: PointOfInterest): RequestState<PointOfInterest> {
+        return try {
+            firebaseFirestore.collection("pointOfInterest")
+                .document(poi.id)
+                .update(
+                    "name", poi.name,
+                    "description", poi.description,
+                    "latitude", poi.latitude,
+                    "longitude", poi.longitude
+                )
+                .await()
+            RequestState.Success(poi)
         } catch (e: Exception) {
             RequestState.Error(e)
         }

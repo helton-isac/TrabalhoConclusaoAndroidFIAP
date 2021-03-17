@@ -1,4 +1,4 @@
-package com.fiap.meurole.pointOfInterest
+package com.fiap.meurole.pointOfInterest.create
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +14,7 @@ class CreatePointOfInterestViewModel(
 
     var poiState = MutableLiveData<RequestState<PointOfInterest>>()
 
-    fun createPointOfInterest(poi: PointOfInterest) {
+    fun create(poi: PointOfInterest) {
         viewModelScope.launch {
             val response = createPointOfInterestUseCase.create(poi)
 

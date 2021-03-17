@@ -9,4 +9,6 @@ interface PointOfInterestRepository {
     suspend fun fetch(idList: List<String>): RequestState<List<PointOfInterest>>
 
     suspend fun delete(id: String): RequestState<String>
+
+    suspend fun edit(poi: PointOfInterest): RequestState<PointOfInterest>
 }
