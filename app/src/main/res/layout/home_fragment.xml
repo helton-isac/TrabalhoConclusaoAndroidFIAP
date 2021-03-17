@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            style="@style/editTextSearchRoadmap"
+            style="@style/editText"
             android:layout_width="318dp"
             android:layout_height="match_parent"
             tools:layout_editor_absoluteY="87dp" />
@@ -42,7 +42,6 @@
         android:layout_marginTop="148dp"
         android:text="@string/button_search_maps"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btRoadmaps" />
 
