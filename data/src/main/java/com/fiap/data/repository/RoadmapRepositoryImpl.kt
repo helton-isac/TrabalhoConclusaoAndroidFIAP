@@ -9,7 +9,7 @@ class RoadmapRepositoryImpl(
     private val roadmapRemoteDataSource: RoadmapRemoteDataSource
 ): RoadmapRepository {
 
-    override suspend fun create(roadmap: Roadmap): RequestState<String> {
+    override suspend fun create(roadmap: Roadmap): RequestState<Roadmap> {
         return roadmapRemoteDataSource.create(roadmap)
     }
 

@@ -1,19 +1,12 @@
-package com.fiap.meurole.roadmap
+package com.fiap.meurole.roadmapList
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
-import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
-import com.fiap.meurole.base.auth.NAVIGATION_KEY
-import com.hitg.domain.entity.PointOfInterest
 import com.hitg.domain.entity.RequestState
 import com.hitg.domain.entity.Roadmap
 import kotlinx.coroutines.ExperimentalCoroutinesApi

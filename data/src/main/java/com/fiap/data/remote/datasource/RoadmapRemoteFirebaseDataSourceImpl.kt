@@ -9,13 +9,14 @@ class RoadmapRemoteFirebaseDataSourceImpl(
     private val firebaseFirestore: FirebaseFirestore
 ) : RoadmapRemoteDataSource {
 
-    override suspend fun create(roadmap: Roadmap): RequestState<String> {
+    override suspend fun create(roadmap: Roadmap): RequestState<Roadmap> {
         return try {
             val newRoadmapPayload = NewRoadmapPayloadMapper.mapToNewRoadmap(roadmap)
             val document = firebaseFirestore.collection("roadmaps")
                 .add(newRoadmapPayload)
                 .await()
-            RequestState.Success(document.id)
+            roadmap.id = document.id
+            RequestState.Success(roadmap)
         } catch (e: Exception) {
             RequestState.Error(e)
         }

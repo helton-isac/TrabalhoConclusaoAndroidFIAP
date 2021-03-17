@@ -14,9 +14,10 @@ class PointOfInterestRemoteFirebaseDataSourceImpl(
     override suspend fun create(poi: PointOfInterest): RequestState<PointOfInterest> {
         return try {
             val payload = NewPointOfInterestPayloadMapper.mapToNewPointOfInterest(poi)
-            firebaseFirestore.collection("pointOfInterest")
+            val document = firebaseFirestore.collection("pointOfInterest")
                 .add(payload)
                 .await()
+            poi.id = document.id
             RequestState.Success(poi)
         } catch (e: Exception) {
             RequestState.Error(e)
@@ -37,8 +38,7 @@ class PointOfInterestRemoteFirebaseDataSourceImpl(
                     name = it.getString("name") ?: "",
                     description = it.getString("description") ?: "",
                     latitude = it.getDouble("latitude") ?: 0.0,
-                    longitude = it.getDouble("longitude") ?: 0.0,
-                    roadmapId = it.getString("roadmapId") ?: "",
+                    longitude = it.getDouble("longitude") ?: 0.0
                 )
                 poi
             }
