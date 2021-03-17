@@ -9,4 +9,6 @@ interface PointOfInterestRemoteDataSource {
 
     suspend fun fetch(idList: List<String>): RequestState<List<PointOfInterest>>
 
+    suspend fun delete(id: String): RequestState<String>
+
 }

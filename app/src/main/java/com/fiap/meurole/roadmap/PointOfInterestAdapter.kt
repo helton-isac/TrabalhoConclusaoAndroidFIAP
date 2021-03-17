@@ -26,7 +26,7 @@ class PointOfInterestAdapter(
         holder.bind(items[position])
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: PointOfInterest) {
             val date = itemView.findViewById<TextView>(R.id.tvDate)

@@ -37,6 +37,11 @@ val useCaseModule = module {
         )
     }
     factory {
+        DeletePointOfInterestUseCase(
+            poiRepository = get()
+        )
+    }
+    factory {
         FetchRoadmapsUseCase(
             roadmapRepository = get(),
             poiRepository = get()

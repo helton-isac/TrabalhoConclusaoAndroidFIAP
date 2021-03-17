@@ -9,6 +9,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper.LEFT
+import androidx.recyclerview.widget.ItemTouchHelper.RIGHT
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
@@ -51,6 +54,23 @@ class CreateRoadmapFragment : BaseFragment() {
         rvPointOfInterest = view.findViewById(R.id.rvPointOfInterests)
         rvPointOfInterest.adapter = PointOfInterestAdapter(pointOfInterests)
 
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, LEFT or RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                showLoading()
+                val position = viewHolder.adapterPosition
+                viewModel.deletePointOfInterest(pointOfInterests[position])
+            }
+
+        }).attachToRecyclerView(rvPointOfInterest)
+
         btCreatePoi = view.findViewById(R.id.btAddPointOfInterest)
         btCreatePoi.setOnClickListener {
             findNavController().navigate(
@@ -91,6 +111,25 @@ class CreateRoadmapFragment : BaseFragment() {
                     hideLoading()
                     showMessage("Cadastro realizado com sucesso")
                     requireActivity().supportFragmentManager.popBackStack()
+                }
+                is RequestState.Error -> {
+                    hideLoading()
+                    showMessage(it.throwable.message)
+                }
+                is RequestState.Loading -> {
+                    showLoading()
+                }
+            }
+        })
+
+        viewModel.deletePointOfInterestState.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is RequestState.Success -> {
+                    hideLoading()
+                    showMessage("Ponto de interesse excluído.")
+                    val index = pointOfInterests.indexOfFirst { poi -> poi.id == it.data }
+                    pointOfInterests.removeAt(index)
+                    rvPointOfInterest.adapter?.notifyDataSetChanged()
                 }
                 is RequestState.Error -> {
                     hideLoading()
