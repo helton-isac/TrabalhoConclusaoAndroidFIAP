@@ -13,4 +13,8 @@ class RoadmapRepositoryImpl(
         return roadmapRemoteDataSource.create(roadmap)
     }
 
+    override suspend fun fetch(): RequestState<List<Roadmap>> {
+        return roadmapRemoteDataSource.fetch()
+    }
+
 }

@@ -5,4 +5,6 @@ import com.hitg.domain.entity.Roadmap
 
 interface RoadmapRepository {
     suspend fun create(roadmap: Roadmap): RequestState<String>
+
+    suspend fun fetch(): RequestState<List<Roadmap>>
 }
