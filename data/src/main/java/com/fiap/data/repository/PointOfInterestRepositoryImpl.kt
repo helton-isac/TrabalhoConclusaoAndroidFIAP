@@ -17,4 +17,8 @@ class PointOfInterestRepositoryImpl(
         return poiRemoteDataSource.fetch(idList)
     }
 
+    override suspend fun delete(id: String): RequestState<String> {
+        return poiRemoteDataSource.delete(id)
+    }
+
 }
