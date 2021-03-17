@@ -31,6 +31,12 @@ val useCaseModule = module {
             poiRepository = get()
         )
     }
+    factory {
+        FetchRoadmapsUseCase(
+            roadmapRepository = get(),
+            poiRepository = get()
+        )
+    }
 }
 
 val domainModule = listOf(useCaseModule)

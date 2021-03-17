@@ -30,7 +30,7 @@ class CreateRoadmapFragment : BaseFragment() {
     private lateinit var btCreatePoi: Button
     private lateinit var btCreateRoadmap: Button
 
-    private val viewmModel: CreateRoadmapViewModel by viewModel()
+    private val viewModel: CreateRoadmapViewModel by viewModel()
 
     private var pointOfInterests: MutableList<PointOfInterest> = arrayListOf()
 
@@ -48,7 +48,7 @@ class CreateRoadmapFragment : BaseFragment() {
         etRoadmapDescription = view.findViewById(R.id.etRoadmapDescription)
 
         rvPointOfInterest = view.findViewById(R.id.rvPointOfInterests)
-        rvPointOfInterest.adapter = RoadmapAdapter(pointOfInterests)
+        rvPointOfInterest.adapter = PointOfInterestAdapter(pointOfInterests)
 
         btCreatePoi = view.findViewById(R.id.btAddPointOfInterest)
         btCreatePoi.setOnClickListener {
@@ -70,7 +70,7 @@ class CreateRoadmapFragment : BaseFragment() {
                     pointOfInterests,
                     ""
                 )
-            viewmModel.createRoadmap(roadmap)
+            viewModel.createRoadmap(roadmap)
         }
     }
 
@@ -84,7 +84,7 @@ class CreateRoadmapFragment : BaseFragment() {
     }
 
     private fun registerObserver() {
-        viewmModel.saveRoadmapState.observe(viewLifecycleOwner, Observer {
+        viewModel.saveRoadmapState.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()

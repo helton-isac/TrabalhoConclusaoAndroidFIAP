@@ -7,4 +7,6 @@ interface PointOfInterestRemoteDataSource {
 
     suspend fun create(poi: PointOfInterest): RequestState<PointOfInterest>
 
+    suspend fun fetch(roadmapId: String): RequestState<List<PointOfInterest>>
+
 }

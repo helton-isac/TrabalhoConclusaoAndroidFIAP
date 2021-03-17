@@ -56,6 +56,14 @@ class HomeFragment : BaseAuthFragment() {
         btSearchMap = view.findViewById(R.id.btSearchMap)
         btCreateRoadmap = view.findViewById(R.id.btCreateRoadmap)
 
+        btRoadmaps.setOnClickListener {
+            findNavController().navigate(
+                R.id.roadmapList, bundleOf(
+                    NAVIGATION_KEY to findNavController().currentDestination?.id
+                )
+            )
+        }
+
         btSearchMap.setOnClickListener {
             findNavController().navigate(
                 R.id.mapFragment, bundleOf(

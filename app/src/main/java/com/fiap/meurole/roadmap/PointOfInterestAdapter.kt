@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
-import com.hitg.domain.entity.Roadmap
+import com.hitg.domain.entity.PointOfInterest
 
-class RoadmapAdapter(
-    private var items: List<Roadmap>
-) : RecyclerView.Adapter<RoadmapAdapter.ViewHolder>() {
+class PointOfInterestAdapter(
+    private var items: List<PointOfInterest>
+) : RecyclerView.Adapter<PointOfInterestAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.roadmap_item, parent, false)
+            .inflate(R.layout.point_of_interest_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -28,12 +28,12 @@ class RoadmapAdapter(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: Roadmap) {
+        fun bind(item: PointOfInterest) {
+            val date = itemView.findViewById<TextView>(R.id.tvDate)
+            val time = itemView.findViewById<TextView>(R.id.tvTime)
             val title = itemView.findViewById<TextView>(R.id.tvTitle)
-            val description = itemView.findViewById<TextView>(R.id.tvDescription)
 
             title.text = item.name
-            description.text = item.description
         }
     }
 }

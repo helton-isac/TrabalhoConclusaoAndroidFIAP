@@ -15,7 +15,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 class CreatePointOfInterestFragment : BaseFragment() {
 
-    override val layout = R.layout.create_point_of_interest
+    override val layout = R.layout.create_point_of_interest_fragment
 
     private lateinit var etName: EditText
     private lateinit var etDescription: EditText
@@ -39,10 +39,11 @@ class CreatePointOfInterestFragment : BaseFragment() {
 
         btAdd.setOnClickListener {
             val pointOfInterest = PointOfInterest(
-                etLat.text.toString().toDouble(),
-                etLong.text.toString().toDouble(),
-                etName.text.toString(),
-                etDescription.text.toString(),
+                id = "",
+                latitude = etLat.text.toString().toDouble(),
+                longitude = etLong.text.toString().toDouble(),
+                name = etName.text.toString(),
+                description = etDescription.text.toString(),
                 "")
 
             setFragmentResult("addPoi", bundleOf("newPoi" to pointOfInterest))
