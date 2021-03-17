@@ -37,4 +37,6 @@
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="default_notification_channel_name">General notifications channel</string>
     <string name="default_notification_channel_description">General notifications</string>
+    <string name="share">Share</string>
+    <string name="share_message">Discover the \"Meu Rolê\" app, soon available on Google Play and the Apple Store!</string>
 </resources>

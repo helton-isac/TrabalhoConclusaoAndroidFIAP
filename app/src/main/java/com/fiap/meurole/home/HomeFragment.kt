@@ -119,6 +119,6 @@ class HomeFragment : BaseAuthFragment() {
                 )
             }
         }
-        return true
+        return super.onOptionsItemSelected(item)
     }
 }
