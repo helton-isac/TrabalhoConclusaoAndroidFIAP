@@ -32,4 +32,10 @@
     <string name="label_search_roadmap">Para onde vamos?</string>
     <string name="default_notification_channel_name">Canal de notificações Gerais</string>
     <string name="default_notification_channel_description">Notificações gerais</string>
+    <string name="share">Compartilhar</string>
+    <string name="share_message">Conheça o aplicativo \"Meu Rolê\", em breve disponível no Google Play e na Apple Store!</string>
+    <string name="label_type_roadmap_title">Digite o título do roteiro</string>
+    <string name="label_type_a_roadmap_description">Escreva uma descriçao para o roteiro</string>
+    <string name="save_roadmap">Salvar Roteiro</string>
+    <string name="add_point_of_interest">Adicionar ponto de interesse</string>
 </resources>

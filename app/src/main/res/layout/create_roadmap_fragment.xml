@@ -3,74 +3,93 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/etRoadmapName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRoadmapName"
+        android:layout_width="317dp"
+        android:layout_height="66dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:hint="Digite o título do roteiro"
+        android:hint="@string/label_type_roadmap_title"
+        android:textColorHint="@color/wedgewood"
+        app:boxStrokeColor="@color/wedgewood"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/etRoadmapDescription"/>
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/etRoadmapDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etRoadmapName"
+            style="@style/editText"
+            android:layout_width="318dp"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="87dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRoadmapDescription"
+        android:layout_width="317dp"
+        android:layout_height="66dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:hint="Escreva uma descriçao para o roteiro"
+        android:hint="@string/label_type_a_roadmap_description"
+        android:textColorHint="@color/wedgewood"
+        app:boxStrokeColor="@color/wedgewood"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRoadmapName"
-        app:layout_constraintBottom_toTopOf="@id/rvPointOfInterests"/>
+        app:layout_constraintTop_toBottomOf="@+id/tilRoadmapName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etRoadmapDescription"
+            style="@style/editText"
+            android:layout_width="318dp"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="87dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btAddPointOfInterest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/button"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
-        android:text="Add point of interest"
+        android:text="@string/add_point_of_interest"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvPointOfInterests"
-        app:layout_constraintBottom_toTopOf="@id/btSaveRoadmap"/>
-
-    <Button
-        android:id="@+id/btSaveRoadmap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Save roadmap"
-        app:layout_constraintTop_toBottomOf="@id/btAddPointOfInterest"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tilRoadmapDescription" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPointOfInterests"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/btSaveRoadmap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_min="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAddPointOfInterest"
+        app:spanCount="2"
+        tools:listitem="@layout/point_of_interest_item" />
+
+    <Button
+        android:id="@+id/btSaveRoadmap"
+        style="@style/button_large"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginBottom="8dp"
+        android:text="@string/save_roadmap"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btAddPointOfInterest"
-        app:layout_constraintTop_toBottomOf="@+id/etRoadmapDescription"
-        app:spanCount="2"
-        tools:listitem="@layout/point_of_interest_item"/>
+        app:layout_constraintTop_toBottomOf="@id/rvPointOfInterests" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
