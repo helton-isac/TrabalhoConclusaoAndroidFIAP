@@ -69,14 +69,10 @@ class PointOfInterestRemoteFirebaseDataSourceImpl(
 
     override suspend fun edit(poi: PointOfInterest): RequestState<PointOfInterest> {
         return try {
+            val payload = NewPointOfInterestPayloadMapper.mapToNewPointOfInterest(poi)
             firebaseFirestore.collection("pointOfInterest")
                 .document(poi.id)
-                .update(
-                    "name", poi.name,
-                    "description", poi.description,
-                    "latitude", poi.latitude,
-                    "longitude", poi.longitude
-                )
+                .set(payload)
                 .await()
             RequestState.Success(poi)
         } catch (e: Exception) {

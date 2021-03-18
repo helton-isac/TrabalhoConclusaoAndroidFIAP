@@ -72,7 +72,7 @@ class CreatePointOfInterestFragment : BaseFragment() {
                     hideLoading()
                     showMessage("Ponto de interesse cadastrado")
 
-                    setFragmentResult("addPoi", bundleOf("newPoi" to it.data))
+                    setFragmentResult("addPoi", bundleOf("poi" to it.data))
                     requireActivity().supportFragmentManager.popBackStack()
                 }
                 is RequestState.Error -> {

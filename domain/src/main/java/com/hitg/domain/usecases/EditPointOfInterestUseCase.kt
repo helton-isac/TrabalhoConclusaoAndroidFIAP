@@ -34,7 +34,7 @@ class EditPointOfInterestUseCase(
                 return RequestState.Loading
             }
             is RequestState.Error -> {
-                return RequestState.Error(Exception("Point of interest could not be created"))
+                return RequestState.Error(Exception("Point of interest could not be edited"))
             }
         }
     }

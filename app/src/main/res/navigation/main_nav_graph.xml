@@ -70,7 +70,8 @@
         android:id="@+id/editPointOfInterest"
         android:name="com.fiap.meurole.pointOfInterest.edit.EditPointOfInterestFragment"
         android:label="editPointOfInterest"
-        tools:layout="@layout/create_edit_point_of_interest_fragment"/>
+        tools:layout="@layout/create_edit_point_of_interest_fragment">
+    </fragment>
     <fragment
         android:id="@+id/roadmapList"
         android:name="com.fiap.meurole.roadmapList.RoadmapListFragment"

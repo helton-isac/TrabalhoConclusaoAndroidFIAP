@@ -28,25 +28,36 @@ class EditPointOfInterestFragment : BaseFragment() {
 
     private val viewModel: EditPointOfInterestViewModel by viewModel()
 
+    private lateinit var pointOfInterest: PointOfInterest
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         registerBackPressedAction()
 
         registerObserver()
 
+        pointOfInterest = arguments?.getSerializable("pointOfInterest") as PointOfInterest
         setUpView(view)
     }
 
     private fun setUpView(view: View) {
         etName = view.findViewById(R.id.etPointOfInterestName)
+        etName.setText(pointOfInterest.name)
+
         etDescription = view.findViewById(R.id.etPointOfInterestDescription)
+        etDescription.setText(pointOfInterest.description)
+
         etLat = view.findViewById(R.id.etLatitude)
+        etLat.setText(pointOfInterest.latitude.toString())
+
         etLong = view.findViewById(R.id.etLongitude)
+        etLong.setText(pointOfInterest.longitude.toString())
+
         btAdd = view.findViewById(R.id.btSavePointOfInterest)
 
         btAdd.setOnClickListener {
             val poi = PointOfInterest(
-                id = "",
+                id = pointOfInterest.id,
                 latitude = etLat.text.toString().toDouble(),
                 longitude = etLong.text.toString().toDouble(),
                 name = etName.text.toString(),
@@ -55,6 +66,7 @@ class EditPointOfInterestFragment : BaseFragment() {
             viewModel.edit(poi)
         }
     }
+
 
     private fun registerBackPressedAction() {
         val callback = object : OnBackPressedCallback(true) {
@@ -70,9 +82,8 @@ class EditPointOfInterestFragment : BaseFragment() {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()
-                    showMessage("Ponto de interesse cadastrado")
-
-                    setFragmentResult("addPoi", bundleOf("newPoi" to it.data))
+                    showMessage("Ponto de interesse editado")
+                    setFragmentResult("editPoi", bundleOf("poi" to it.data))
                     requireActivity().supportFragmentManager.popBackStack()
                 }
                 is RequestState.Error -> {

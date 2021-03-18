@@ -52,7 +52,14 @@ class CreateRoadmapFragment : BaseFragment() {
         etRoadmapDescription = view.findViewById(R.id.etRoadmapDescription)
 
         rvPointOfInterest = view.findViewById(R.id.rvPointOfInterests)
-        rvPointOfInterest.adapter = PointOfInterestAdapter(pointOfInterests)
+        rvPointOfInterest.adapter = PointOfInterestAdapter(pointOfInterests, clickListener = {
+            findNavController().navigate(
+                R.id.editPointOfInterest, bundleOf(
+                    NAVIGATION_KEY to findNavController().currentDestination?.id,
+                    "pointOfInterest" to it
+                )
+            )
+        })
 
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, LEFT or RIGHT) {
             override fun onMove(
@@ -68,7 +75,6 @@ class CreateRoadmapFragment : BaseFragment() {
                 val position = viewHolder.adapterPosition
                 viewModel.deletePointOfInterest(pointOfInterests[position])
             }
-
         }).attachToRecyclerView(rvPointOfInterest)
 
         btCreatePoi = view.findViewById(R.id.btAddPointOfInterest)
@@ -142,10 +148,19 @@ class CreateRoadmapFragment : BaseFragment() {
         })
 
         setFragmentResultListener("addPoi") { requestKey, bundle ->
-            val poi = bundle.get("newPoi") as PointOfInterest
+            val poi = bundle.get("poi") as PointOfInterest
             pointOfInterests.add(poi)
             rvPointOfInterest.adapter?.notifyDataSetChanged()
         }
+
+        setFragmentResultListener("editPoi") { requestKey, bundle ->
+            val editedPoi = bundle.get("poi") as PointOfInterest
+            val index = pointOfInterests.indexOfFirst { poi -> poi.id == editedPoi.id }
+            pointOfInterests.removeAt(index)
+            pointOfInterests.add(index, editedPoi)
+            rvPointOfInterest.adapter?.notifyDataSetChanged()
+        }
+
     }
 
 }
