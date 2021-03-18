@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:contentDescription="@string/app_name" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPasswordLogin"
@@ -131,8 +131,7 @@
         app:iconSize="20dp"
         app:layout_constraintEnd_toStartOf="@id/facebook"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connect"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/connect" />
 
     <Button
         android:id="@+id/facebook"
