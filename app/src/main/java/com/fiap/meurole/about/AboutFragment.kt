@@ -7,10 +7,13 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import com.fiap.meurole.BuildConfig
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
+import com.hitg.domain.entity.RequestState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 @ExperimentalCoroutinesApi
@@ -18,15 +21,25 @@ class AboutFragment : BaseFragment() {
 
     override val layout = R.layout.about_fragment
 
+    private lateinit var tvSlogan: TextView
+
+    private val aboutViewModel: AboutViewModel by viewModel()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setUpView(view)
+
+        registerObserver()
+
+        aboutViewModel.getSlogan()
     }
 
     private fun setUpView(view: View) {
         val tvVersion: TextView = view.findViewById(R.id.tvVersion)
         tvVersion.text = getString(R.string.version, BuildConfig.VERSION_NAME)
+
+        tvSlogan = view.findViewById(R.id.tvSlogan)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -48,6 +61,19 @@ class AboutFragment : BaseFragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun registerObserver() {
+        aboutViewModel.slogan.observe(viewLifecycleOwner, Observer { it ->
+            when (it) {
+                is RequestState.Success -> {
+                    tvSlogan.text = it.data
+                }
+                else -> {
+
+                }
+            }
+        })
     }
 
 }
