@@ -43,10 +43,18 @@ android {
         dev {
             applicationIdSuffix ".dev"
             buildConfigField 'String', 'CHAVE', '"VALOR"'
+
+            def localProperties = new Properties()
+            localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+            resValue("string", "google_maps_key", localProperties['MAPS_API_KEY'])
         }
 
         prd {
             buildConfigField 'String', 'CHAVE', '"VALOR"'
+
+            def localProperties = new Properties()
+            localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+            resValue("string", "google_maps_key", localProperties['MAPS_API_KEY'])
         }
     }
 
@@ -82,6 +90,8 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
     implementation "com.google.android.gms:play-services-maps:$playServicesMapsVersion"
     implementation "com.google.android.gms:play-services-location:$playServicesLocation"
+
+    implementation 'com.google.android.libraries.places:places:2.4.0'
 
     implementation "com.github.helton-isac:SimpleBiometricAPI:$simpleBiometricAPIVersion"
 
