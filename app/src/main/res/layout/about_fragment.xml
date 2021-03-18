@@ -30,6 +30,17 @@
         app:layout_constraintTop_toBottomOf="@+id/tvAppLogo" />
 
     <TextView
+        android:id="@+id/tvSlogan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAppName"
+        tools:text="Seu próximo rolê está aqui!" />
+
+    <TextView
         android:id="@+id/tvVersion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -38,7 +49,7 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAppName"
+        app:layout_constraintTop_toBottomOf="@+id/tvSlogan"
         tools:text="Versão: 1.0.0" />
 
     <TextView

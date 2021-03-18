@@ -33,6 +33,9 @@ ext {
     constraintlayoutVersion = '2.0.4'
     lottieVersion = '3.4.4'
 
+    coroutines_play_services = '1.1.1'
+    kotlinx_coroutines_android = '1.4.1'
+
     simpleBiometricAPIVersion = '1.0.0'
 
     // Tests

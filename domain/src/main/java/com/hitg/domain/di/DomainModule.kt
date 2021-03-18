@@ -47,6 +47,11 @@ val useCaseModule = module {
             poiRepository = get()
         )
     }
+    factory {
+        GetSloganUseCase(
+            sloganRepository = get()
+        )
+    }
 }
 
 val domainModule = listOf(useCaseModule)
