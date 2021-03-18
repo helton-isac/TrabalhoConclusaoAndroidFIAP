@@ -22,4 +22,27 @@
         <item name="android:layout_height">64dp</item>
         <item name="android:layout_width">320dp</item>
     </style>
+    <style name="editTextLogin">
+        <item name="android:textColor">@color/editText</item>
+    </style>
+    <style name="button_google">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="backgroundTint">@color/red</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:letterSpacing">0.002</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">0dp</item>
+    </style>
+    <style name="button_facebook">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="backgroundTint">@color/facebook</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:letterSpacing">0.002</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">0dp</item>
+    </style>
 </resources>
