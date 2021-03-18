@@ -70,6 +70,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation 'com.google.firebase:firebase-config-ktx'
 
     implementation "androidx.core:core-ktx:$coreKtxVersion"
     implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
@@ -91,7 +92,11 @@ dependencies {
     implementation "com.google.android.gms:play-services-maps:$playServicesMapsVersion"
     implementation "com.google.android.gms:play-services-location:$playServicesLocation"
 
-    implementation 'com.google.android.libraries.places:places:2.4.0'
+    implementation "com.google.android.libraries.places:places:$placesVersion"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutines_play_services"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_android"
+
 
     implementation "com.github.helton-isac:SimpleBiometricAPI:$simpleBiometricAPIVersion"
 

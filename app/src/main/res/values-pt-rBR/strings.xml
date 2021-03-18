@@ -38,4 +38,7 @@
     <string name="label_type_a_roadmap_description">Escreva uma descriçao para o roteiro</string>
     <string name="save_roadmap">Salvar Roteiro</string>
     <string name="add_point_of_interest">Adicionar ponto de interesse</string>
+    <string name="connect">-------------- ou connect com: --------------</string>
+    <string name="google">google</string>
+    <string name="facebook">facebook</string>
 </resources>

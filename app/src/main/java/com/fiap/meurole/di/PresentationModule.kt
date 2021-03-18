@@ -1,5 +1,6 @@
 package com.fiap.meurole.di
 
+import com.fiap.meurole.about.AboutViewModel
 import com.fiap.meurole.base.BaseViewModel
 import com.fiap.meurole.base.auth.BaseAuthViewModel
 import com.fiap.meurole.home.HomeViewModel
@@ -65,6 +66,11 @@ val presentationModule = module {
     viewModel {
         RoadmapListViewModel(
             fetchRoadmapsUseCase = get()
+        )
+    }
+    viewModel {
+        AboutViewModel(
+            getSloganUseCase = get()
         )
     }
 }
