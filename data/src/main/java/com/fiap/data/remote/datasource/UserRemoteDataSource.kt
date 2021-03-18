@@ -14,4 +14,5 @@ interface UserRemoteDataSource {
     suspend fun create(newUser: NewUser): RequestState<User>
 
     suspend fun doLogout(): RequestState<Boolean>
+
 }

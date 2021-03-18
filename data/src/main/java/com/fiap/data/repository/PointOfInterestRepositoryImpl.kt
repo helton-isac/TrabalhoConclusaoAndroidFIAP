@@ -21,4 +21,8 @@ class PointOfInterestRepositoryImpl(
         return poiRemoteDataSource.delete(id)
     }
 
+    override suspend fun edit(poi: PointOfInterest): RequestState<PointOfInterest> {
+        return poiRemoteDataSource.edit(poi)
+    }
+
 }

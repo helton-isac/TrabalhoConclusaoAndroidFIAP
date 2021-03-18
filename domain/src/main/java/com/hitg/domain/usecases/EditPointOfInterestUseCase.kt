@@ -7,11 +7,11 @@ import com.hitg.domain.exception.EmptyNameException
 import com.hitg.domain.exception.InvalidLatLongException
 import com.hitg.domain.repository.PointOfInterestRepository
 
-class CreatePointOfInterestUseCase(
+class EditPointOfInterestUseCase(
     private val poiRepository: PointOfInterestRepository
 ) {
 
-    suspend fun create(poi: PointOfInterest): RequestState<PointOfInterest> {
+    suspend fun edit(poi: PointOfInterest): RequestState<PointOfInterest> {
         if (poi.name.isBlank()) {
             return RequestState.Error(EmptyNameException())
         }
@@ -25,7 +25,7 @@ class CreatePointOfInterestUseCase(
             return RequestState.Error(InvalidLatLongException())
         }
 
-        val state = poiRepository.create(poi)
+        val state = poiRepository.edit(poi)
         return when (state) {
             is RequestState.Success -> {
                 return state
@@ -34,7 +34,7 @@ class CreatePointOfInterestUseCase(
                 return RequestState.Loading
             }
             is RequestState.Error -> {
-                return RequestState.Error(Exception("Point of interest could not be created"))
+                return RequestState.Error(Exception("Point of interest could not be edited"))
             }
         }
     }
