@@ -1,4 +1,4 @@
-package com.fiap.meurole.pointOfInterest
+package com.fiap.meurole.pointOfInterest.create
 
 import android.os.Bundle
 import android.view.View
@@ -18,7 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 @ExperimentalCoroutinesApi
 class CreatePointOfInterestFragment : BaseFragment() {
 
-    override val layout = R.layout.create_point_of_interest_fragment
+    override val layout = R.layout.create_edit_point_of_interest_fragment
 
     private lateinit var etName: EditText
     private lateinit var etDescription: EditText
@@ -52,7 +52,7 @@ class CreatePointOfInterestFragment : BaseFragment() {
                 name = etName.text.toString(),
                 description = etDescription.text.toString())
 
-            viewModel.createPointOfInterest(poi)
+            viewModel.create(poi)
         }
     }
 
@@ -72,7 +72,7 @@ class CreatePointOfInterestFragment : BaseFragment() {
                     hideLoading()
                     showMessage("Ponto de interesse cadastrado")
 
-                    setFragmentResult("addPoi", bundleOf("newPoi" to it.data))
+                    setFragmentResult("addPoi", bundleOf("poi" to it.data))
                     requireActivity().supportFragmentManager.popBackStack()
                 }
                 is RequestState.Error -> {

@@ -32,7 +32,11 @@ val useCaseModule = module {
     }
     factory {
         CreatePointOfInterestUseCase(
-            getUserLoggedUseCase = get(),
+            poiRepository = get()
+        )
+    }
+    factory {
+        EditPointOfInterestUseCase(
             poiRepository = get()
         )
     }

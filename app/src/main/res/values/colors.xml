@@ -13,4 +13,6 @@
     <color name="cello_pressed">#1D3560</color>
     <color name="Peppermint">#F1FAEE</color>
     <color name="editText">#3A3D3F</color>
+    <color name="red">#FF0000</color>
+    <color name="facebook">#3b5998</color>
 </resources>

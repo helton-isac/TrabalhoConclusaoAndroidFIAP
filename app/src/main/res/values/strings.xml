@@ -43,4 +43,7 @@
     <string name="label_type_a_roadmap_description">Write a roadmap Description</string>
     <string name="save_roadmap">Save roadmap</string>
     <string name="add_point_of_interest">Add point of interest</string>
+    <string name="connect">---------------- or connect with: ----------------</string>
+    <string name="google">google</string>
+    <string name="facebook">facebook</string>
 </resources>

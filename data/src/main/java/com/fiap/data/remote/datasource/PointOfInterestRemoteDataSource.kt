@@ -11,4 +11,6 @@ interface PointOfInterestRemoteDataSource {
 
     suspend fun delete(id: String): RequestState<String>
 
+    suspend fun edit(poi: PointOfInterest): RequestState<PointOfInterest>
+
 }
