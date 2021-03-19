@@ -37,7 +37,10 @@ class AboutFragment : BaseFragment() {
 
     private fun setUpView(view: View) {
         val tvVersion: TextView = view.findViewById(R.id.tvVersion)
-        tvVersion.text = getString(R.string.version, BuildConfig.VERSION_NAME)
+        tvVersion.text = getString(
+            R.string.version,
+            BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE.toString()
+        )
 
         tvSlogan = view.findViewById(R.id.tvSlogan)
     }
