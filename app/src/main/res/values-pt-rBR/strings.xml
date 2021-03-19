@@ -27,7 +27,7 @@
     <string name="login_to_continue">Faça o login para continuar</string>
     <string name="use_app_password">Utilizar usuário e senha</string>
     <string name="founders">Fundadores</string>
-    <string name="version">Versão: %1$s</string>
+    <string name="version">Versão: %1$s (build: %2$s)</string>
     <string name="about">Sobre</string>
     <string name="label_search_roadmap">Para onde vamos?</string>
     <string name="default_notification_channel_name">Canal de notificações Gerais</string>
