@@ -43,10 +43,18 @@ android {
         dev {
             applicationIdSuffix ".dev"
             buildConfigField 'String', 'CHAVE', '"VALOR"'
+
+            def localProperties = new Properties()
+            localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+            resValue("string", "google_maps_key", localProperties['MAPS_API_KEY'])
         }
 
         prd {
             buildConfigField 'String', 'CHAVE', '"VALOR"'
+
+            def localProperties = new Properties()
+            localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+            resValue("string", "google_maps_key", localProperties['MAPS_API_KEY'])
         }
     }
 
@@ -84,8 +92,11 @@ dependencies {
     implementation "com.google.android.gms:play-services-maps:$playServicesMapsVersion"
     implementation "com.google.android.gms:play-services-location:$playServicesLocation"
 
+    implementation "com.google.android.libraries.places:places:$placesVersion"
+
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutines_play_services"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_android"
+
 
     implementation "com.github.helton-isac:SimpleBiometricAPI:$simpleBiometricAPIVersion"
 
