@@ -31,6 +31,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPointOfInterestName" />
 
+    <EditText
+        android:id="@+id/etTelephone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Número de telefone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btCall"
+        app:layout_constraintTop_toBottomOf="@+id/etPointOfInterestDescription" />
+
+    <Button
+        android:id="@+id/btCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Make call"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/etTelephone"
+        app:layout_constraintTop_toBottomOf="@+id/etPointOfInterestDescription" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/viewMap"
@@ -42,7 +65,7 @@
         app:layout_constraintBottom_toTopOf="@id/btSavePointOfInterest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etPointOfInterestDescription"></androidx.fragment.app.FragmentContainerView>
+        app:layout_constraintTop_toBottomOf="@id/etTelephone"></androidx.fragment.app.FragmentContainerView>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/autocomplete_fragment"

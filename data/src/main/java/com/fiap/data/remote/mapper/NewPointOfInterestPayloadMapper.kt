@@ -8,6 +8,7 @@ object NewPointOfInterestPayloadMapper {
     fun mapToNewPointOfInterest(poi: PointOfInterest) = NewPointOfInterestPayload(
         name = poi.name,
         description = poi.description,
+        telephone = poi.telephone,
         latitude = poi.latitude,
         longitude = poi.longitude
     )
