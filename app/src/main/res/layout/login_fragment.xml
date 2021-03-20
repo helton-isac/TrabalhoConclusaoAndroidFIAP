@@ -103,7 +103,7 @@
         android:textColor="#0000EE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/google" />
+        app:layout_constraintTop_toBottomOf="@+id/btGoogle" />
 
     <TextView
         android:id="@+id/connect"
@@ -120,7 +120,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvNewAccount" />
 
     <Button
-        android:id="@+id/google"
+        android:id="@+id/btGoogle"
         style="@style/button_google"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
@@ -128,12 +128,12 @@
         android:typeface="normal"
         app:icon="@drawable/google_icon"
         app:iconSize="20dp"
-        app:layout_constraintEnd_toStartOf="@id/facebook"
+        app:layout_constraintEnd_toStartOf="@id/btFacebook"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/connect" />
 
     <Button
-        android:id="@+id/facebook"
+        android:id="@+id/btFacebook"
         style="@style/button_facebook"
         android:layout_marginStart="8dp"
         android:text="@string/facebook"
@@ -141,8 +141,8 @@
         app:iconSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.767"
-        app:layout_constraintStart_toEndOf="@+id/google"
-        app:layout_constraintTop_toTopOf="@+id/google" />
+        app:layout_constraintStart_toEndOf="@+id/btGoogle"
+        app:layout_constraintTop_toTopOf="@+id/btGoogle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

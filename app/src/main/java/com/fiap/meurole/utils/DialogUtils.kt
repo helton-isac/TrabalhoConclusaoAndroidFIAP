@@ -14,6 +14,14 @@ object DialogUtils {
             .show()
     }
 
+    fun showSimpleMessageWithTitle(context: Context, title: String, errorMessage: String) {
+        AlertDialog.Builder(context)
+            .setTitle(title)
+            .setMessage(errorMessage)
+            .setPositiveButton(context.getString(android.R.string.ok), null)
+            .show()
+    }
+
     fun showErrorMessage(context: Context, errorMessage: String?) {
         AlertDialog.Builder(context)
             .setTitle(context.getString(R.string.error))

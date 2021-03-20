@@ -30,6 +30,8 @@ class LoginFragment : BaseFragment() {
     override val layout = R.layout.login_fragment
 
     private lateinit var btLogin: Button
+    private lateinit var btGoogle: Button
+    private lateinit var btFacebook: Button
     private lateinit var etEmailLogin: EditText
     private lateinit var etPasswordLogin: EditText
     private lateinit var tvNewAccount: TextView
@@ -65,6 +67,8 @@ class LoginFragment : BaseFragment() {
         etPasswordLogin = view.findViewById(R.id.etPasswordLogin)
         tvNewAccount = view.findViewById(R.id.tvNewAccount)
         tvBiometrics = view.findViewById(R.id.tvBiometrics)
+        btGoogle = view.findViewById(R.id.btGoogle)
+        btFacebook = view.findViewById(R.id.btFacebook)
 
         btLogin.setOnClickListener {
             showLoading()
@@ -78,6 +82,20 @@ class LoginFragment : BaseFragment() {
         }
         tvBiometrics.setOnClickListener {
             promptBiometrics()
+        }
+        btGoogle.setOnClickListener {
+            DialogUtils.showSimpleMessageWithTitle(
+                requireContext(),
+                getString(R.string.working_on_it),
+                getString(R.string.disabled_sign_in_message, getString(R.string.google))
+            )
+        }
+        btFacebook.setOnClickListener {
+            DialogUtils.showSimpleMessageWithTitle(
+                requireContext(),
+                getString(R.string.working_on_it),
+                getString(R.string.disabled_sign_in_message, getString(R.string.facebook))
+            )
         }
     }
 
