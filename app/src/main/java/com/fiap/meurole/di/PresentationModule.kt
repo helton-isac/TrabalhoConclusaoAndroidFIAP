@@ -33,7 +33,8 @@ val presentationModule = module {
     viewModel {
         LoginViewModel(
             loginUseCase = get(),
-            biometricsUseCase = get()
+            biometricsUseCase = get(),
+            toggleFeatureUseCase = get()
         )
     }
     viewModel {

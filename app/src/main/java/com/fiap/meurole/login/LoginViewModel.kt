@@ -9,15 +9,24 @@ import com.hitg.domain.entity.User
 import com.hitg.domain.entity.UserLogin
 import com.hitg.domain.usecases.BiometricsUseCase
 import com.hitg.domain.usecases.LoginUseCase
+import com.hitg.domain.usecases.ToggleFeatureUseCase
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val loginUseCase: LoginUseCase,
     private val biometricsUseCase: BiometricsUseCase,
+    private val toggleFeatureUseCase: ToggleFeatureUseCase
 ) : ViewModel() {
 
     val loginState = MutableLiveData<RequestState<User>>()
     val biometricsState = MutableLiveData<RequestState<Biometrics>>()
+    val isGoogleSignInEnabled = MutableLiveData<RequestState<Boolean>>()
+    val isFacebookSignInEnabled = MutableLiveData<RequestState<Boolean>>()
+
+    init {
+        isGoogleSignInEnabled.value = RequestState.Success(false)
+        isFacebookSignInEnabled.value = RequestState.Success(false)
+    }
 
     fun doLogin(email: String, password: String) {
         viewModelScope.launch {
@@ -58,4 +67,17 @@ class LoginViewModel(
                 biometricsUseCase.markBiometricsNotInUse()
         }
     }
+
+    fun isGoogleSignInEnabled() {
+        viewModelScope.launch {
+            isGoogleSignInEnabled.value = toggleFeatureUseCase.isGoogleSignInEnabled()
+        }
+    }
+
+    fun isFacebookSignInEnabled() {
+        viewModelScope.launch {
+            isFacebookSignInEnabled.value = toggleFeatureUseCase.isFacebookSignInEnabled()
+        }
+    }
+
 }

@@ -32,6 +32,7 @@ class LoginFragment : BaseFragment() {
     private lateinit var btLogin: Button
     private lateinit var btGoogle: Button
     private lateinit var btFacebook: Button
+    private lateinit var tvConnect: TextView
     private lateinit var etEmailLogin: EditText
     private lateinit var etPasswordLogin: EditText
     private lateinit var tvNewAccount: TextView
@@ -51,6 +52,12 @@ class LoginFragment : BaseFragment() {
         registerObserver()
         registerBackPressedAction()
         checkBiometrics()
+        checkFeaturesEnabled()
+    }
+
+    private fun checkFeaturesEnabled() {
+        loginViewModel.isGoogleSignInEnabled()
+        loginViewModel.isFacebookSignInEnabled()
     }
 
     private fun checkBiometrics() {
@@ -69,6 +76,7 @@ class LoginFragment : BaseFragment() {
         tvBiometrics = view.findViewById(R.id.tvBiometrics)
         btGoogle = view.findViewById(R.id.btGoogle)
         btFacebook = view.findViewById(R.id.btFacebook)
+        tvConnect = view.findViewById(R.id.tvConnect)
 
         btLogin.setOnClickListener {
             showLoading()
@@ -138,6 +146,36 @@ class LoginFragment : BaseFragment() {
                 is RequestState.Loading -> showLoading(getString(R.string.processing))
             }
         })
+        loginViewModel.isFacebookSignInEnabled.observe(viewLifecycleOwner) {
+            when (it) {
+                is RequestState.Error -> btFacebook.visibility = View.GONE
+                is RequestState.Loading -> btFacebook.visibility = View.GONE
+                is RequestState.Success -> {
+                    btFacebook.visibility = if (it.data) View.VISIBLE else View.GONE
+                    showHideConnectLabel()
+                }
+            }
+        }
+        loginViewModel.isGoogleSignInEnabled.observe(viewLifecycleOwner) {
+            when (it) {
+                is RequestState.Error -> btGoogle.visibility = View.GONE
+                is RequestState.Loading -> btGoogle.visibility = View.GONE
+                is RequestState.Success -> {
+                    btGoogle.visibility = if (it.data) View.VISIBLE else View.GONE
+                    showHideConnectLabel()
+                }
+            }
+        }
+    }
+
+    private fun showHideConnectLabel() {
+        if (btFacebook.visibility == View.VISIBLE
+            || btGoogle.visibility == View.VISIBLE
+        ) {
+            tvConnect.visibility = View.VISIBLE
+        } else {
+            tvConnect.visibility = View.GONE
+        }
     }
 
     private fun promptBiometrics() {

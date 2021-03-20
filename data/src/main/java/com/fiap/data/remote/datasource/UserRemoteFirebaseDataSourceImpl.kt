@@ -100,7 +100,8 @@ class UserRemoteFirebaseDataSourceImpl(
     override suspend fun doLogout(): RequestState<Boolean> {
         return try {
             mAuth.signOut()
-            RequestState.Success(true)
+            mAuth.currentUser?.reload()
+            RequestState.Success(mAuth.currentUser == null)
         } catch (e: java.lang.Exception) {
             RequestState.Error(e)
         }

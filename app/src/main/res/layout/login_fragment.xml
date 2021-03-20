@@ -106,7 +106,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btGoogle" />
 
     <TextView
-        android:id="@+id/connect"
+        android:id="@+id/tvConnect"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -115,6 +115,7 @@
         android:textAlignment="center"
         android:textSize="16sp"
         android:typeface="normal"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNewAccount" />
@@ -125,18 +126,20 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="@string/google"
+        android:visibility="gone"
         android:typeface="normal"
         app:icon="@drawable/google_icon"
         app:iconSize="20dp"
         app:layout_constraintEnd_toStartOf="@id/btFacebook"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connect" />
+        app:layout_constraintTop_toBottomOf="@+id/tvConnect" />
 
     <Button
         android:id="@+id/btFacebook"
         style="@style/button_facebook"
         android:layout_marginStart="8dp"
         android:text="@string/facebook"
+        android:visibility="gone"
         app:icon="@drawable/facebook_icon"
         app:iconSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"

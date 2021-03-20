@@ -56,6 +56,11 @@ val useCaseModule = module {
             sloganRepository = get()
         )
     }
+    factory {
+        ToggleFeatureUseCase(
+            toggleFeatureRepository = get()
+        )
+    }
 }
 
 val domainModule = listOf(useCaseModule)

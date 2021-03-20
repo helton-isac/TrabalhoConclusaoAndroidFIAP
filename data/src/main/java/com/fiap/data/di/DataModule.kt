@@ -11,9 +11,11 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.hitg.domain.repository.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
+@ExperimentalCoroutinesApi
 val repositoryModule = module {
     factory<BiometricsLocalDataSource> {
         BiometricsLocalDataSourceImpl(
@@ -40,7 +42,11 @@ val repositoryModule = module {
             Firebase.firestore
         )
     }
-
+    factory<RemoteConfigDataSource> {
+        RemoteConfigDataSourceImpl(
+            Firebase.remoteConfig
+        )
+    }
     factory<UserRepository> {
         UserRepositoryImpl(
             userRemoteDataSource = get()
@@ -61,16 +67,17 @@ val repositoryModule = module {
             poiRemoteDataSource = get()
         )
     }
-    factory<SloganRemoteDataSource> {
-        SloganRemoteDataSourceImpl(
-            firebaseRemoteConfig = Firebase.remoteConfig
-        )
-    }
     factory<SloganRepository> {
         SloganRepositoryImpl(
-            sloganRemoteDataSource = get()
+            remoteConfigDataSource = get()
+        )
+    }
+    factory<ToggleFeatureRepository> {
+        ToggleFeatureRepositoryImpl(
+            remoteConfigDataSource = get()
         )
     }
 }
 
+@ExperimentalCoroutinesApi
 val dataModules = listOf(repositoryModule)
