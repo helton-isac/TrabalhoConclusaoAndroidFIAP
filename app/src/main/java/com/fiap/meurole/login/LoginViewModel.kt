@@ -8,6 +8,7 @@ import com.hitg.domain.entity.RequestState
 import com.hitg.domain.entity.User
 import com.hitg.domain.entity.UserLogin
 import com.hitg.domain.usecases.BiometricsUseCase
+import com.hitg.domain.usecases.LogAnalyticsEventUseCase
 import com.hitg.domain.usecases.LoginUseCase
 import com.hitg.domain.usecases.ToggleFeatureUseCase
 import kotlinx.coroutines.launch
@@ -15,7 +16,8 @@ import kotlinx.coroutines.launch
 class LoginViewModel(
     private val loginUseCase: LoginUseCase,
     private val biometricsUseCase: BiometricsUseCase,
-    private val toggleFeatureUseCase: ToggleFeatureUseCase
+    private val toggleFeatureUseCase: ToggleFeatureUseCase,
+    private val logAnalyticsEvent: LogAnalyticsEventUseCase
 ) : ViewModel() {
 
     val loginState = MutableLiveData<RequestState<User>>()
@@ -78,6 +80,18 @@ class LoginViewModel(
         viewModelScope.launch {
             isFacebookSignInEnabled.value = toggleFeatureUseCase.isFacebookSignInEnabled()
         }
+
     }
 
+    fun logAttemptToUseFacebookSignIn() {
+        viewModelScope.launch {
+            logAnalyticsEvent.logAttemptToUseFacebookSignIn()
+        }
+    }
+
+    fun logAttemptToUseGoogleSignIn() {
+        viewModelScope.launch {
+            logAnalyticsEvent.logAttemptToUseGoogleSignIn()
+        }
+    }
 }

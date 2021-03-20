@@ -25,11 +25,16 @@ val repositoryModule = module {
             )
         )
     }
+    factory<AnalyticsRemoteDataSource> {
+        AnalyticsRemoteDataSourceImpl(
+            firebaseAnalytics = Firebase.analytics
+        )
+    }
     factory<UserRemoteDataSource> {
         UserRemoteFirebaseDataSourceImpl(
             Firebase.auth,
             Firebase.firestore,
-            Firebase.analytics
+            analyticsRemoteDataSource = get()
         )
     }
     factory<RoadmapRemoteDataSource> {
@@ -75,6 +80,11 @@ val repositoryModule = module {
     factory<ToggleFeatureRepository> {
         ToggleFeatureRepositoryImpl(
             remoteConfigDataSource = get()
+        )
+    }
+    factory<AnalyticsRepository> {
+        AnalyticsRepositoryImpl(
+            analyticsRemoteDataSource = get()
         )
     }
 }

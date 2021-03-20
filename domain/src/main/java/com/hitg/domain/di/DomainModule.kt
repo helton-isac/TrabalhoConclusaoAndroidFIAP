@@ -61,6 +61,11 @@ val useCaseModule = module {
             toggleFeatureRepository = get()
         )
     }
+    factory {
+        LogAnalyticsEventUseCase(
+            analyticsRepository = get()
+        )
+    }
 }
 
 val domainModule = listOf(useCaseModule)

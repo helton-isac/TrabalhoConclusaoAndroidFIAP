@@ -1,8 +1,6 @@
 package com.fiap.data.remote.datasource
 
-import android.os.Bundle
 import com.fiap.data.remote.mapper.NewUserFirebasePayloadMapper
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hitg.domain.entity.NewUser
@@ -14,7 +12,7 @@ import kotlinx.coroutines.tasks.await
 class UserRemoteFirebaseDataSourceImpl(
     private val mAuth: FirebaseAuth,
     private val firebaseFirestore: FirebaseFirestore,
-    private val firebaseAnalytics: FirebaseAnalytics
+    private val analyticsRemoteDataSource: AnalyticsRemoteDataSource
 ) : UserRemoteDataSource {
 
     override suspend fun getUserLogged(): RequestState<User> {
@@ -48,13 +46,7 @@ class UserRemoteFirebaseDataSourceImpl(
             if (firebaseUser == null) {
                 RequestState.Error(Exception("Usuário ou senha inválido"))
             } else {
-                val bundle = Bundle()
-                bundle.putString(
-                    FirebaseAnalytics.Param.METHOD,
-                    "UserRemoteFirebaseDataSourceImpl.doLogin"
-                )
-                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle)
-
+                analyticsRemoteDataSource.logSuccessfullyLogin()
                 RequestState.Success(User(firebaseUser.displayName ?: ""))
             }
 
@@ -83,12 +75,7 @@ class UserRemoteFirebaseDataSourceImpl(
                     .set(newUserFirebasePayload)
                     .await()
 
-                val bundle = Bundle()
-                bundle.putString(
-                    FirebaseAnalytics.Param.METHOD,
-                    "UserRemoteFirebaseDataSourceImpl.create"
-                )
-                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP, bundle)
+                analyticsRemoteDataSource.logSuccessfullySignUp()
 
                 RequestState.Success(NewUserFirebasePayloadMapper.mapToUser(newUserFirebasePayload))
             }
@@ -101,6 +88,7 @@ class UserRemoteFirebaseDataSourceImpl(
         return try {
             mAuth.signOut()
             mAuth.currentUser?.reload()
+            analyticsRemoteDataSource.logSuccessfullySignOut()
             RequestState.Success(mAuth.currentUser == null)
         } catch (e: java.lang.Exception) {
             RequestState.Error(e)
