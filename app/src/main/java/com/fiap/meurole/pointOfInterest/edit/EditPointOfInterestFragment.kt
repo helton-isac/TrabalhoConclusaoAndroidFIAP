@@ -8,10 +8,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
 import com.google.android.gms.common.api.Status
@@ -49,7 +49,6 @@ class EditPointOfInterestFragment : BaseFragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        registerBackPressedAction()
 
         registerObserver()
 
@@ -97,16 +96,6 @@ class EditPointOfInterestFragment : BaseFragment(), OnMapReadyCallback {
         }
     }
 
-
-    private fun registerBackPressedAction() {
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                requireActivity().supportFragmentManager.popBackStack()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-    }
-
     private fun registerObserver() {
         viewModel.poiState.observe(viewLifecycleOwner, Observer {
             when (it) {
@@ -114,7 +103,7 @@ class EditPointOfInterestFragment : BaseFragment(), OnMapReadyCallback {
                     hideLoading()
                     showMessage("Ponto de interesse editado")
                     setFragmentResult("editPoi", bundleOf("poi" to it.data))
-                    requireActivity().supportFragmentManager.popBackStack()
+                    findNavController().popBackStack()
                 }
                 is RequestState.Error -> {
                     hideLoading()

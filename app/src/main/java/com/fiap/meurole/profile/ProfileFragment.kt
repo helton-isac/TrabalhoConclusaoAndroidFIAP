@@ -31,7 +31,7 @@ class ProfileFragment : BaseAuthFragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity?)!!.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (requireActivity() as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

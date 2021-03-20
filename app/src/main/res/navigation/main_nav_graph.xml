@@ -19,16 +19,35 @@
         android:id="@+id/homeFragment"
         android:name="com.fiap.meurole.home.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" >
+        tools:layout="@layout/home_fragment">
         <action
             android:id="@+id/action_homeFragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
+            app:destination="@id/mapFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_homeFragment_to_createRoadmapFragment"
-            app:destination="@id/createRoadmapFragment" />
+            app:destination="@id/createRoadmapFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
-            android:id="@+id/action_homeFragment_to_placeholder"
-            app:destination="@id/roadmapList" />
+            android:id="@+id/action_homeFragment_to_roadmapList"
+            app:destination="@id/roadmapList"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@anim/slide_out_down" />
     </fragment>
 
     <include app:graph="@navigation/login_nav_graph" />
@@ -56,26 +75,33 @@
         tools:layout="@layout/create_roadmap_fragment">
         <action
             android:id="@+id/action_createRoadmapFragment_to_createPointOfInterest"
-            app:destination="@id/createPointOfInterest" />
+            app:destination="@id/createPointOfInterest"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_createRoadmapFragment_to_editPointOfInterest"
-            app:destination="@id/editPointOfInterest" />
+            app:destination="@id/editPointOfInterest"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/createPointOfInterest"
         android:name="com.fiap.meurole.pointOfInterest.create.CreatePointOfInterestFragment"
         android:label="createPointOfInterest"
-        tools:layout="@layout/create_edit_point_of_interest_fragment"/>
+        tools:layout="@layout/create_edit_point_of_interest_fragment" />
     <fragment
         android:id="@+id/editPointOfInterest"
         android:name="com.fiap.meurole.pointOfInterest.edit.EditPointOfInterestFragment"
         android:label="editPointOfInterest"
-        tools:layout="@layout/create_edit_point_of_interest_fragment">
-    </fragment>
+        tools:layout="@layout/create_edit_point_of_interest_fragment" />
     <fragment
         android:id="@+id/roadmapList"
         android:name="com.fiap.meurole.roadmapList.RoadmapListFragment"
         android:label="roadmapList"
-        tools:layout="@layout/roadmap_list_fragment"/>
+        tools:layout="@layout/roadmap_list_fragment" />
 
 </navigation>
