@@ -7,11 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
-import com.fiap.meurole.base.auth.NAVIGATION_KEY
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -28,18 +26,10 @@ class SplashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.splash_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
         Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(
-                R.id.homeFragment, bundleOf(
-                    NAVIGATION_KEY to findNavController().currentDestination?.id
-                )
-            )
+            findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
         }, 2000)
+
+        return inflater.inflate(R.layout.splash_fragment, container, false)
     }
 }
