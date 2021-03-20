@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
+import com.fiap.meurole.utils.DialogUtils
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -67,7 +68,7 @@ class EditPointOfInterestFragment : BaseFragment(), OnMapReadyCallback {
         etTelephone.setText(pointOfInterest.telephone)
 
         btCall = view.findViewById(R.id.btCall)
-        btCall.setOnClickListener{
+        btCall.setOnClickListener {
             if (etTelephone.text.isNotBlank()) {
                 val number = etTelephone.text.toString().trim()
                 val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + Uri.encode(number)))
@@ -101,13 +102,16 @@ class EditPointOfInterestFragment : BaseFragment(), OnMapReadyCallback {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()
-                    showMessage("Ponto de interesse editado")
+                    DialogUtils.showToastMessage(
+                        requireContext(),
+                        getString(R.string.poi_edited_with_success)
+                    )
                     setFragmentResult("editPoi", bundleOf("poi" to it.data))
                     findNavController().popBackStack()
                 }
                 is RequestState.Error -> {
                     hideLoading()
-                    showMessage(it.throwable.message)
+                    DialogUtils.showToastErrorMessage(requireContext(), it.throwable.message)
                 }
                 is RequestState.Loading -> {
                     showLoading()

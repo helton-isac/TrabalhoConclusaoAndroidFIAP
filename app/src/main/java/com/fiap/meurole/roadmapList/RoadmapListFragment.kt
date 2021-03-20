@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
+import com.fiap.meurole.utils.DialogUtils
 import com.hitg.domain.entity.RequestState
 import com.hitg.domain.entity.Roadmap
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -48,7 +49,7 @@ class RoadmapListFragment : BaseFragment() {
                 }
                 is RequestState.Error -> {
                     hideLoading()
-                    showMessage(it.throwable.message)
+                    DialogUtils.showToastErrorMessage(requireContext(), it.throwable.message)
                 }
                 is RequestState.Loading -> {
                     showLoading()

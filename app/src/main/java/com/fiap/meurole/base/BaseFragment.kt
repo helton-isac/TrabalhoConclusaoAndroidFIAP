@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.fiap.meurole.R
@@ -71,10 +70,6 @@ abstract class BaseFragment : Fragment() {
 
     fun hideLoading() {
         loadingView.visibility = View.GONE
-    }
-
-    fun showMessage(message: String?) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

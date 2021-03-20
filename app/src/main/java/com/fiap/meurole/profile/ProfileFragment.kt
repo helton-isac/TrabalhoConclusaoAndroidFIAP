@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.auth.BaseAuthFragment
 import com.fiap.meurole.base.auth.NAVIGATION_KEY
+import com.fiap.meurole.utils.DialogUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hitg.domain.entity.RequestState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -96,7 +97,7 @@ class ProfileFragment : BaseAuthFragment() {
 
                 is RequestState.Error -> {
                     hideLoading()
-                    showMessage("Error: " + it.throwable.message)
+                    DialogUtils.showToastErrorMessage(requireContext(), it.throwable.message)
                 }
             }
         })
@@ -110,7 +111,7 @@ class ProfileFragment : BaseAuthFragment() {
                     showLoading()
                 }
                 is RequestState.Error -> {
-                    showMessage("Error: " + it.throwable.message)
+                    DialogUtils.showToastErrorMessage(requireContext(), it.throwable.message)
                 }
             }
         })

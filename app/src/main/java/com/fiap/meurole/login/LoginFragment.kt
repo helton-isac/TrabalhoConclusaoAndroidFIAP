@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
 import com.fiap.meurole.base.auth.NAVIGATION_KEY
+import com.fiap.meurole.utils.DialogUtils
 import com.hhlr.biometrics.BiometricsApi
 import com.hitg.domain.entity.Biometrics
 import com.hitg.domain.entity.BiometricsInstanceState.*
@@ -145,15 +146,13 @@ class LoginFragment : BaseFragment() {
                                     return@showBiometricPromptForDecryption
                                 }
                             }
-                            showError(Exception("Failed to use Biometrics try again on next login"))
+                            showError(Exception(getString(R.string.biometrics_failed)))
                         },
                         onAuthenticationError = {
-                            showError(Exception("Failed to use Biometrics try again on next login"))
-                            hideLoading()
+                            showError(Exception(getString(R.string.biometrics_failed)))
                         },
                         onAuthenticationFailed = {
-                            showError(Exception("Failed to use Biometrics try again on next login"))
-                            hideLoading()
+                            showError(Exception(getString(R.string.biometrics_failed)))
                         }
                     )
                 }
@@ -190,11 +189,11 @@ class LoginFragment : BaseFragment() {
                                     loginViewModel.biometricLoginRegistered()
                                 },
                                 onAuthenticationError = {
-                                    showError(Exception("Failed to use Biometrics try again on next login"))
+                                    showError(Exception(getString(R.string.biometrics_failed)))
                                     finishLoginSuccessful()
                                 },
                                 onAuthenticationFailed = {
-                                    showError(Exception("Failed to use Biometrics try again on next login"))
+                                    showError(Exception(getString(R.string.biometrics_failed)))
                                     finishLoginSuccessful()
                                 }
                             )
@@ -243,14 +242,13 @@ class LoginFragment : BaseFragment() {
         }
     }
 
-    // TODO: Prompt a better message dialog to the user
     private fun showError(throwable: Throwable) {
         hideLoading()
 
         etEmailLogin.error = null
         etPasswordLogin.error = null
 
-        showMessage(throwable.message)
+        DialogUtils.showToastErrorMessage(requireActivity(), throwable.message)
     }
 
     private fun registerBackPressedAction() {
