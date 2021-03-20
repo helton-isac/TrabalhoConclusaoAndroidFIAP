@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="loading_message_processing">Processando...</string>
+    <string name="loading_message_processing">Processando…</string>
     <string name="button_login">Logar</string>
     <string name="label_password">Senha</string>
     <string name="label_email">E-mail</string>
@@ -13,15 +13,12 @@
     <string name="button_search_roadmaps">Encontrar roteiros</string>
     <string name="button_search_maps">Pesquisar no mapa</string>
     <string name="button_create_roadmap">Criar roteiro</string>
-    <string name="prompt_info_subtitle">Faça o Login</string>
-    <string name="prompt_info_use_app_password">Use sua senha</string>
-    <string name="already_signedin">Usuário já está logado</string>
     <string name="use_biometrics">Usar biometria</string>
     <string name="register_biometric_login">Gostaria de cadastrar a biometria?</string>
     <string name="yes">Sim</string>
-    <string name="authenticating">Autenticando...</string>
-    <string name="processing">Processando...</string>
-    <string name="wait">Aguarde...</string>
+    <string name="authenticating">Autenticando…</string>
+    <string name="processing">Processando…</string>
+    <string name="wait">Aguarde…</string>
     <string name="later">Depois</string>
     <string name="dont_ask_again">Não perguntar novamente</string>
     <string name="login_to_continue">Faça o login para continuar</string>
@@ -39,7 +36,6 @@
     <string name="save_roadmap">Salvar Roteiro</string>
     <string name="add_point_of_interest">Adicionar ponto de interesse</string>
     <string name="connect">-------------- ou conecte-se com: --------------</string>
-    <string name="ok">Ok</string>
     <string name="error">Erro</string>
     <string name="biometrics_failed">Falha ao utilizar a biometria.</string>
     <string name="location_permission_not_granted">" Permissão de localização não concedida"</string>

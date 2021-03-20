@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.auth.BaseAuthFragment
@@ -84,7 +83,7 @@ class ProfileFragment : BaseAuthFragment() {
     }
 
     private fun registerObserver() {
-        profileViewModel.userLoggedState.observe(viewLifecycleOwner, Observer { it ->
+        profileViewModel.userLoggedState.observe(viewLifecycleOwner, {
             when (it) {
                 is RequestState.Loading -> {
                     showLoading()
@@ -102,7 +101,7 @@ class ProfileFragment : BaseAuthFragment() {
             }
         })
 
-        profileViewModel.logoutResponse.observe(viewLifecycleOwner, { it ->
+        profileViewModel.logoutResponse.observe(viewLifecycleOwner, {
             when (it) {
                 is RequestState.Success -> {
                     baseAuthViewModel.getUserLogged()

@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hitg.domain.entity.PointOfInterest
 import com.hitg.domain.entity.RequestState
-import com.hitg.domain.usecases.CreatePointOfInterestUseCase
 import com.hitg.domain.usecases.EditPointOfInterestUseCase
 import kotlinx.coroutines.launch
 

@@ -29,16 +29,15 @@ class CreatePointOfInterestUseCase(
             return RequestState.Error(InvalidLatLongException())
         }
 
-        val state = poiRepository.create(poi)
-        return when (state) {
+        return when (val state = poiRepository.create(poi)) {
             is RequestState.Success -> {
-                return state
+                state
             }
             is RequestState.Loading -> {
-                return RequestState.Loading
+                RequestState.Loading
             }
             is RequestState.Error -> {
-                return RequestState.Error(Exception("Point of interest could not be created"))
+                RequestState.Error(Exception("Point of interest could not be created"))
             }
         }
     }

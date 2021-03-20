@@ -38,7 +38,7 @@ class HomeFragment : BaseAuthFragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.home_menu_action_bar, menu);
+        inflater.inflate(R.menu.home_menu_action_bar, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 

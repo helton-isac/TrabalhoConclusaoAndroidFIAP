@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
@@ -83,14 +82,14 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun registerObserver() {
-        loginViewModel.loginState.observe(viewLifecycleOwner, Observer {
+        loginViewModel.loginState.observe(viewLifecycleOwner, {
             when (it) {
                 is RequestState.Success -> showSuccess()
                 is RequestState.Error -> showError(it.throwable)
                 is RequestState.Loading -> showLoading(getString(R.string.authenticating))
             }
         })
-        loginViewModel.biometricsState.observe(viewLifecycleOwner, Observer { biometric ->
+        loginViewModel.biometricsState.observe(viewLifecycleOwner, { biometric ->
             when (biometric) {
                 is RequestState.Success -> {
                     when (biometric.data.state) {

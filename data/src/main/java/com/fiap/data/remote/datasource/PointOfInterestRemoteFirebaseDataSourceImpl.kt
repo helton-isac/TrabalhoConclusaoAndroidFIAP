@@ -5,7 +5,6 @@ import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hitg.domain.entity.PointOfInterest
 import com.hitg.domain.entity.RequestState
-import com.hitg.domain.entity.Roadmap
 import kotlinx.coroutines.tasks.await
 
 class PointOfInterestRemoteFirebaseDataSourceImpl(

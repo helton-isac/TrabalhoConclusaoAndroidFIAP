@@ -10,7 +10,7 @@ object DialogUtils {
     fun showSimpleMessage(context: Context, errorMessage: String) {
         AlertDialog.Builder(context)
             .setMessage(errorMessage)
-            .setPositiveButton(context.getString(R.string.ok), null)
+            .setPositiveButton(context.getString(android.R.string.ok), null)
             .show()
     }
 
@@ -18,7 +18,7 @@ object DialogUtils {
         AlertDialog.Builder(context)
             .setTitle(context.getString(R.string.error))
             .setMessage(errorMessage)
-            .setPositiveButton(context.getString(R.string.ok), null)
+            .setPositiveButton(context.getString(android.R.string.ok), null)
             .show()
     }
 

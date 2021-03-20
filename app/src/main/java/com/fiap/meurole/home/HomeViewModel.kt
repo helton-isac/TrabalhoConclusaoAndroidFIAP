@@ -5,5 +5,4 @@ import com.hitg.domain.usecases.GetUserLoggedUseCase
 
 class HomeViewModel(
     private val getUserLoggedUseCase: GetUserLoggedUseCase
-) : ViewModel() {
-}
+) : ViewModel()

@@ -7,7 +7,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import androidx.lifecycle.Observer
 import com.fiap.meurole.BuildConfig
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
@@ -46,7 +45,7 @@ class AboutFragment : BaseFragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.about_menu_action_bar, menu);
+        inflater.inflate(R.menu.about_menu_action_bar, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -67,7 +66,7 @@ class AboutFragment : BaseFragment() {
     }
 
     private fun registerObserver() {
-        aboutViewModel.slogan.observe(viewLifecycleOwner, Observer { it ->
+        aboutViewModel.slogan.observe(viewLifecycleOwner, {
             when (it) {
                 is RequestState.Success -> {
                     tvSlogan.text = it.data

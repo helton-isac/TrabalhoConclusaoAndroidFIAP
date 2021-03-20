@@ -22,11 +22,11 @@ class BiometricsRepositoryImpl(
         return biometricsLocalDataSource.setBiometricsState(BiometricsInstanceState.IN_USE)
     }
 
-    override suspend fun markBiometricsUnavailable(): RequestState<Biometrics>? {
+    override suspend fun markBiometricsUnavailable(): RequestState<Biometrics> {
         return biometricsLocalDataSource.setBiometricsState(BiometricsInstanceState.UNAVAILABLE)
     }
 
-    override suspend fun markBiometricsNotInUse(): RequestState<Biometrics>? {
+    override suspend fun markBiometricsNotInUse(): RequestState<Biometrics> {
         return biometricsLocalDataSource.setBiometricsState(BiometricsInstanceState.NOT_IN_USE)
     }
 }

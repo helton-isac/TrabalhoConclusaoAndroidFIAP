@@ -1,7 +1,6 @@
 package com.fiap.data.remote.mapper
 
 import com.fiap.data.remote.models.NewRoadmapPayload
-import com.hitg.domain.entity.PointOfInterest
 import com.hitg.domain.entity.Roadmap
 
 object NewRoadmapPayloadMapper {

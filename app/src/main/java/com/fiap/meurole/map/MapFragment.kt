@@ -75,7 +75,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
                 val addressList = Geocoder(requireContext()).getFromLocationName(location, 1)
                 if (addressList != null && addressList.count() > 0) {
                     val address: Address = addressList[0]
-                    val latLong = LatLng(address.getLatitude(), address.getLongitude())
+                    val latLong = LatLng(address.latitude, address.longitude)
                     // TODO: Encontrado o local fazer requisição para encontrar os roteiros proximos da camera LatLong
                     mMap.addMarker(MarkerOptions().position(latLong).title(location))
                     mMap.animateCamera(CameraUpdateFactory.newLatLng(latLong))
@@ -119,7 +119,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
             mMap.isMyLocationEnabled = true
         } else {
             requestPermissions(
-                Array<String>(1, { ACCESS_FINE_LOCATION }),
+                Array(1) { ACCESS_FINE_LOCATION },
                 LOCATION_PERMISSION_REQUEST_CODE
             )
         }

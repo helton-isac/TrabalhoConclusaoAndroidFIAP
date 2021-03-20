@@ -2,7 +2,6 @@ package com.fiap.meurole.roadmapList
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
@@ -39,7 +38,7 @@ class RoadmapListFragment : BaseFragment() {
     }
 
     private fun registerObserver() {
-        viewModel.roadmapState.observe(viewLifecycleOwner, Observer {
+        viewModel.roadmapState.observe(viewLifecycleOwner, {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()

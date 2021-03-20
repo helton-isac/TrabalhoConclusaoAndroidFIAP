@@ -6,7 +6,6 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.LEFT
@@ -97,7 +96,7 @@ class CreateRoadmapFragment : BaseFragment() {
 
 
     private fun registerObserver() {
-        viewModel.saveRoadmapState.observe(viewLifecycleOwner, Observer {
+        viewModel.saveRoadmapState.observe(viewLifecycleOwner, {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()
@@ -117,7 +116,7 @@ class CreateRoadmapFragment : BaseFragment() {
             }
         })
 
-        viewModel.deletePointOfInterestState.observe(viewLifecycleOwner, Observer {
+        viewModel.deletePointOfInterestState.observe(viewLifecycleOwner, {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()

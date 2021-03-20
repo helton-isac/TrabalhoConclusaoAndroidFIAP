@@ -16,9 +16,8 @@ class CreatePointOfInterestViewModel(
 
     fun create(poi: PointOfInterest) {
         viewModelScope.launch {
-            val response = createPointOfInterestUseCase.create(poi)
 
-            when (response) {
+            when (val response = createPointOfInterestUseCase.create(poi)) {
                 is RequestState.Success -> {
                     poiState.value = RequestState.Success(poi)
                 }
