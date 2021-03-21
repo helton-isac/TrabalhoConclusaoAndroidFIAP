@@ -30,6 +30,9 @@ class LoginFragment : BaseFragment() {
     override val layout = R.layout.login_fragment
 
     private lateinit var btLogin: Button
+    private lateinit var btGoogle: Button
+    private lateinit var btFacebook: Button
+    private lateinit var tvConnect: TextView
     private lateinit var etEmailLogin: EditText
     private lateinit var etPasswordLogin: EditText
     private lateinit var tvNewAccount: TextView
@@ -49,6 +52,12 @@ class LoginFragment : BaseFragment() {
         registerObserver()
         registerBackPressedAction()
         checkBiometrics()
+        checkFeaturesEnabled()
+    }
+
+    private fun checkFeaturesEnabled() {
+        loginViewModel.isGoogleSignInEnabled()
+        loginViewModel.isFacebookSignInEnabled()
     }
 
     private fun checkBiometrics() {
@@ -65,6 +74,9 @@ class LoginFragment : BaseFragment() {
         etPasswordLogin = view.findViewById(R.id.etPasswordLogin)
         tvNewAccount = view.findViewById(R.id.tvNewAccount)
         tvBiometrics = view.findViewById(R.id.tvBiometrics)
+        btGoogle = view.findViewById(R.id.btGoogle)
+        btFacebook = view.findViewById(R.id.btFacebook)
+        tvConnect = view.findViewById(R.id.tvConnect)
 
         btLogin.setOnClickListener {
             showLoading()
@@ -78,6 +90,20 @@ class LoginFragment : BaseFragment() {
         }
         tvBiometrics.setOnClickListener {
             promptBiometrics()
+        }
+        btGoogle.setOnClickListener {
+            DialogUtils.showSimpleMessageWithTitle(
+                requireContext(),
+                getString(R.string.working_on_it),
+                getString(R.string.disabled_sign_in_message, getString(R.string.google))
+            )
+        }
+        btFacebook.setOnClickListener {
+            DialogUtils.showSimpleMessageWithTitle(
+                requireContext(),
+                getString(R.string.working_on_it),
+                getString(R.string.disabled_sign_in_message, getString(R.string.facebook))
+            )
         }
     }
 
@@ -120,6 +146,36 @@ class LoginFragment : BaseFragment() {
                 is RequestState.Loading -> showLoading(getString(R.string.processing))
             }
         })
+        loginViewModel.isFacebookSignInEnabled.observe(viewLifecycleOwner) {
+            when (it) {
+                is RequestState.Error -> btFacebook.visibility = View.GONE
+                is RequestState.Loading -> btFacebook.visibility = View.GONE
+                is RequestState.Success -> {
+                    btFacebook.visibility = if (it.data) View.VISIBLE else View.GONE
+                    showHideConnectLabel()
+                }
+            }
+        }
+        loginViewModel.isGoogleSignInEnabled.observe(viewLifecycleOwner) {
+            when (it) {
+                is RequestState.Error -> btGoogle.visibility = View.GONE
+                is RequestState.Loading -> btGoogle.visibility = View.GONE
+                is RequestState.Success -> {
+                    btGoogle.visibility = if (it.data) View.VISIBLE else View.GONE
+                    showHideConnectLabel()
+                }
+            }
+        }
+    }
+
+    private fun showHideConnectLabel() {
+        if (btFacebook.visibility == View.VISIBLE
+            || btGoogle.visibility == View.VISIBLE
+        ) {
+            tvConnect.visibility = View.VISIBLE
+        } else {
+            tvConnect.visibility = View.GONE
+        }
     }
 
     private fun promptBiometrics() {
