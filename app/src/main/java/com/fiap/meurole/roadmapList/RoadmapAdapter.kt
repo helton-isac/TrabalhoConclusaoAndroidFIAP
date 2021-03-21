@@ -10,7 +10,8 @@ import com.fiap.meurole.R
 import com.hitg.domain.entity.Roadmap
 
 class RoadmapAdapter(
-    private var items: List<Roadmap>
+    private var items: List<Roadmap>,
+    private var clickListener: (Roadmap, Int) -> Unit
 ) : RecyclerView.Adapter<RoadmapAdapter.ViewHolder>() {
 
     private val placeHolderList = listOf(
@@ -38,17 +39,24 @@ class RoadmapAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position], placeHolderList[position % placeHolderList.size])
+        holder.bind(
+            items[position],
+            placeHolderList[position % placeHolderList.size],
+            clickListener
+        )
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: Roadmap, placeHolderImage: Int) {
+        fun bind(item: Roadmap, placeHolderImage: Int, clickListener: (Roadmap, Int) -> Unit) {
             val tvTitle = itemView.findViewById<TextView>(R.id.tvTitle)
             tvTitle.text = item.name
             val ivPhoto = itemView.findViewById<ImageView>(R.id.ivPhoto)
             ivPhoto.setImageResource(placeHolderImage)
             val tvUserCreator = itemView.findViewById<TextView>(R.id.tvUserCreator)
             tvUserCreator.text = item.creatorName
+            tvTitle.setOnClickListener { clickListener(item, placeHolderImage) }
+            ivPhoto.setOnClickListener { clickListener(item, placeHolderImage) }
+            tvUserCreator.setOnClickListener { clickListener(item, placeHolderImage) }
         }
     }
 }

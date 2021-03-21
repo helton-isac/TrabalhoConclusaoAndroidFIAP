@@ -1,4 +1,4 @@
-package com.fiap.meurole.roadmap
+package com.fiap.meurole.roadmap.create
 
 import android.os.Bundle
 import android.view.View
@@ -53,7 +53,7 @@ class CreateRoadmapFragment : BaseAuthFragment() {
         etRoadmapName = view.findViewById(R.id.etRoadmapName)
         etRoadmapDescription = view.findViewById(R.id.etRoadmapDescription)
 
-        rvPointOfInterest = view.findViewById(R.id.rvPointOfInterests)
+        rvPointOfInterest = view.findViewById(R.id.rvDetailPointOfInterests)
         rvPointOfInterest.adapter = PointOfInterestAdapter(pointOfInterests, clickListener = {
             findNavController().navigate(
                 R.id.action_createRoadmapFragment_to_editPointOfInterest,
