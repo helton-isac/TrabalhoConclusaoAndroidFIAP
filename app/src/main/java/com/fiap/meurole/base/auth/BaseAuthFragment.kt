@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
-import com.hitg.domain.entity.RequestState
+import com.hitg.domain.entity.RequestState.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,17 +33,11 @@ abstract class BaseAuthFragment : BaseFragment() {
     }
 
     private fun registerObserver() {
-        baseAuthViewModel.userLoggedState.observe(viewLifecycleOwner, Observer { result ->
+        baseAuthViewModel.userLoggedState.observe(viewLifecycleOwner, { result ->
             when (result) {
-                is RequestState.Loading -> {
-                    showLoading()
-                }
-
-                is RequestState.Success -> {
-                    hideLoading()
-                }
-
-                is RequestState.Error -> {
+                is Loading -> showLoading()
+                is Success -> hideLoading()
+                is Error -> {
                     hideLoading()
                     findNavController().navigate(
                         R.id.login_nav_graph, bundleOf(

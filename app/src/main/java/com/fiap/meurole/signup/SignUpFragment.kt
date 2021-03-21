@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
@@ -53,7 +52,7 @@ class SignUpFragment : BaseFragment() {
     }
 
     private fun registerObserver() {
-        this.signUpViewModel.newUserState.observe(viewLifecycleOwner, Observer {
+        this.signUpViewModel.newUserState.observe(viewLifecycleOwner, {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()

@@ -14,16 +14,15 @@ class DeletePointOfInterestUseCase(
             return RequestState.Error(Exception("Missing Point of Interest ID."))
         }
 
-        val state = poiRepository.delete(poi.id)
-        return when (state) {
+        return when (val state = poiRepository.delete(poi.id)) {
             is RequestState.Success -> {
-                return state
+                state
             }
             is RequestState.Loading -> {
-                return RequestState.Loading
+                RequestState.Loading
             }
             is RequestState.Error -> {
-                return RequestState.Error(Exception("Point of interest could not be deleted"))
+                RequestState.Error(Exception("Point of interest could not be deleted"))
             }
         }
     }

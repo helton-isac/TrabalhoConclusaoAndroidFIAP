@@ -6,12 +6,6 @@ import com.hitg.domain.entity.User
 
 object NewUserFirebasePayloadMapper {
 
-    fun mapToNewUser(newUserFirebasePayload: NewUserFirebasePayload) = NewUser(
-        name = newUserFirebasePayload.name ?: "",
-        email = newUserFirebasePayload.email ?: "",
-        password = newUserFirebasePayload.password ?: ""
-    )
-
     fun mapToNewUserFirebasePayload(newUser: NewUser) = NewUserFirebasePayload(
         name = newUser.name,
         email = newUser.email,

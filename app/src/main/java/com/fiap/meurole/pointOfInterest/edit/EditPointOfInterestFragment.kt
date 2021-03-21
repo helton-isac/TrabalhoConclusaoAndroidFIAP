@@ -1,7 +1,6 @@
 package com.fiap.meurole.pointOfInterest.edit
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,7 +9,6 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
@@ -98,7 +96,7 @@ class EditPointOfInterestFragment : BaseFragment(), OnMapReadyCallback {
     }
 
     private fun registerObserver() {
-        viewModel.poiState.observe(viewLifecycleOwner, Observer {
+        viewModel.poiState.observe(viewLifecycleOwner, {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()
@@ -184,7 +182,7 @@ class EditPointOfInterestFragment : BaseFragment(), OnMapReadyCallback {
                     alertDialog.setButton(
                         AlertDialog.BUTTON_NEUTRAL,
                         "OK",
-                        DialogInterface.OnClickListener { dialog, _ -> dialog.dismiss() })
+                        { dialog, _ -> dialog.dismiss() })
                     alertDialog.show()
                 }
             }

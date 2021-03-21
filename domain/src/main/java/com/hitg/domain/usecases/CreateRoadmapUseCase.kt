@@ -26,16 +26,15 @@ class CreateRoadmapUseCase(
 
                 roadmap.creatorId = userLogged.data.id
 
-                val state = roadmapRepository.create(roadmap)
-                return when (state) {
+                return when (roadmapRepository.create(roadmap)) {
                     is RequestState.Success -> {
-                        return RequestState.Success(roadmap)
+                        RequestState.Success(roadmap)
                     }
                     is RequestState.Loading -> {
-                        return RequestState.Loading
+                        RequestState.Loading
                     }
                     is RequestState.Error -> {
-                        return RequestState.Error(Exception("Erro ao criar o roteiro"))
+                        RequestState.Error(Exception("Erro ao criar o roteiro"))
                     }
                 }
             }

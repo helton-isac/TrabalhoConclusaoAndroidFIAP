@@ -29,7 +29,4 @@ class FCMService : FirebaseMessagingService() {
         NotificationUtils.notificationSimple(this, title, message, notifChannel, intent)
     }
 
-    override fun onNewToken(p0: String) {
-        super.onNewToken(p0)
-    }
 }
