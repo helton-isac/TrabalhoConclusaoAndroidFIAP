@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.ItemTouchHelper.RIGHT
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
+import com.fiap.meurole.utils.DialogUtils
 import com.google.android.material.textfield.TextInputEditText
 import com.hitg.domain.entity.PointOfInterest
 import com.hitg.domain.entity.RequestState
@@ -100,12 +101,15 @@ class CreateRoadmapFragment : BaseFragment() {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()
-                    showMessage("Cadastro realizado com sucesso")
+                    DialogUtils.showToastMessage(
+                        requireContext(),
+                        getString(R.string.roadmap_registered_with_success)
+                    )
                     findNavController().popBackStack()
                 }
                 is RequestState.Error -> {
                     hideLoading()
-                    showMessage(it.throwable.message)
+                    DialogUtils.showToastErrorMessage(requireContext(), it.throwable.message)
                 }
                 is RequestState.Loading -> {
                     showLoading()
@@ -117,14 +121,17 @@ class CreateRoadmapFragment : BaseFragment() {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()
-                    showMessage("Ponto de interesse excluído.")
+                    DialogUtils.showToastMessage(
+                        requireContext(),
+                        getString(R.string.poi_deleted_with_success)
+                    )
                     val index = pointOfInterests.indexOfFirst { poi -> poi.id == it.data }
                     pointOfInterests.removeAt(index)
                     rvPointOfInterest.adapter?.notifyDataSetChanged()
                 }
                 is RequestState.Error -> {
                     hideLoading()
-                    showMessage(it.throwable.message)
+                    DialogUtils.showToastErrorMessage(requireContext(), it.throwable.message)
                 }
                 is RequestState.Loading -> {
                     showLoading()

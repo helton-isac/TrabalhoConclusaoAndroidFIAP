@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
+import com.fiap.meurole.utils.DialogUtils
 import com.hitg.domain.entity.RequestState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -61,7 +62,7 @@ class SignUpFragment : BaseFragment() {
                 }
                 is RequestState.Error -> {
                     hideLoading()
-                    showMessage(it.throwable.message)
+                    DialogUtils.showToastErrorMessage(requireContext(), it.throwable.message)
                 }
                 is RequestState.Loading -> showLoading("Realizando a autenticação")
             }

@@ -38,7 +38,14 @@
     <string name="label_type_a_roadmap_description">Escreva uma descriçao para o roteiro</string>
     <string name="save_roadmap">Salvar Roteiro</string>
     <string name="add_point_of_interest">Adicionar ponto de interesse</string>
-    <string name="connect">-------------- ou connect com: --------------</string>
-    <string name="google">google</string>
-    <string name="facebook">facebook</string>
+    <string name="connect">-------------- ou conecte-se com: --------------</string>
+    <string name="ok">Ok</string>
+    <string name="error">Erro</string>
+    <string name="biometrics_failed">Falha ao utilizar a biometria.</string>
+    <string name="location_permission_not_granted">" Permissão de localização não concedida"</string>
+    <string name="location_not_found">Localização não encontrada</string>
+    <string name="poi_registered_with_success">Ponto de interesse cadastrado com sucesso</string>
+    <string name="poi_edited_with_success">Ponto de interesse editado com sucesso</string>
+    <string name="roadmap_registered_with_success">Roteiro cadastrado com sucesso</string>
+    <string name="poi_deleted_with_success">Ponto de interesse excluído</string>
 </resources>

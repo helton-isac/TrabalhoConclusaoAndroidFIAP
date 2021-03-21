@@ -11,6 +11,7 @@ import android.widget.EditText
 import androidx.core.content.ContextCompat
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
+import com.fiap.meurole.utils.DialogUtils
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -50,7 +51,10 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
     override fun onResume() {
         super.onResume()
         if (permissionDenied) {
-            showMessage("Map permission not granted")
+            DialogUtils.showSimpleMessage(
+                requireContext(),
+                getString(R.string.location_permission_not_granted)
+            )
             permissionDenied = false
         }
     }
@@ -61,6 +65,8 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
         etSearch = view.findViewById(R.id.etMapSearch)
+
+        // TODO: Use Places
         btSearch = view.findViewById(R.id.btMapSearch)
         btSearch.setOnClickListener {
             val location = etSearch.text.toString()
@@ -74,7 +80,10 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
                     mMap.addMarker(MarkerOptions().position(latLong).title(location))
                     mMap.animateCamera(CameraUpdateFactory.newLatLng(latLong))
                 } else {
-                    showMessage("Location not found.")
+                    DialogUtils.showSimpleMessage(
+                        requireContext(),
+                        getString(R.string.location_not_found)
+                    )
                 }
             }
         }
@@ -85,8 +94,12 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
         enableMyLocation()
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        when(requestCode) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
             LOCATION_PERMISSION_REQUEST_CODE -> {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     enableMyLocation()
@@ -101,14 +114,23 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
         if (!::mMap.isInitialized) return
 
         if (ContextCompat.checkSelfPermission(requireContext(), ACCESS_FINE_LOCATION)
-            == PackageManager.PERMISSION_GRANTED) {
+            == PackageManager.PERMISSION_GRANTED
+        ) {
             mMap.isMyLocationEnabled = true
         } else {
-            requestPermissions(Array<String>(1, {ACCESS_FINE_LOCATION}), LOCATION_PERMISSION_REQUEST_CODE)
+            requestPermissions(
+                Array<String>(1, { ACCESS_FINE_LOCATION }),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
         }
 
         fusedLocationClient.lastLocation.addOnSuccessListener {
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(it.latitude, it.longitude), 15f))
+            mMap.moveCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    LatLng(it.latitude, it.longitude),
+                    15f
+                )
+            )
         }
     }
 }

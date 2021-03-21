@@ -44,6 +44,15 @@
     <string name="save_roadmap">Save roadmap</string>
     <string name="add_point_of_interest">Add point of interest</string>
     <string name="connect">---------------- or connect with: ----------------</string>
-    <string name="google">google</string>
-    <string name="facebook">facebook</string>
+    <string name="google" translatable="false">google</string>
+    <string name="facebook" translatable="false">facebook</string>
+    <string name="ok">Ok</string>
+    <string name="error">Error</string>
+    <string name="biometrics_failed">Failed to use biometrics.</string>
+    <string name="location_permission_not_granted">Location permission not granted</string>
+    <string name="location_not_found">Location not found</string>
+    <string name="poi_registered_with_success">Point of Interest successful registered</string>
+    <string name="poi_edited_with_success">Point of Interest successful edited</string>
+    <string name="roadmap_registered_with_success">Roadmap successful registered</string>
+    <string name="poi_deleted_with_success">Point of Interest successful deleted</string>
 </resources>
