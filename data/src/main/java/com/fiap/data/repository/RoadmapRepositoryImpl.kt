@@ -17,4 +17,8 @@ class RoadmapRepositoryImpl(
         return roadmapRemoteDataSource.fetch()
     }
 
+    override suspend fun fetchByName(name: String): RequestState<List<Roadmap>> {
+        return roadmapRemoteDataSource.fetchByName(name)
+    }
+
 }

@@ -7,4 +7,6 @@ interface RoadmapRepository {
     suspend fun create(roadmap: Roadmap): RequestState<Roadmap>
 
     suspend fun fetch(): RequestState<List<Roadmap>>
+
+    suspend fun fetchByName(name: String): RequestState<List<Roadmap>>
 }

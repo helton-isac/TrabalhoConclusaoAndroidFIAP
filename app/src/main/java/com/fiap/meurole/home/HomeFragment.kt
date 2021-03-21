@@ -6,12 +6,18 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.auth.BaseAuthFragment
+import com.fiap.meurole.roadmapList.RoadmapAdapter
+import com.fiap.meurole.utils.DialogUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.textfield.TextInputLayout
 import com.hitg.domain.entity.RequestState
+import com.hitg.domain.entity.Roadmap
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -20,6 +26,7 @@ class HomeFragment : BaseAuthFragment() {
 
     override val layout = R.layout.home_fragment
 
+    private lateinit var etSearchRoadmap: EditText
     private lateinit var btRoadmaps: Button
     private lateinit var btSearchMap: Button
     private lateinit var btCreateRoadmap: Button
@@ -52,12 +59,18 @@ class HomeFragment : BaseAuthFragment() {
     }
 
     private fun setUpView(view: View) {
+        etSearchRoadmap = view.findViewById(R.id.tilSearchRoadmap)
         btRoadmaps = view.findViewById(R.id.btRoadmaps)
         btSearchMap = view.findViewById(R.id.btSearchMap)
         btCreateRoadmap = view.findViewById(R.id.btCreateRoadmap)
 
         btRoadmaps.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_roadmapList)
+            if (etSearchRoadmap.text.isNotBlank()) {
+                showLoading()
+                homeViewModel.searchRoadmaps(etSearchRoadmap.text.toString())
+            } else {
+                findNavController().navigate(R.id.action_homeFragment_to_roadmapList)
+            }
         }
 
         btSearchMap.setOnClickListener {
@@ -108,6 +121,28 @@ class HomeFragment : BaseAuthFragment() {
                 is RequestState.Loading -> showLoading()
                 is RequestState.Success -> hideLoading()
                 is RequestState.Error -> hideLoading()
+            }
+        })
+
+        homeViewModel.roadmapState.observe(viewLifecycleOwner, { result ->
+            when (result) {
+                is RequestState.Loading -> showLoading()
+
+                is RequestState.Success -> {
+                    hideLoading()
+                    val roadmaps = result.data as MutableList<Roadmap>
+
+                    findNavController().navigate(R.id.action_homeFragment_to_roadmapList,
+                        bundleOf(
+                            "roadmaps" to roadmaps
+                        )
+                    )
+                }
+
+                is RequestState.Error -> {
+                    hideLoading()
+                    DialogUtils.showToastErrorMessage(requireContext(), result.throwable.message)
+                }
             }
         })
     }

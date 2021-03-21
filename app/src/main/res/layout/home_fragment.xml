@@ -7,7 +7,7 @@
     tools:context=".home.HomeFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/searchRoadmap"
+        android:id="@+id/tilSearchRoadmap"
         android:layout_width="317dp"
         android:layout_height="66dp"
         android:textColorHint="@color/wedgewood"

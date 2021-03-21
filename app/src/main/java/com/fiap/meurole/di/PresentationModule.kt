@@ -27,7 +27,8 @@ val presentationModule = module {
     }
     viewModel {
         HomeViewModel(
-            getUserLoggedUseCase = get()
+            getUserLoggedUseCase = get(),
+            fetchRoadmapsUseCase = get()
         )
     }
     viewModel {

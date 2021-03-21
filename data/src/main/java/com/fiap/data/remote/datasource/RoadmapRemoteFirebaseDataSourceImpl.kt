@@ -54,4 +54,36 @@ class RoadmapRemoteFirebaseDataSourceImpl(
         }
     }
 
+    override suspend fun fetchByName(name: String): RequestState<List<Roadmap>> {
+        return try {
+            val result = firebaseFirestore.collection("roadmaps")
+                .whereGreaterThanOrEqualTo("name", name)
+                .whereLessThanOrEqualTo("name", name)
+                .get()
+                .await()
+                .documents
+
+            val roadmaps = result.map {
+                val poiIds: List<String> = it.get ("pointOfInterests") as List<String>
+                val roadmap = Roadmap(
+                    id = it.id,
+                    name = it.getString("name") ?: "",
+                    description = it.getString("description") ?: "",
+                    pointOfInterests = poiIds.map { id -> PointOfInterest(id = id) },
+                    creatorId = it.getString("creatorId") ?: "",
+                    creatorName = it.getString("creatorName") ?: ""
+                )
+                roadmap
+            }
+
+            if (roadmaps.isEmpty()) {
+                RequestState.Error(Exception("No roadmap found"))
+            } else {
+                RequestState.Success(roadmaps)
+            }
+        } catch (e: Exception) {
+            RequestState.Error(e)
+        }
+    }
+
 }
