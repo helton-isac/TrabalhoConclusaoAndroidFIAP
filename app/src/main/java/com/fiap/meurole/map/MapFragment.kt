@@ -55,8 +55,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
 
     override fun onResume() {
         super.onResume()
-        (requireActivity() as AppCompatActivity?)?.supportActionBar?.title =
-            getString(R.string.button_search_maps)
+        setTitle(getString(R.string.button_search_maps))
         if (permissionDenied) {
             DialogUtils.showSimpleMessage(
                 requireContext(),

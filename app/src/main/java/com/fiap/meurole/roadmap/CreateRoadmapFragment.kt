@@ -36,6 +36,11 @@ class CreateRoadmapFragment : BaseFragment() {
 
     private var pointOfInterests: MutableList<PointOfInterest> = arrayListOf()
 
+    override fun onResume() {
+        super.onResume()
+        setTitle(getString(R.string.create_roadmap))
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

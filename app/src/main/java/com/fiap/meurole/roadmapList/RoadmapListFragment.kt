@@ -22,6 +22,11 @@ class RoadmapListFragment : BaseFragment() {
 
     private var roadmaps: MutableList<Roadmap> = arrayListOf()
 
+    override fun onResume() {
+        super.onResume()
+        setTitle(getString(R.string.search_roadmaps))
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

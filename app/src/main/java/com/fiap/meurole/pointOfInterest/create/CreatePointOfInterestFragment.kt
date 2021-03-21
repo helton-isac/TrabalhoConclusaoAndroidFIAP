@@ -45,6 +45,11 @@ class CreatePointOfInterestFragment : BaseFragment(), OnMapReadyCallback {
 
     private val viewModel: CreatePointOfInterestViewModel by viewModel()
 
+    override fun onResume() {
+        super.onResume()
+        setTitle(getString(R.string.add_point_of_interest))
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

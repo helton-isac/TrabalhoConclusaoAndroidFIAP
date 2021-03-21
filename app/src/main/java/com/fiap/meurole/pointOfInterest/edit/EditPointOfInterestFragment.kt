@@ -46,6 +46,11 @@ class EditPointOfInterestFragment : BaseFragment(), OnMapReadyCallback {
     private lateinit var pointOfInterest: PointOfInterest
     private var mLatLng: LatLng? = null
 
+    override fun onResume() {
+        super.onResume()
+        setTitle(getString(R.string.edit_point_of_interest))
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

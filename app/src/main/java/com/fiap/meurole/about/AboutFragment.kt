@@ -7,7 +7,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.fiap.meurole.BuildConfig
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
@@ -27,8 +26,7 @@ class AboutFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        (requireActivity() as AppCompatActivity?)?.supportActionBar?.title =
-            getString(R.string.about)
+        setTitle(getString(R.string.about))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -85,5 +83,4 @@ class AboutFragment : BaseFragment() {
             }
         })
     }
-
 }
