@@ -78,4 +78,14 @@ abstract class BaseFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    fun setTitle(title: String) {
+        (requireActivity() as AppCompatActivity?)
+            ?.supportActionBar?.title = title
+    }
+
+    fun setDisplayHomeAsUpEnabled(showHomeAsUp: Boolean) {
+        (requireActivity() as AppCompatActivity?)
+            ?.supportActionBar?.setDisplayHomeAsUpEnabled(showHomeAsUp)
+    }
 }

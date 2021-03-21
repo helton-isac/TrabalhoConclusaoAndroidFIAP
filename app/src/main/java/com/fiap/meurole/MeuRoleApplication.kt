@@ -5,10 +5,12 @@ import com.fiap.data.di.dataModules
 import com.fiap.meurole.di.presentationModule
 import com.google.android.libraries.places.api.Places
 import com.hitg.domain.di.domainModule
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import java.util.*
 
+@ExperimentalCoroutinesApi
 class MeuRoleApplication : Application() {
     override fun onCreate() {
         super.onCreate()

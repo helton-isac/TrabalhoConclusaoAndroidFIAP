@@ -24,6 +24,11 @@ class SignUpFragment : BaseFragment() {
     private lateinit var etPassword: EditText
     private lateinit var btCreateAccount: Button
 
+    override fun onResume() {
+        super.onResume()
+        setTitle(getString(R.string.app_name))
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

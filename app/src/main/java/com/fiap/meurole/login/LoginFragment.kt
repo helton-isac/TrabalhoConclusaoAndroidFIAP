@@ -42,7 +42,8 @@ class LoginFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        (requireActivity() as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        setDisplayHomeAsUpEnabled(false)
+        setTitle(getString(R.string.app_name))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

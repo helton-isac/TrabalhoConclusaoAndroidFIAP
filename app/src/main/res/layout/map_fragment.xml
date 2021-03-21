@@ -10,32 +10,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
     </androidx.fragment.app.FragmentContainerView>
 
-    <EditText
-        android:id="@+id/etMapSearch"
+    <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:importantForAutofill="no"
-        android:inputType="none"
-        android:hint="Digite um local"
-        app:layout_constraintEnd_toStartOf="@+id/btMapSearch"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btMapSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:text="Pesquisar"
-        android:textColor="@color/white"
-        android:background="@color/purple_500"
+        android:layout_margin="8dp"
+        android:background="@color/white"
+        app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/etMapSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:singleLine="true"
+            android:background="@color/white"
+            android:drawableEnd="@drawable/ic_search_24"
+            android:hint="@string/search_here"
+            android:imeOptions="actionSearch"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

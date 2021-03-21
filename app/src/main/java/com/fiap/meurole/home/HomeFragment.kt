@@ -7,7 +7,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.auth.BaseAuthFragment
@@ -34,9 +33,8 @@ class HomeFragment : BaseAuthFragment() {
 
     override fun onResume() {
         super.onResume()
-        (requireActivity() as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        (requireActivity() as AppCompatActivity?)?.supportActionBar?.title =
-            getString(R.string.app_name)
+        setDisplayHomeAsUpEnabled(false)
+        setTitle(getString(R.string.app_name))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

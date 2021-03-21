@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="default_notification_channel_name">Canal de notificações Gerais</string>
+    <string name="default_notification_channel_description">Notificações gerais</string>
     <string name="loading_message_processing">Processando…</string>
     <string name="button_login">Logar</string>
     <string name="label_password">Senha</string>
@@ -10,9 +12,9 @@
     <string name="menu_home_home">Home</string>
     <string name="menu_home_profile">Perfil</string>
     <string name="logout">Sair</string>
-    <string name="button_search_roadmaps">Encontrar roteiros</string>
+    <string name="search_roadmaps">Encontrar roteiros</string>
     <string name="button_search_maps">Pesquisar no mapa</string>
-    <string name="button_create_roadmap">Criar roteiro</string>
+    <string name="create_roadmap">Criar roteiro</string>
     <string name="use_biometrics">Usar biometria</string>
     <string name="register_biometric_login">Gostaria de cadastrar a biometria?</string>
     <string name="yes">Sim</string>
@@ -27,19 +29,18 @@
     <string name="version">Versão: %1$s (build: %2$s)</string>
     <string name="about">Sobre</string>
     <string name="label_search_roadmap">Para onde vamos?</string>
-    <string name="default_notification_channel_name">Canal de notificações Gerais</string>
-    <string name="default_notification_channel_description">Notificações gerais</string>
     <string name="share">Compartilhar</string>
     <string name="share_message">Conheça o aplicativo \"Meu Rolê\", em breve disponível no Google Play e na Apple Store!</string>
     <string name="label_type_roadmap_title">Digite o título do roteiro</string>
     <string name="label_type_a_roadmap_description">Escreva uma descriçao para o roteiro</string>
     <string name="save_roadmap">Salvar Roteiro</string>
     <string name="add_point_of_interest">Adicionar ponto de interesse</string>
+    <string name="edit_point_of_interest">Editar ponto de interesse</string>
     <string name="connect">-------------- ou conecte-se com: --------------</string>
     <string name="error">Erro</string>
     <string name="biometrics_failed">Falha ao utilizar a biometria.</string>
     <string name="location_permission_not_granted">" Permissão de localização não concedida"</string>
-    <string name="location_not_found">Localização não encontrada</string>
+    <string name="location_not_found">Localização não encontrada. Tente utilizar o nome de uma cidade ou estado.</string>
     <string name="poi_registered_with_success">Ponto de interesse cadastrado com sucesso</string>
     <string name="poi_edited_with_success">Ponto de interesse editado com sucesso</string>
     <string name="roadmap_registered_with_success">Roteiro cadastrado com sucesso</string>
@@ -49,4 +50,5 @@
     <string name="profile_title">Perfil</string>
     <string name="loading">Carregando…</string>
     <string name="e_mail">e-mail:</string>
+    <string name="search_here">Pesquise aqui</string>
 </resources>

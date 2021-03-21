@@ -1,11 +1,13 @@
 package com.fiap.meurole.profile
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
@@ -30,11 +32,20 @@ class ProfileFragment : BaseAuthFragment() {
 
     private val profileViewModel: ProfileViewModel by viewModel()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onResume() {
         super.onResume()
-        (requireActivity() as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        (requireActivity() as AppCompatActivity?)?.supportActionBar?.title =
-            getString(R.string.profile_title)
+        setDisplayHomeAsUpEnabled(false)
+        setTitle(getString(R.string.profile_title))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.profile_menu_action_bar, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -121,10 +132,12 @@ class ProfileFragment : BaseAuthFragment() {
         baseAuthViewModel.userLoggedState.observe(viewLifecycleOwner) {
             when (it) {
                 is RequestState.Error -> {
-                    tvUserName.text = getString(R.string.error)
+                    tvUserName.text = getString(R.string.ellipsis)
+                    tvEmail.text = getString(R.string.ellipsis)
                 }
                 is RequestState.Loading -> {
                     tvUserName.text = getString(R.string.loading)
+                    tvEmail.text = getString(R.string.ellipsis)
                 }
                 is RequestState.Success -> {
                     tvUserName.text = it.data.name
@@ -132,6 +145,14 @@ class ProfileFragment : BaseAuthFragment() {
                 }
             }
         }
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.profile_action_menu_about -> {
+                findNavController().navigate(R.id.action_profileFragment_to_aboutFragment)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
