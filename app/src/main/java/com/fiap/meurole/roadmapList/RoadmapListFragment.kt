@@ -2,7 +2,6 @@ package com.fiap.meurole.roadmapList
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
@@ -25,7 +24,6 @@ class RoadmapListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        registerBackPressedAction()
 
         registerObserver()
 
@@ -37,15 +35,6 @@ class RoadmapListFragment : BaseFragment() {
 
     private fun setUpView(view: View) {
         rvRoadmap = view.findViewById(R.id.rvRoadmaps)
-    }
-
-    private fun registerBackPressedAction() {
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                requireActivity().supportFragmentManager.popBackStack()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
     private fun registerObserver() {

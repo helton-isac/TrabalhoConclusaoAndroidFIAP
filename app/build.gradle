@@ -18,7 +18,10 @@ android {
         minSdkVersion globalConfiguration["minSDK"]
         targetSdkVersion globalConfiguration["targetSDK"]
         versionCode 1
-        versionName "1.0.1"
+        // The version name is overwrite during the build
+        // This version is set to be able identify crashlytics error during debug
+        // Once we are not generating a signed version yet, it is util.
+        versionName "1.0.0-DebugVersion"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

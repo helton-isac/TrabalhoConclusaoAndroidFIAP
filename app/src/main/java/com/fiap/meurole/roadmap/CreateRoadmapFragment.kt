@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.ItemTouchHelper.RIGHT
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
-import com.fiap.meurole.base.auth.NAVIGATION_KEY
 import com.google.android.material.textfield.TextInputEditText
 import com.hitg.domain.entity.PointOfInterest
 import com.hitg.domain.entity.RequestState
@@ -40,7 +38,6 @@ class CreateRoadmapFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        registerBackPressedAction()
 
         registerObserver()
 
@@ -54,8 +51,8 @@ class CreateRoadmapFragment : BaseFragment() {
         rvPointOfInterest = view.findViewById(R.id.rvPointOfInterests)
         rvPointOfInterest.adapter = PointOfInterestAdapter(pointOfInterests, clickListener = {
             findNavController().navigate(
-                R.id.editPointOfInterest, bundleOf(
-                    NAVIGATION_KEY to findNavController().currentDestination?.id,
+                R.id.action_createRoadmapFragment_to_editPointOfInterest,
+                bundleOf(
                     "pointOfInterest" to it
                 )
             )
@@ -79,11 +76,7 @@ class CreateRoadmapFragment : BaseFragment() {
 
         btCreatePoi = view.findViewById(R.id.btAddPointOfInterest)
         btCreatePoi.setOnClickListener {
-            findNavController().navigate(
-                R.id.createPointOfInterest, bundleOf(
-                    NAVIGATION_KEY to findNavController().currentDestination?.id
-                )
-            )
+            findNavController().navigate(R.id.action_createRoadmapFragment_to_createPointOfInterest)
         }
 
         btCreateRoadmap = view.findViewById(R.id.btSaveRoadmap)
@@ -101,14 +94,6 @@ class CreateRoadmapFragment : BaseFragment() {
         }
     }
 
-    private fun registerBackPressedAction() {
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                requireActivity().supportFragmentManager.popBackStack()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-    }
 
     private fun registerObserver() {
         viewModel.saveRoadmapState.observe(viewLifecycleOwner, Observer {
@@ -116,7 +101,7 @@ class CreateRoadmapFragment : BaseFragment() {
                 is RequestState.Success -> {
                     hideLoading()
                     showMessage("Cadastro realizado com sucesso")
-                    requireActivity().supportFragmentManager.popBackStack()
+                    findNavController().popBackStack()
                 }
                 is RequestState.Error -> {
                     hideLoading()
