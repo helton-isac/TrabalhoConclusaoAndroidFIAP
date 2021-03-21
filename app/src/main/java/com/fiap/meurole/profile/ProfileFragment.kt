@@ -133,9 +133,11 @@ class ProfileFragment : BaseAuthFragment() {
             when (it) {
                 is RequestState.Error -> {
                     tvUserName.text = getString(R.string.ellipsis)
+                    tvEmail.text = getString(R.string.ellipsis)
                 }
                 is RequestState.Loading -> {
                     tvUserName.text = getString(R.string.loading)
+                    tvEmail.text = getString(R.string.ellipsis)
                 }
                 is RequestState.Success -> {
                     tvUserName.text = it.data.name
