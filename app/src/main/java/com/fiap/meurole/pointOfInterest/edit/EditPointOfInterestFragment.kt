@@ -87,7 +87,7 @@ class EditPointOfInterestFragment : BaseAuthFragment(), OnMapReadyCallback {
         btAdd.setOnClickListener {
             if (mLatLng != null) {
                 val poi = PointOfInterest(
-                    id = "",
+                    id = pointOfInterest.id,
                     latitude = mLatLng!!.latitude,
                     longitude = mLatLng!!.longitude,
                     name = etName.text.toString(),
