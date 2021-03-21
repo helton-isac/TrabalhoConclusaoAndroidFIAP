@@ -47,7 +47,6 @@ class RoadmapListFragment : BaseFragment() {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()
-
                     roadmaps = it.data as MutableList<Roadmap>
                     rvRoadmap.adapter = RoadmapAdapter(roadmaps)
                 }

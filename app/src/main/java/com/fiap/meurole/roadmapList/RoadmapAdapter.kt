@@ -47,6 +47,8 @@ class RoadmapAdapter(
             tvTitle.text = item.name
             val ivPhoto = itemView.findViewById<ImageView>(R.id.ivPhoto)
             ivPhoto.setImageResource(placeHolderImage)
+            val tvUserCreator = itemView.findViewById<TextView>(R.id.tvUserCreator)
+            tvUserCreator.text = item.creatorName
         }
     }
 }

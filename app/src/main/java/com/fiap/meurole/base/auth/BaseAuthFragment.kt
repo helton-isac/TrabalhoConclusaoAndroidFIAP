@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
 import com.hitg.domain.entity.RequestState.*
+import com.hitg.domain.entity.User
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -18,6 +19,8 @@ const val NAVIGATION_KEY = "NAV_KEY"
 abstract class BaseAuthFragment : BaseFragment() {
 
     protected val baseAuthViewModel: BaseAuthViewModel by viewModel()
+
+    protected var userLogged: User = User()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +39,10 @@ abstract class BaseAuthFragment : BaseFragment() {
         baseAuthViewModel.userLoggedState.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is Loading -> showLoading()
-                is Success -> hideLoading()
+                is Success -> {
+                    userLogged = result.data
+                    hideLoading()
+                }
                 is Error -> {
                     hideLoading()
                     findNavController().navigate(
