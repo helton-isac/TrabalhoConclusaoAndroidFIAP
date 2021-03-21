@@ -15,7 +15,7 @@
     <string name="menu_home_profile">Profile</string>
     <string name="logout">Log out</string>
     <string name="button_search_roadmaps">Search a roadmap</string>
-    <string name="button_search_maps">Discover a roadmap</string>
+    <string name="button_search_maps">Search on Maps</string>
     <string name="button_create_roadmap">Register a roadmap</string>
     <string name="use_biometrics">Use biometrics</string>
     <string name="register_biometric_login">Do you want to register a Biometric Login?</string>
@@ -46,7 +46,7 @@
     <string name="error">Error</string>
     <string name="biometrics_failed">Failed to use biometrics.</string>
     <string name="location_permission_not_granted">Location permission not granted</string>
-    <string name="location_not_found">Location not found</string>
+    <string name="location_not_found">Location not found, try a city name or state instead.</string>
     <string name="poi_registered_with_success">Point of Interest successful registered</string>
     <string name="poi_edited_with_success">Point of Interest successful edited</string>
     <string name="roadmap_registered_with_success">Roadmap successful registered</string>
@@ -56,4 +56,5 @@
     <string name="profile_title">Profile</string>
     <string name="loading">Loading…</string>
     <string name="e_mail">e-mail:</string>
+    <string name="search_here">Search here</string>
 </resources>

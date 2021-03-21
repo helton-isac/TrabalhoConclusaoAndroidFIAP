@@ -6,12 +6,16 @@ import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView.OnEditorActionListener
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.fiap.meurole.R
 import com.fiap.meurole.base.BaseFragment
 import com.fiap.meurole.utils.DialogUtils
+import com.fiap.meurole.utils.KeyboardUtils
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -22,6 +26,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 @ExperimentalCoroutinesApi
 class MapFragment : BaseFragment(), OnMapReadyCallback {
@@ -50,6 +55,8 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
 
     override fun onResume() {
         super.onResume()
+        (requireActivity() as AppCompatActivity?)?.supportActionBar?.title =
+            getString(R.string.button_search_maps)
         if (permissionDenied) {
             DialogUtils.showSimpleMessage(
                 requireContext(),
@@ -66,27 +73,32 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
 
         etSearch = view.findViewById(R.id.etMapSearch)
 
-        // TODO: Use Places
-        btSearch = view.findViewById(R.id.btMapSearch)
-        btSearch.setOnClickListener {
-            val location = etSearch.text.toString()
+        etSearch.setOnEditorActionListener(OnEditorActionListener { textView, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
-            if (location.isNotBlank()) {
-                val addressList = Geocoder(requireContext()).getFromLocationName(location, 1)
-                if (addressList != null && addressList.count() > 0) {
-                    val address: Address = addressList[0]
-                    val latLong = LatLng(address.latitude, address.longitude)
-                    // TODO: Encontrado o local fazer requisição para encontrar os roteiros proximos da camera LatLong
-                    mMap.addMarker(MarkerOptions().position(latLong).title(location))
-                    mMap.animateCamera(CameraUpdateFactory.newLatLng(latLong))
-                } else {
-                    DialogUtils.showSimpleMessage(
-                        requireContext(),
-                        getString(R.string.location_not_found)
-                    )
+                val location = textView.text.toString()
+
+                KeyboardUtils.hideKeyboard(requireActivity() as AppCompatActivity)
+
+                if (location.isNotBlank()) {
+                    val addressList = Geocoder(requireContext()).getFromLocationName(location, 1)
+                    if (addressList != null && addressList.count() > 0) {
+                        val address: Address = addressList[0]
+                        val latLong = LatLng(address.latitude, address.longitude)
+                        // TODO: Encontrado o local fazer requisição para encontrar os roteiros proximos da camera LatLong
+                        mMap.addMarker(MarkerOptions().position(latLong).title(location))
+                        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLong))
+                    } else {
+                        DialogUtils.showSimpleMessage(
+                            requireContext(),
+                            getString(R.string.location_not_found)
+                        )
+                    }
                 }
+                return@OnEditorActionListener true
             }
-        }
+            false
+        })
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
