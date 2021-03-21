@@ -11,7 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
-import com.fiap.meurole.base.BaseFragment
+import com.fiap.meurole.base.auth.BaseAuthFragment
 import com.fiap.meurole.utils.DialogUtils
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -30,7 +30,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @ExperimentalCoroutinesApi
-class CreatePointOfInterestFragment : BaseFragment(), OnMapReadyCallback {
+class CreatePointOfInterestFragment : BaseAuthFragment(), OnMapReadyCallback {
 
     override val layout = R.layout.create_edit_point_of_interest_fragment
 

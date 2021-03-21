@@ -13,7 +13,7 @@ import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.fiap.meurole.R
-import com.fiap.meurole.base.BaseFragment
+import com.fiap.meurole.base.auth.BaseAuthFragment
 import com.fiap.meurole.utils.DialogUtils
 import com.fiap.meurole.utils.KeyboardUtils
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -29,7 +29,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 @ExperimentalCoroutinesApi
-class MapFragment : BaseFragment(), OnMapReadyCallback {
+class MapFragment : BaseAuthFragment(), OnMapReadyCallback {
 
     override val layout = R.layout.map_fragment
 
