@@ -1,6 +1,9 @@
 package com.fiap.meurole.roadmap.detail
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -27,6 +30,15 @@ class DetailRoadmapFragment : BaseAuthFragment() {
     private lateinit var tvDetailRoadmapTitle: TextView
     private lateinit var tvDetailRoadmapDescription: TextView
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.detail_roadmap_menu_action_bar, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
 
     override fun onResume() {
         super.onResume()
@@ -64,6 +76,15 @@ class DetailRoadmapFragment : BaseAuthFragment() {
                 is RequestState.Error -> hideLoading()
             }
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.detail_roadmap_action_menu_edit -> {
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }
