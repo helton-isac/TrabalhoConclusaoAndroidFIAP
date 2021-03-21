@@ -34,7 +34,8 @@ val presentationModule = module {
         LoginViewModel(
             loginUseCase = get(),
             biometricsUseCase = get(),
-            toggleFeatureUseCase = get()
+            toggleFeatureUseCase = get(),
+            logAnalyticsEvent = get()
         )
     }
     viewModel {
@@ -71,7 +72,8 @@ val presentationModule = module {
     }
     viewModel {
         AboutViewModel(
-            getSloganUseCase = get()
+            getSloganUseCase = get(),
+            logAnalyticsEvent = get()
         )
     }
 }

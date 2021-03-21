@@ -58,6 +58,7 @@ class AboutFragment : BaseFragment() {
                     type = "text/plain"
                 }
 
+                aboutViewModel.logShareApp()
                 val shareIntent = Intent.createChooser(sendIntent, null)
                 startActivity(shareIntent)
             }

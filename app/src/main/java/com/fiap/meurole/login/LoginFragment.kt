@@ -97,6 +97,7 @@ class LoginFragment : BaseFragment() {
                 getString(R.string.working_on_it),
                 getString(R.string.disabled_sign_in_message, getString(R.string.google))
             )
+            loginViewModel.logAttemptToUseGoogleSignIn()
         }
         btFacebook.setOnClickListener {
             DialogUtils.showSimpleMessageWithTitle(
@@ -104,6 +105,7 @@ class LoginFragment : BaseFragment() {
                 getString(R.string.working_on_it),
                 getString(R.string.disabled_sign_in_message, getString(R.string.facebook))
             )
+            loginViewModel.logAttemptToUseFacebookSignIn()
         }
     }
 
