@@ -20,7 +20,7 @@
     <string name="yes">Sim</string>
     <string name="authenticating">Autenticando…</string>
     <string name="processing">Processando…</string>
-    <string name="message_splash">Seu próximo rolê está aqui!</string>
+    <string name="message_splash">Meu Rolê</string>
     <string name="wait">Aguarde…</string>
     <string name="later">Depois</string>
     <string name="dont_ask_again">Não perguntar novamente</string>
@@ -37,7 +37,7 @@
     <string name="save_roadmap">Salvar Roteiro</string>
     <string name="add_point_of_interest">Adicionar ponto de interesse</string>
     <string name="edit_point_of_interest">Editar ponto de interesse</string>
-    <string name="connect">-------------- ou conecte-se com: --------------</string>
+    <string name="connect">--------- ou conecte-se com: ---------</string>
     <string name="error">Erro</string>
     <string name="biometrics_failed">Falha ao utilizar a biometria.</string>
     <string name="location_permission_not_granted">" Permissão de localização não concedida"</string>
