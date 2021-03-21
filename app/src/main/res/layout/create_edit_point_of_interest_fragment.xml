@@ -6,6 +6,7 @@
     android:layout_margin="8dp">
 
     <EditText
+        style="@style/editText"
         android:id="@+id/etPointOfInterestName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -18,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        style="@style/editText"
         android:id="@+id/etPointOfInterestDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -31,6 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etPointOfInterestName" />
 
     <EditText
+        style="@style/editText"
         android:id="@+id/etTelephone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -43,6 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etPointOfInterestDescription" />
 
     <Button
+        style="@style/button"
         android:id="@+id/btCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,6 +78,7 @@
         app:layout_constraintTop_toTopOf="@+id/viewMap" />
 
     <Button
+        style="@style/button_large"
         android:id="@+id/btSavePointOfInterest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
