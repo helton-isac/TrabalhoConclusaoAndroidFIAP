@@ -47,4 +47,6 @@
     <string name="working_on_it">Estamos trabalhando nisso!</string>
     <string name="disabled_sign_in_message">Que bom que você tem interesse em realizar a sua autenticação com o %1$s, estamos trabalhando nisso. Por enquanto, por gentileza, utilize o login com e-mail e senha.</string>
     <string name="profile_title">Perfil</string>
+    <string name="loading">Carregando…</string>
+    <string name="e_mail">e-mail:</string>
 </resources>

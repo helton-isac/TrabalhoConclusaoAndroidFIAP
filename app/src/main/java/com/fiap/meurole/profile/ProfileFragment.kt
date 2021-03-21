@@ -25,6 +25,7 @@ class ProfileFragment : BaseAuthFragment() {
 
     private lateinit var bnvProfile: BottomNavigationView
     private lateinit var tvUserName: TextView
+    private lateinit var tvEmail: TextView
     private lateinit var bvSignOut: Button
 
     private val profileViewModel: ProfileViewModel by viewModel()
@@ -50,6 +51,7 @@ class ProfileFragment : BaseAuthFragment() {
     private fun setUpView(view: View) {
         bnvProfile = view.findViewById(R.id.bnvHome)
         tvUserName = view.findViewById(R.id.tvUserName)
+        tvEmail = view.findViewById(R.id.tvEmail)
         bvSignOut = view.findViewById(R.id.bvSignOut)
 
         bnvProfile.selectedItemId = R.id.navigation_profile
@@ -85,7 +87,7 @@ class ProfileFragment : BaseAuthFragment() {
     }
 
     private fun registerObserver() {
-        profileViewModel.userLoggedState.observe(viewLifecycleOwner, {
+        profileViewModel.userLoggedState.observe(viewLifecycleOwner) {
             when (it) {
                 is RequestState.Loading -> {
                     showLoading()
@@ -101,9 +103,9 @@ class ProfileFragment : BaseAuthFragment() {
                     DialogUtils.showToastErrorMessage(requireContext(), it.throwable.message)
                 }
             }
-        })
+        }
 
-        profileViewModel.logoutResponse.observe(viewLifecycleOwner, {
+        profileViewModel.logoutResponse.observe(viewLifecycleOwner) {
             when (it) {
                 is RequestState.Success -> {
                     baseAuthViewModel.getUserLogged()
@@ -115,7 +117,21 @@ class ProfileFragment : BaseAuthFragment() {
                     DialogUtils.showToastErrorMessage(requireContext(), it.throwable.message)
                 }
             }
-        })
+        }
+        baseAuthViewModel.userLoggedState.observe(viewLifecycleOwner) {
+            when (it) {
+                is RequestState.Error -> {
+                    tvUserName.text = getString(R.string.error)
+                }
+                is RequestState.Loading -> {
+                    tvUserName.text = getString(R.string.loading)
+                }
+                is RequestState.Success -> {
+                    tvUserName.text = it.data.name
+                    tvEmail.text = it.data.email
+                }
+            }
+        }
 
     }
 }
