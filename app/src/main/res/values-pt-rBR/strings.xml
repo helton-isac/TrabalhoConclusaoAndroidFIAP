@@ -20,6 +20,7 @@
     <string name="yes">Sim</string>
     <string name="authenticating">Autenticando…</string>
     <string name="processing">Processando…</string>
+    <string name="message_splash">Seu próximo rolê está aqui!</string>
     <string name="wait">Aguarde…</string>
     <string name="later">Depois</string>
     <string name="dont_ask_again">Não perguntar novamente</string>

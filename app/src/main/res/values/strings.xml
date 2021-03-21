@@ -10,8 +10,9 @@
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="default_notification_channel_name">General notifications channel</string>
     <string name="default_notification_channel_description">General notifications</string>
-    <string name="loading_message_processing">Processing…</string>
     <string name="button_login">Log in</string>
+    <string name="loading_message_processing">Processing…</string>
+    <string name="message_splash">Your next trip you find here.</string>
     <string name="label_password">Password</string>
     <string name="label_email">E-mail</string>
     <string name="create_your_account"><u>Create Your Account</u></string>

@@ -13,8 +13,8 @@
     android:visibility="gone">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="182dp"
+        android:layout_height="182dp"
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/meu_role_loading"
         app:lottie_loop="true" />
