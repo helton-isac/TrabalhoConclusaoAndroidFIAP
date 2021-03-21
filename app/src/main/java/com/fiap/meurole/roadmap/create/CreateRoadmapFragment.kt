@@ -53,7 +53,7 @@ class CreateRoadmapFragment : BaseAuthFragment() {
         etRoadmapName = view.findViewById(R.id.etRoadmapName)
         etRoadmapDescription = view.findViewById(R.id.etRoadmapDescription)
 
-        rvPointOfInterest = view.findViewById(R.id.rvDetailPointOfInterests)
+        rvPointOfInterest = view.findViewById(R.id.rvPointOfInterests)
         rvPointOfInterest.adapter = PointOfInterestAdapter(pointOfInterests, clickListener = {
             findNavController().navigate(
                 R.id.action_createRoadmapFragment_to_editPointOfInterest,
