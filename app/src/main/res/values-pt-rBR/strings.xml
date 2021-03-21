@@ -40,7 +40,7 @@
     <string name="connect">--------- ou conecte-se com: ---------</string>
     <string name="error">Erro</string>
     <string name="biometrics_failed">Falha ao utilizar a biometria.</string>
-    <string name="location_permission_not_granted">" Permissão de localização não concedida"</string>
+    <string name="location_permission_not_granted">"Permissão de localização não concedida"</string>
     <string name="location_not_found">Localização não encontrada. Tente utilizar o nome de uma cidade ou estado.</string>
     <string name="poi_registered_with_success">Ponto de interesse cadastrado com sucesso</string>
     <string name="poi_edited_with_success">Ponto de interesse editado com sucesso</string>
@@ -52,4 +52,9 @@
     <string name="loading">Carregando…</string>
     <string name="e_mail">e-mail:</string>
     <string name="search_here">Pesquise aqui</string>
+    <string name="name_of_point_interest">Digite o nome da parada.</string>
+    <string name="description_point_interest">Escreva uma descriçao para a parada.</string>
+    <string name="telephone">Número de telefone</string>
+    <string name="label_telephone">Ligar</string>
+    <string name="button_save_point_interest">Salvar ponto de interesse</string>
 </resources>

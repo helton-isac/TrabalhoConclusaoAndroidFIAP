@@ -2,6 +2,8 @@ package com.fiap.meurole.roadmapList
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
 import com.fiap.meurole.base.auth.BaseAuthFragment
@@ -37,7 +39,7 @@ class RoadmapListFragment : BaseAuthFragment() {
         val receivedRoadmaps = arguments?.getSerializable("roadmaps")
         if (receivedRoadmaps != null) {
             roadmaps = receivedRoadmaps as MutableList<Roadmap>
-            rvRoadmap.adapter = RoadmapAdapter(roadmaps)
+            setUpAdapter()
             hideLoading()
         } else {
             showLoading()
@@ -55,8 +57,9 @@ class RoadmapListFragment : BaseAuthFragment() {
                 is RequestState.Success -> {
                     hideLoading()
                     roadmaps = it.data as MutableList<Roadmap>
-                    rvRoadmap.adapter = RoadmapAdapter(roadmaps)
+                    setUpAdapter()
                 }
+
                 is RequestState.Error -> {
                     hideLoading()
                     DialogUtils.showToastErrorMessage(requireContext(), it.throwable.message)
@@ -66,6 +69,19 @@ class RoadmapListFragment : BaseAuthFragment() {
                 }
             }
         })
+    }
+
+    private fun setUpAdapter() {
+        rvRoadmap.adapter =
+            RoadmapAdapter(roadmaps, clickListener = { roadmap, imageResource ->
+                findNavController().navigate(
+                    R.id.action_roadmapList_to_detailRoadmapFragment,
+                    bundleOf(
+                        "roadmap" to roadmap,
+                        "imageResource" to imageResource
+                    )
+                )
+            })
     }
 
 }
