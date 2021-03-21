@@ -12,7 +12,7 @@
     <string name="default_notification_channel_description">General notifications</string>
     <string name="button_login">Log in</string>
     <string name="loading_message_processing">Processing…</string>
-    <string name="message_splash">Your next trip you find here.</string>
+    <string name="message_splash">Meu Rolê</string>
     <string name="label_password">Password</string>
     <string name="label_email">E-mail</string>
     <string name="create_your_account"><u>Create Your Account</u></string>
@@ -45,7 +45,7 @@
     <string name="save_roadmap">Save roadmap</string>
     <string name="add_point_of_interest">Add point of interest</string>
     <string name="edit_point_of_interest">Edit point of interest</string>
-    <string name="connect">---------------- or connect with: ----------------</string>
+    <string name="connect">----------- or connect with: -----------</string>
     <string name="error">Error</string>
     <string name="biometrics_failed">Failed to use biometrics.</string>
     <string name="location_permission_not_granted">Location permission not granted</string>
