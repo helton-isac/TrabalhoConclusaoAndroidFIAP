@@ -53,4 +53,7 @@
     <string name="poi_deleted_with_success">Point of Interest successful deleted</string>
     <string name="working_on_it">We are working on it!</string>
     <string name="disabled_sign_in_message">Glad you are interested in performing your authentication with %1$s, we are working on it. For now, please use the login with email and password.</string>
+    <string name="profile_title">Profile</string>
+    <string name="loading">Loading…</string>
+    <string name="e_mail">e-mail:</string>
 </resources>
