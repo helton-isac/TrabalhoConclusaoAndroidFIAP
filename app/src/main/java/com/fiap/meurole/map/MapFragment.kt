@@ -7,7 +7,6 @@ import android.location.Geocoder
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +23,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.hitg.domain.entity.RequestState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -35,7 +35,6 @@ class MapFragment : BaseAuthFragment(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var etSearch: EditText
-    private lateinit var btSearch: Button
 
     private var permissionDenied = false
 
@@ -51,6 +50,7 @@ class MapFragment : BaseAuthFragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
 
         setUpView(view)
+        registerObserver()
     }
 
     override fun onResume() {
@@ -143,5 +143,15 @@ class MapFragment : BaseAuthFragment(), OnMapReadyCallback {
                 )
             )
         }
+    }
+
+    private fun registerObserver() {
+        baseAuthViewModel.userLoggedState.observe(viewLifecycleOwner, { result ->
+            when (result) {
+                is RequestState.Loading -> showLoading()
+                is RequestState.Success -> hideLoading()
+                is RequestState.Error -> hideLoading()
+            }
+        })
     }
 }

@@ -121,6 +121,13 @@ class EditPointOfInterestFragment : BaseAuthFragment(), OnMapReadyCallback {
                 }
             }
         })
+        baseAuthViewModel.userLoggedState.observe(viewLifecycleOwner, { result ->
+            when (result) {
+                is RequestState.Loading -> showLoading()
+                is RequestState.Success -> hideLoading()
+                is RequestState.Error -> hideLoading()
+            }
+        })
     }
 
     override fun onMapReady(googleMap: GoogleMap) {

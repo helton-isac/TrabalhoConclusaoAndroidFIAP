@@ -100,15 +100,8 @@ class ProfileFragment : BaseAuthFragment() {
     private fun registerObserver() {
         profileViewModel.userLoggedState.observe(viewLifecycleOwner) {
             when (it) {
-                is RequestState.Loading -> {
-                    showLoading()
-                }
-
-                is RequestState.Success -> {
-                    hideLoading()
-                    it.data.name
-                }
-
+                is RequestState.Loading -> showLoading()
+                is RequestState.Success -> hideLoading()
                 is RequestState.Error -> {
                     hideLoading()
                     DialogUtils.showToastErrorMessage(requireContext(), it.throwable.message)

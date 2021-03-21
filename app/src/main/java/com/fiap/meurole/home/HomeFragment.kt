@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.auth.BaseAuthFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.hitg.domain.entity.RequestState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -47,6 +48,7 @@ class HomeFragment : BaseAuthFragment() {
         registerBackPressedAction()
 
         setUpView(view)
+        registerObserver()
     }
 
     private fun setUpView(view: View) {
@@ -98,5 +100,15 @@ class HomeFragment : BaseAuthFragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun registerObserver() {
+        baseAuthViewModel.userLoggedState.observe(viewLifecycleOwner, { result ->
+            when (result) {
+                is RequestState.Loading -> showLoading()
+                is RequestState.Success -> hideLoading()
+                is RequestState.Error -> hideLoading()
+            }
+        })
     }
 }
