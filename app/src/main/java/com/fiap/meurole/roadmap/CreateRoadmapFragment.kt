@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.ItemTouchHelper.LEFT
 import androidx.recyclerview.widget.ItemTouchHelper.RIGHT
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
-import com.fiap.meurole.base.BaseFragment
+import com.fiap.meurole.base.auth.BaseAuthFragment
 import com.fiap.meurole.utils.DialogUtils
 import com.google.android.material.textfield.TextInputEditText
 import com.hitg.domain.entity.PointOfInterest
@@ -22,7 +22,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @ExperimentalCoroutinesApi
-class CreateRoadmapFragment : BaseFragment() {
+class CreateRoadmapFragment : BaseAuthFragment() {
 
     override val layout = R.layout.create_roadmap_fragment
 
@@ -93,7 +93,8 @@ class CreateRoadmapFragment : BaseFragment() {
                     etRoadmapName.text.toString(),
                     etRoadmapDescription.text.toString(),
                     pointOfInterests,
-                    ""
+                    "",
+                    userLogged.name
                 )
             viewModel.createRoadmap(roadmap)
         }

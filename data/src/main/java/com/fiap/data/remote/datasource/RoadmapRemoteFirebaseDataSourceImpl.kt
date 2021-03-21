@@ -2,7 +2,9 @@ package com.fiap.data.remote.datasource
 
 import com.fiap.data.remote.mapper.NewRoadmapPayloadMapper
 import com.google.firebase.firestore.FirebaseFirestore
-import com.hitg.domain.entity.*
+import com.hitg.domain.entity.PointOfInterest
+import com.hitg.domain.entity.RequestState
+import com.hitg.domain.entity.Roadmap
 import kotlinx.coroutines.tasks.await
 
 class RoadmapRemoteFirebaseDataSourceImpl(
@@ -36,7 +38,8 @@ class RoadmapRemoteFirebaseDataSourceImpl(
                     name = it.getString("name") ?: "",
                     description = it.getString("description") ?: "",
                     pointOfInterests = poiIds.map { id -> PointOfInterest(id = id) },
-                    creatorId = it.getString("creatorId") ?: ""
+                    creatorId = it.getString("creatorId") ?: "",
+                    creatorName = it.getString("creatorName") ?: ""
                 )
                 roadmap
             }

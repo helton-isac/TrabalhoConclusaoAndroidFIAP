@@ -9,7 +9,7 @@ object NewRoadmapPayloadMapper {
         name = roadmap.name,
         description = roadmap.description,
         pointOfInterests = roadmap.pointOfInterests.map { it.id },
-        creatorId = roadmap.creatorId
+        creatorId = roadmap.creatorId,
+        creatorName = roadmap.creatorName,
     )
-
 }
