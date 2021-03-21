@@ -40,7 +40,6 @@ class RoadmapListFragment : BaseAuthFragment() {
         if (receivedRoadmaps != null) {
             roadmaps = receivedRoadmaps as MutableList<Roadmap>
             setUpAdapter()
-            hideLoading()
         } else {
             showLoading()
             viewModel.fetchRoadmaps()
@@ -52,6 +51,14 @@ class RoadmapListFragment : BaseAuthFragment() {
     }
 
     private fun registerObserver() {
+        baseAuthViewModel.userLoggedState.observe(viewLifecycleOwner, { result ->
+            when (result) {
+                is RequestState.Loading -> showLoading()
+                is RequestState.Success -> hideLoading()
+                is RequestState.Error -> hideLoading()
+            }
+        })
+
         viewModel.roadmapState.observe(viewLifecycleOwner, {
             when (it) {
                 is RequestState.Success -> {
