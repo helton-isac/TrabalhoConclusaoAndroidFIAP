@@ -41,7 +41,6 @@ abstract class BaseAuthFragment : BaseFragment() {
                 is Loading -> showLoading()
                 is Success -> {
                     userLogged = result.data
-                    hideLoading()
                 }
                 is Error -> {
                     hideLoading()

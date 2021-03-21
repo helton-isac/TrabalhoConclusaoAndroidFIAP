@@ -143,6 +143,13 @@ class CreateRoadmapFragment : BaseAuthFragment() {
                 }
             }
         })
+        baseAuthViewModel.userLoggedState.observe(viewLifecycleOwner, { result ->
+            when (result) {
+                is RequestState.Loading -> showLoading()
+                is RequestState.Success -> hideLoading()
+                is RequestState.Error -> hideLoading()
+            }
+        })
 
         setFragmentResultListener("addPoi") { requestKey, bundle ->
             val poi = bundle.get("poi") as PointOfInterest

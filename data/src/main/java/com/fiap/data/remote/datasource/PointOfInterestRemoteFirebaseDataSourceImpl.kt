@@ -78,6 +78,4 @@ class PointOfInterestRemoteFirebaseDataSourceImpl(
             RequestState.Error(e)
         }
     }
-
-
 }
