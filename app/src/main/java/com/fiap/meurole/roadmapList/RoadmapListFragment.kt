@@ -24,6 +24,8 @@ class RoadmapListFragment : BaseAuthFragment() {
 
     private var roadmaps: MutableList<Roadmap> = arrayListOf()
 
+    private var isFilteredList = false
+
     override fun onResume() {
         super.onResume()
         setTitle(getString(R.string.search_roadmaps))
@@ -38,6 +40,7 @@ class RoadmapListFragment : BaseAuthFragment() {
 
         val receivedRoadmaps = arguments?.getSerializable("roadmaps")
         if (receivedRoadmaps != null) {
+            isFilteredList = true
             roadmaps = receivedRoadmaps as MutableList<Roadmap>
             setUpAdapter()
         } else {
@@ -54,8 +57,12 @@ class RoadmapListFragment : BaseAuthFragment() {
         baseAuthViewModel.userLoggedState.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is RequestState.Loading -> showLoading()
-                is RequestState.Success -> hideLoading()
-                is RequestState.Error -> hideLoading()
+                is RequestState.Success -> if (isFilteredList) {
+                    hideLoading()
+                }
+                is RequestState.Error -> if (isFilteredList) {
+                    hideLoading()
+                }
             }
         })
 
