@@ -22,14 +22,17 @@ class SplashFragment : Fragment() {
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
     }
 
+    override fun onResume() {
+        super.onResume()
+        Handler(Looper.getMainLooper()).postDelayed({
+            findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+        }, 2000)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-        }, 2000)
-
         return inflater.inflate(R.layout.splash_fragment, container, false)
     }
 }
