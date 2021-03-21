@@ -9,9 +9,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#34A8DADC"
+        app:cardBackgroundColor="#A8DADC"
         app:cardCornerRadius="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,7 +22,7 @@
             <ImageView
                 android:id="@+id/ivPhoto"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:adjustViewBounds="true"
                 android:cropToPadding="false"
                 android:scaleType="centerCrop"
