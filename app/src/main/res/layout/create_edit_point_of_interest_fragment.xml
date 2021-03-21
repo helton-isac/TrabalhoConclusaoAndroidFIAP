@@ -6,49 +6,53 @@
     android:layout_margin="8dp">
 
     <EditText
+        style="@style/editText"
         android:id="@+id/etPointOfInterestName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:hint="Digite o nome da parada."
+        android:hint="@string/name_of_point_interest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        style="@style/editText"
         android:id="@+id/etPointOfInterestDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:hint="Escreva uma descriçao para a parada"
+        android:hint="@string/description_point_interest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPointOfInterestName" />
 
     <EditText
+        style="@style/editText"
         android:id="@+id/etTelephone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:hint="Número de telefone"
+        android:hint="@string/telephone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btCall"
         app:layout_constraintTop_toBottomOf="@+id/etPointOfInterestDescription" />
 
     <Button
+        style="@style/button"
         android:id="@+id/btCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Make call"
+        android:text="@string/label_telephone"
         app:layout_constraintBottom_toBottomOf="@+id/etTelephone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/etTelephone"
@@ -82,13 +86,14 @@
     </androidx.cardview.widget.CardView>
 
     <Button
+        style="@style/button_large"
         android:id="@+id/btSavePointOfInterest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Save point of interest"
+        android:text="@string/button_save_point_interest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewMap" />
