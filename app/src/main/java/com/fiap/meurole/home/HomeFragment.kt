@@ -35,6 +35,8 @@ class HomeFragment : BaseAuthFragment() {
     override fun onResume() {
         super.onResume()
         (requireActivity() as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (requireActivity() as AppCompatActivity?)?.supportActionBar?.title =
+            getString(R.string.app_name)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

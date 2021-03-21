@@ -46,4 +46,5 @@
     <string name="poi_deleted_with_success">Ponto de interesse excluído</string>
     <string name="working_on_it">Estamos trabalhando nisso!</string>
     <string name="disabled_sign_in_message">Que bom que você tem interesse em realizar a sua autenticação com o %1$s, estamos trabalhando nisso. Por enquanto, por gentileza, utilize o login com e-mail e senha.</string>
+    <string name="profile_title">Perfil</string>
 </resources>

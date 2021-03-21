@@ -32,6 +32,8 @@ class ProfileFragment : BaseAuthFragment() {
     override fun onResume() {
         super.onResume()
         (requireActivity() as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (requireActivity() as AppCompatActivity?)?.supportActionBar?.title =
+            getString(R.string.profile_title)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
