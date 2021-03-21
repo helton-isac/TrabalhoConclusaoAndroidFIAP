@@ -9,4 +9,6 @@ interface RoadmapRemoteDataSource {
 
     suspend fun fetch(): RequestState<List<Roadmap>>
 
+    suspend fun fetchByName(name: String): RequestState<List<Roadmap>>
+
 }

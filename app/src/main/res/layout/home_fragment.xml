@@ -7,7 +7,7 @@
     tools:context=".home.HomeFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/searchRoadmap"
+        android:id="@+id/tilSearchRoadmap"
         android:layout_width="317dp"
         android:layout_height="66dp"
         android:textColorHint="@color/wedgewood"
@@ -20,6 +20,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/editText"
+            android:id="@+id/etSearchRoadmap"
             android:layout_width="318dp"
             android:layout_height="match_parent"
             tools:layout_editor_absoluteY="87dp" />
@@ -31,10 +32,10 @@
         style="@style/button"
         android:layout_marginTop="20dp"
         android:text="@string/search_roadmaps"
-        app:layout_constraintEnd_toEndOf="@+id/searchRoadmap"
+        app:layout_constraintEnd_toEndOf="@+id/tilSearchRoadmap"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchRoadmap" />
+        app:layout_constraintTop_toBottomOf="@id/tilSearchRoadmap" />
 
     <Button
         android:id="@+id/btSearchMap"

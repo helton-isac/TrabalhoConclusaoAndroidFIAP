@@ -9,4 +9,4 @@ data class Roadmap(
     var pointOfInterests: List<PointOfInterest> = arrayListOf(),
     var creatorId: String = "",
     var creatorName: String = ""
-) : Serializable
+): Serializable

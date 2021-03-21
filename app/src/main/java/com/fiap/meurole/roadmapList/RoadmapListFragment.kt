@@ -36,8 +36,14 @@ class RoadmapListFragment : BaseAuthFragment() {
 
         setUpView(view)
 
-        showLoading()
-        viewModel.fetchRoadmaps()
+        val receivedRoadmaps = arguments?.getSerializable("roadmaps")
+        if (receivedRoadmaps != null) {
+            roadmaps = receivedRoadmaps as MutableList<Roadmap>
+            setUpAdapter()
+        } else {
+            showLoading()
+            viewModel.fetchRoadmaps()
+        }
     }
 
     private fun setUpView(view: View) {
@@ -45,22 +51,22 @@ class RoadmapListFragment : BaseAuthFragment() {
     }
 
     private fun registerObserver() {
+        baseAuthViewModel.userLoggedState.observe(viewLifecycleOwner, { result ->
+            when (result) {
+                is RequestState.Loading -> showLoading()
+                is RequestState.Success -> hideLoading()
+                is RequestState.Error -> hideLoading()
+            }
+        })
+
         viewModel.roadmapState.observe(viewLifecycleOwner, {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()
                     roadmaps = it.data as MutableList<Roadmap>
-                    rvRoadmap.adapter =
-                        RoadmapAdapter(roadmaps, clickListener = { roadmap, imageResource ->
-                            findNavController().navigate(
-                                R.id.action_roadmapList_to_detailRoadmapFragment,
-                                bundleOf(
-                                    "roadmap" to roadmap,
-                                    "imageResource" to imageResource
-                                )
-                            )
-                        })
+                    setUpAdapter()
                 }
+
                 is RequestState.Error -> {
                     hideLoading()
                     DialogUtils.showToastErrorMessage(requireContext(), it.throwable.message)
@@ -70,6 +76,19 @@ class RoadmapListFragment : BaseAuthFragment() {
                 }
             }
         })
+    }
+
+    private fun setUpAdapter() {
+        rvRoadmap.adapter =
+            RoadmapAdapter(roadmaps, clickListener = { roadmap, imageResource ->
+                findNavController().navigate(
+                    R.id.action_roadmapList_to_detailRoadmapFragment,
+                    bundleOf(
+                        "roadmap" to roadmap,
+                        "imageResource" to imageResource
+                    )
+                )
+            })
     }
 
 }
