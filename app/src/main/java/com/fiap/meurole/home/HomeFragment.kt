@@ -132,8 +132,14 @@ class HomeFragment : BaseAuthFragment() {
                     hideLoading()
                     val roadmaps = result.data as MutableList<Roadmap>
                     if (roadmaps.isEmpty()) {
-                        DialogUtils.showToastMessage(requireContext(), "Nenhum resultado encontrado.")
+                        DialogUtils.showSimpleMessage(requireContext(), "Nenhum resultado encontrado.")
+                        return@observe
+                    }
+
+                    if (!roadmaps.filter({ it.id == "0" }).isEmpty()) {
+                        return@observe
                     } else {
+                        homeViewModel.clearState()
                         findNavController().navigate(
                             R.id.action_homeFragment_to_roadmapList,
                             bundleOf(

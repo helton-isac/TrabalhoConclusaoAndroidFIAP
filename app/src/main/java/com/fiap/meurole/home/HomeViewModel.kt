@@ -34,4 +34,8 @@ class HomeViewModel(
         }
     }
 
+    fun clearState() {
+        roadmapState.value = RequestState.Success(listOf(Roadmap(id = "0")))
+    }
+
 }
