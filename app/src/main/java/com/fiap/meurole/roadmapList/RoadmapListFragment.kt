@@ -34,8 +34,15 @@ class RoadmapListFragment : BaseAuthFragment() {
 
         setUpView(view)
 
-        showLoading()
-        viewModel.fetchRoadmaps()
+        val receivedRoadmaps = arguments?.getSerializable("roadmaps")
+        if (receivedRoadmaps != null) {
+            roadmaps = receivedRoadmaps as MutableList<Roadmap>
+            rvRoadmap.adapter = RoadmapAdapter(roadmaps)
+            hideLoading()
+        } else {
+            showLoading()
+            viewModel.fetchRoadmaps()
+        }
     }
 
     private fun setUpView(view: View) {

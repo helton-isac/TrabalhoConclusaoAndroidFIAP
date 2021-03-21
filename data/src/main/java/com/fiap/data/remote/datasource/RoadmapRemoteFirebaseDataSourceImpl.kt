@@ -57,8 +57,7 @@ class RoadmapRemoteFirebaseDataSourceImpl(
     override suspend fun fetchByName(name: String): RequestState<List<Roadmap>> {
         return try {
             val result = firebaseFirestore.collection("roadmaps")
-                .whereGreaterThanOrEqualTo("name", name)
-                .whereLessThanOrEqualTo("name", name)
+                .whereEqualTo("name", name)
                 .get()
                 .await()
                 .documents
@@ -76,11 +75,7 @@ class RoadmapRemoteFirebaseDataSourceImpl(
                 roadmap
             }
 
-            if (roadmaps.isEmpty()) {
-                RequestState.Error(Exception("No roadmap found"))
-            } else {
-                RequestState.Success(roadmaps)
-            }
+            RequestState.Success(roadmaps)
         } catch (e: Exception) {
             RequestState.Error(e)
         }

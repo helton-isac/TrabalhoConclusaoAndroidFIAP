@@ -41,7 +41,7 @@ class FetchRoadmapsUseCase(
     }
 
     suspend fun fetchByName(name: String): RequestState<List<Roadmap>> {
-        val roadmaps = roadmapRepository.fetch()
+        val roadmaps = roadmapRepository.fetchByName(name)
         return when (roadmaps) {
             is RequestState.Success -> {
                 val roadmapsPoi: List<Roadmap> = roadmaps.data.map { roadmap ->

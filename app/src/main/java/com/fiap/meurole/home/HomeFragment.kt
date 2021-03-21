@@ -59,7 +59,7 @@ class HomeFragment : BaseAuthFragment() {
     }
 
     private fun setUpView(view: View) {
-        etSearchRoadmap = view.findViewById(R.id.tilSearchRoadmap)
+        etSearchRoadmap = view.findViewById(R.id.etSearchRoadmap)
         btRoadmaps = view.findViewById(R.id.btRoadmaps)
         btSearchMap = view.findViewById(R.id.btSearchMap)
         btCreateRoadmap = view.findViewById(R.id.btCreateRoadmap)
@@ -131,12 +131,16 @@ class HomeFragment : BaseAuthFragment() {
                 is RequestState.Success -> {
                     hideLoading()
                     val roadmaps = result.data as MutableList<Roadmap>
-
-                    findNavController().navigate(R.id.action_homeFragment_to_roadmapList,
-                        bundleOf(
-                            "roadmaps" to roadmaps
+                    if (roadmaps.isEmpty()) {
+                        DialogUtils.showToastMessage(requireContext(), "Nenhum resultado encontrado.")
+                    } else {
+                        findNavController().navigate(
+                            R.id.action_homeFragment_to_roadmapList,
+                            bundleOf(
+                                "roadmaps" to roadmaps
+                            )
                         )
-                    )
+                    }
                 }
 
                 is RequestState.Error -> {
