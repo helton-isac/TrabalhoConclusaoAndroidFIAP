@@ -22,7 +22,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @ExperimentalCoroutinesApi
-class CreateRoadmapFragment : BaseAuthFragment() {
+class CreateEditRoadmapFragment : BaseAuthFragment() {
 
     override val layout = R.layout.create_roadmap_fragment
 
@@ -32,7 +32,7 @@ class CreateRoadmapFragment : BaseAuthFragment() {
     private lateinit var btCreatePoi: Button
     private lateinit var btCreateRoadmap: Button
 
-    private val viewModel: CreateRoadmapViewModel by viewModel()
+    private val viewModelEdit: CreateEditRoadmapViewModel by viewModel()
 
     private var pointOfInterests: MutableList<PointOfInterest> = arrayListOf()
 
@@ -93,7 +93,7 @@ class CreateRoadmapFragment : BaseAuthFragment() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 showLoading()
                 val position = viewHolder.adapterPosition
-                viewModel.deletePointOfInterest(pointOfInterests[position])
+                viewModelEdit.deletePointOfInterest(pointOfInterests[position])
             }
         }).attachToRecyclerView(rvPointOfInterest)
 
@@ -123,13 +123,13 @@ class CreateRoadmapFragment : BaseAuthFragment() {
                     creatorId,
                     creatorName
                 )
-            viewModel.createEditRoadmap(roadmapToSave)
+            viewModelEdit.createEditRoadmap(roadmapToSave)
         }
     }
 
 
     private fun registerObserver() {
-        viewModel.saveRoadmapState.observe(viewLifecycleOwner, {
+        viewModelEdit.saveRoadmapState.observe(viewLifecycleOwner, {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()
@@ -149,7 +149,7 @@ class CreateRoadmapFragment : BaseAuthFragment() {
             }
         })
 
-        viewModel.deletePointOfInterestState.observe(viewLifecycleOwner, {
+        viewModelEdit.deletePointOfInterestState.observe(viewLifecycleOwner, {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()

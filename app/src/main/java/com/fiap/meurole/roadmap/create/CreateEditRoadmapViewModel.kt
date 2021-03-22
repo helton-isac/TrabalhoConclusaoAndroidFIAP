@@ -10,10 +10,10 @@ import com.hitg.domain.usecases.CreateRoadmapUseCase
 import com.hitg.domain.usecases.DeletePointOfInterestUseCase
 import kotlinx.coroutines.launch
 
-class CreateRoadmapViewModel(
+class CreateEditRoadmapViewModel(
     private val createRoadmapUseCase: CreateRoadmapUseCase,
     private val deletePointOfInterestUseCase: DeletePointOfInterestUseCase
-): ViewModel() {
+) : ViewModel() {
 
     var saveRoadmapState = MutableLiveData<RequestState<Roadmap>>()
     var deletePointOfInterestState = MutableLiveData<RequestState<String>>()
