@@ -36,17 +36,35 @@ class CreateRoadmapFragment : BaseAuthFragment() {
 
     private var pointOfInterests: MutableList<PointOfInterest> = arrayListOf()
 
+    private var roadmap: Roadmap? = null
+
     override fun onResume() {
         super.onResume()
-        setTitle(getString(R.string.create_roadmap))
+        if (roadmap != null) {
+            setTitle(getString(R.string.edit_roadmap))
+        } else {
+            setTitle(getString(R.string.create_roadmap))
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         registerObserver()
+        if (arguments?.containsKey("roadmap") == true) {
+            roadmap = arguments?.getSerializable("roadmap") as Roadmap
+        }
 
         setUpView(view)
+
+        roadmap?.let { fillValues(roadmap!!) }
+    }
+
+    private fun fillValues(roadmap: Roadmap) {
+        etRoadmapName.setText(roadmap.name)
+        etRoadmapDescription.setText(roadmap.description)
+        pointOfInterests.addAll(roadmap.pointOfInterests)
+        rvPointOfInterest.adapter?.notifyDataSetChanged()
     }
 
     private fun setUpView(view: View) {
@@ -87,16 +105,25 @@ class CreateRoadmapFragment : BaseAuthFragment() {
         btCreateRoadmap = view.findViewById(R.id.btSaveRoadmap)
         btCreateRoadmap.setOnClickListener {
             showLoading()
-            val roadmap =
+            val id = if (roadmap != null) roadmap!!.id else ""
+            val creatorId = if (roadmap != null) roadmap!!.creatorId else ""
+            var creatorName = userLogged.name
+            if (roadmap != null) {
+                if (!roadmap!!.creatorName.contains(userLogged.name)) {
+                    creatorName = roadmap!!.creatorName + "," + userLogged.name
+                }
+
+            }
+            val roadmapToSave =
                 Roadmap(
-                    "",
+                    id,
                     etRoadmapName.text.toString(),
                     etRoadmapDescription.text.toString(),
                     pointOfInterests,
-                    "",
-                    userLogged.name
+                    creatorId,
+                    creatorName
                 )
-            viewModel.createRoadmap(roadmap)
+            viewModel.createEditRoadmap(roadmapToSave)
         }
     }
 

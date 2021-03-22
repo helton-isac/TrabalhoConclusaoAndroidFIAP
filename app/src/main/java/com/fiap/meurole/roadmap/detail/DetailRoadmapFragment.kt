@@ -7,6 +7,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.auth.BaseAuthFragment
 import com.hitg.domain.entity.RequestState
@@ -81,7 +83,12 @@ class DetailRoadmapFragment : BaseAuthFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.detail_roadmap_action_menu_edit -> {
-
+                findNavController().navigate(
+                    R.id.action_detailRoadmapFragment_to_createRoadmapFragment,
+                    bundleOf(
+                        "roadmap" to roadmap
+                    )
+                )
             }
         }
         return super.onOptionsItemSelected(item)

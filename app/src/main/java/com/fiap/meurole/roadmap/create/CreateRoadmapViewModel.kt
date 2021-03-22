@@ -18,9 +18,9 @@ class CreateRoadmapViewModel(
     var saveRoadmapState = MutableLiveData<RequestState<Roadmap>>()
     var deletePointOfInterestState = MutableLiveData<RequestState<String>>()
 
-    fun createRoadmap(roadmap: Roadmap) {
+    fun createEditRoadmap(roadmap: Roadmap) {
         viewModelScope.launch {
-            val response = createRoadmapUseCase.create(roadmap)
+            val response = createRoadmapUseCase.createOrEdit(roadmap)
 
             when (response) {
                 is RequestState.Success -> {
