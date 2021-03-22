@@ -15,4 +15,6 @@
     <color name="editText">#3A3D3F</color>
     <color name="red">#FF0000</color>
     <color name="facebook">#3b5998</color>
+    <color name="gray">#47525E</color>
+    <color name="light_gray">#8492A6</color>
 </resources>
