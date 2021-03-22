@@ -9,8 +9,8 @@ class RoadmapRepositoryImpl(
     private val roadmapRemoteDataSource: RoadmapRemoteDataSource
 ): RoadmapRepository {
 
-    override suspend fun create(roadmap: Roadmap): RequestState<Roadmap> {
-        return roadmapRemoteDataSource.create(roadmap)
+    override suspend fun createOrEdit(roadmap: Roadmap): RequestState<Roadmap> {
+        return roadmapRemoteDataSource.createOrEdit(roadmap)
     }
 
     override suspend fun fetch(): RequestState<List<Roadmap>> {

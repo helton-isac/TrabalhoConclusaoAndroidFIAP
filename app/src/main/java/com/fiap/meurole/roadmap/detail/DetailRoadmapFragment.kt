@@ -1,9 +1,16 @@
 package com.fiap.meurole.roadmap.detail
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.auth.BaseAuthFragment
 import com.hitg.domain.entity.RequestState
@@ -27,6 +34,15 @@ class DetailRoadmapFragment : BaseAuthFragment() {
     private lateinit var tvDetailRoadmapTitle: TextView
     private lateinit var tvDetailRoadmapDescription: TextView
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.detail_roadmap_menu_action_bar, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
 
     override fun onResume() {
         super.onResume()
@@ -64,6 +80,23 @@ class DetailRoadmapFragment : BaseAuthFragment() {
                 is RequestState.Error -> hideLoading()
             }
         })
+        setFragmentResultListener("create_edit_roadmap") { requestKey, bundle ->
+            setFragmentResult("create_edit_roadmap", bundle)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.detail_roadmap_action_menu_edit -> {
+                findNavController().navigate(
+                    R.id.action_detailRoadmapFragment_to_createRoadmapFragment,
+                    bundleOf(
+                        "roadmap" to roadmap
+                    )
+                )
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

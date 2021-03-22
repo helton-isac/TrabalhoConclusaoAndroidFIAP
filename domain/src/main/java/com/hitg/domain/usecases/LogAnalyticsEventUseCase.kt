@@ -16,4 +16,8 @@ class LogAnalyticsEventUseCase(
     suspend fun logShareApp() {
         analyticsRepository.logShareApp()
     }
+
+    suspend fun logCreateRoadmap() {
+        analyticsRepository.logCreateRoadmap()
+    }
 }

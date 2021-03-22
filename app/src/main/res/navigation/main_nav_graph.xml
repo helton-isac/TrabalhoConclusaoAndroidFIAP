@@ -80,7 +80,7 @@
 
     <fragment
         android:id="@+id/createRoadmapFragment"
-        android:name="com.fiap.meurole.roadmap.create.CreateRoadmapFragment"
+        android:name="com.fiap.meurole.roadmap.create.CreateEditRoadmapFragment"
         android:label="create_roadmap_fragment"
         tools:layout="@layout/create_roadmap_fragment">
         <action
@@ -124,6 +124,16 @@
     <fragment
         android:id="@+id/detailRoadmapFragment"
         android:name="com.fiap.meurole.roadmap.detail.DetailRoadmapFragment"
-        android:label="DetailRoadmapFragment" />
+        android:label="DetailRoadmapFragment"
+        tools:layout="@layout/detail_roadmap_fragment">
+        <action
+            android:id="@+id/action_detailRoadmapFragment_to_createRoadmapFragment"
+            app:destination="@id/createRoadmapFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/roadmapList" />
+    </fragment>
 
 </navigation>

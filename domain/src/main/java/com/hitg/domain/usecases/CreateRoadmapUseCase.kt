@@ -11,7 +11,7 @@ class CreateRoadmapUseCase(
     private val roadmapRepository: RoadmapRepository
 ) {
 
-    suspend fun create(roadmap: Roadmap): RequestState<Roadmap> {
+    suspend fun createOrEdit(roadmap: Roadmap): RequestState<Roadmap> {
         val userLogged = getUserLoggedUseCase.getUserLogged()
 
         return when (userLogged) {
@@ -26,7 +26,7 @@ class CreateRoadmapUseCase(
 
                 roadmap.creatorId = userLogged.data.id
 
-                return when (roadmapRepository.create(roadmap)) {
+                return when (roadmapRepository.createOrEdit(roadmap)) {
                     is RequestState.Success -> {
                         RequestState.Success(roadmap)
                     }

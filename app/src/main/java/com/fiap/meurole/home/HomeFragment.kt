@@ -8,14 +8,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.auth.BaseAuthFragment
-import com.fiap.meurole.roadmapList.RoadmapAdapter
 import com.fiap.meurole.utils.DialogUtils
+import com.fiap.meurole.utils.KeyboardUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.textfield.TextInputLayout
 import com.hitg.domain.entity.RequestState
 import com.hitg.domain.entity.Roadmap
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -65,6 +65,7 @@ class HomeFragment : BaseAuthFragment() {
         btCreateRoadmap = view.findViewById(R.id.btCreateRoadmap)
 
         btRoadmaps.setOnClickListener {
+            KeyboardUtils.hideKeyboard(requireActivity() as AppCompatActivity)
             if (etSearchRoadmap.text.isNotBlank()) {
                 showLoading()
                 homeViewModel.searchRoadmaps(etSearchRoadmap.text.toString())
@@ -132,7 +133,10 @@ class HomeFragment : BaseAuthFragment() {
                     hideLoading()
                     val roadmaps = result.data as MutableList<Roadmap>
                     if (roadmaps.isEmpty()) {
-                        DialogUtils.showSimpleMessage(requireContext(), "Nenhum resultado encontrado.")
+                        DialogUtils.showSimpleMessage(
+                            requireContext(),
+                            "Nenhum resultado encontrado."
+                        )
                         return@observe
                     }
 
@@ -143,7 +147,8 @@ class HomeFragment : BaseAuthFragment() {
                         findNavController().navigate(
                             R.id.action_homeFragment_to_roadmapList,
                             bundleOf(
-                                "roadmaps" to roadmaps
+                                "roadmaps" to roadmaps,
+                                "search" to etSearchRoadmap.text.toString()
                             )
                         )
                     }

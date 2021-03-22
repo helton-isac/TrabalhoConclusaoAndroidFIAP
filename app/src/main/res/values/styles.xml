@@ -45,4 +45,34 @@
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_width">0dp</item>
     </style>
+    <style name="cardCustom" parent="CardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">240dp</item>
+        <item name="cardBackgroundColor">@color/aqua_island</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="android:textColor">@color/aqua_island</item>
+    </style>
+    <style name="customCardTitle">
+        <item name="android:textColor">@color/cello</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+    <style name="customCardAuthor">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textAlignment">textEnd</item>
+    </style>
+    <style name="customCardImage">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:cropToPadding">false</item>
+        <item name="android:scaleType">centerCrop</item>
+"
+    </style>
 </resources>

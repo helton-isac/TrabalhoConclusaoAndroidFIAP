@@ -7,10 +7,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="#A8DADC"
-        app:cardCornerRadius="8dp"
+        style="@style/cardCustom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,41 +17,26 @@
             android:layout_height="match_parent">
 
             <ImageView
+                style="@style/customCardImage"
                 android:id="@+id/ivPhoto"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:adjustViewBounds="true"
-                android:cropToPadding="false"
-                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@drawable/trip_placeholder_01" />
 
             <TextView
+                style="@style/customCardTitle"
                 android:id="@+id/tvTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="#47525E"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivPhoto"
                 tools:text="Lorem ipsum dolor sit amet" />
 
             <TextView
+                style="@style/customCardAuthor"
                 android:id="@+id/tvUserCreator"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#547B9D"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

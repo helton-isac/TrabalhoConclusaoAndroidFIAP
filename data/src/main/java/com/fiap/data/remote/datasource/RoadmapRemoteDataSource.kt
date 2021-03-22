@@ -5,7 +5,7 @@ import com.hitg.domain.entity.Roadmap
 
 interface RoadmapRemoteDataSource {
 
-    suspend fun create(roadmap: Roadmap): RequestState<Roadmap>
+    suspend fun createOrEdit(roadmap: Roadmap): RequestState<Roadmap>
 
     suspend fun fetch(): RequestState<List<Roadmap>>
 
