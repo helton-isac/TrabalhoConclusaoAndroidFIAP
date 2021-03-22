@@ -1,6 +1,9 @@
 <p align="center">
   <h3 align="center">Meu Rolê</h3>
-  <center><img src="./app/src/main/res/drawable-hdpi/meu_role_logo.png" width="100"></center>
+  <p align="center">
+    <img src="./app/src/main/res/drawable-hdpi/meu_role_logo.png" width="100">
+  </p>
+
 
   <p align="center">
     Trabalho de conclusão do curso de Android
