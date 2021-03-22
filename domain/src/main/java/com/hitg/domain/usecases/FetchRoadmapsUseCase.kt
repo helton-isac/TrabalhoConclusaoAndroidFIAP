@@ -15,7 +15,8 @@ class FetchRoadmapsUseCase(
         return when (roadmaps) {
             is RequestState.Success -> {
                 val roadmapsPoi: List<Roadmap> = roadmaps.data.map { roadmap ->
-                    val pointOfInterests = poiRepository.fetch(roadmap.pointOfInterests.map { it.id })
+                    val pointOfInterests =
+                        poiRepository.fetch(roadmap.pointOfInterests.map { it.id })
                     when (pointOfInterests) {
                         is RequestState.Success -> {
                             roadmap.pointOfInterests = pointOfInterests.data
@@ -25,7 +26,7 @@ class FetchRoadmapsUseCase(
                             return RequestState.Loading
                         }
                         is RequestState.Error -> {
-                            return RequestState.Error(Exception("Falha ao buscar pontos de interesse."))
+                            roadmap
                         }
                     }
                 }
