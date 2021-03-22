@@ -29,4 +29,8 @@ class AnalyticsRepositoryImpl(
     override suspend fun logShareApp() {
         analyticsRemoteDataSource.logShareApp()
     }
+
+    override suspend fun logCreateRoadmap() {
+        analyticsRemoteDataSource.logCreateRoadmap()
+    }
 }

@@ -53,7 +53,8 @@ val presentationModule = module {
     viewModel {
         CreateEditRoadmapViewModel(
             createRoadmapUseCase = get(),
-            deletePointOfInterestUseCase = get()
+            deletePointOfInterestUseCase = get(),
+            logAnalyticsEvent = get()
         )
     }
     viewModel {

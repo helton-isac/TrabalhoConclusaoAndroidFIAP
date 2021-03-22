@@ -35,6 +35,9 @@ class AnalyticsRemoteDataSourceImpl(
         firebaseAnalytics.logEvent("share") {
             param("content_type", "text")
         }
+    }
 
+    override suspend fun logCreateRoadmap() {
+        firebaseAnalytics.logEvent("create_roadmap") {}
     }
 }
