@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import com.fiap.meurole.R
 import com.fiap.meurole.base.auth.BaseAuthFragment
@@ -78,6 +80,9 @@ class DetailRoadmapFragment : BaseAuthFragment() {
                 is RequestState.Error -> hideLoading()
             }
         })
+        setFragmentResultListener("create_edit_roadmap") { requestKey, bundle ->
+            setFragmentResult("create_edit_roadmap", bundle)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

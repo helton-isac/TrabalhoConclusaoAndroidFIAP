@@ -3,6 +3,7 @@ package com.fiap.meurole.roadmapList
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
@@ -25,10 +26,15 @@ class RoadmapListFragment : BaseAuthFragment() {
     private var roadmaps: MutableList<Roadmap> = arrayListOf()
 
     private var isFilteredList = false
+    private var searchedRoadmap: String? = null
 
     override fun onResume() {
         super.onResume()
-        setTitle(getString(R.string.search_roadmaps))
+        if (searchedRoadmap != null) {
+            setTitle(searchedRoadmap!!)
+        } else {
+            setTitle(getString(R.string.search_roadmaps))
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,6 +44,7 @@ class RoadmapListFragment : BaseAuthFragment() {
 
         setUpView(view)
 
+        searchedRoadmap = arguments?.getString("search")
         val receivedRoadmaps = arguments?.getSerializable("roadmaps")
         if (receivedRoadmaps != null) {
             isFilteredList = true
@@ -45,7 +52,9 @@ class RoadmapListFragment : BaseAuthFragment() {
             setUpAdapter()
         } else {
             showLoading()
-            viewModel.fetchRoadmaps()
+            if (viewModel.roadmapState.value !is RequestState.Success) {
+                viewModel.fetchRoadmaps()
+            }
         }
     }
 
@@ -83,6 +92,14 @@ class RoadmapListFragment : BaseAuthFragment() {
                 }
             }
         })
+        setFragmentResultListener("create_edit_roadmap") { requestKey, bundle ->
+            showLoading()
+            if (searchedRoadmap != null) {
+                viewModel.searchRoadmaps(searchedRoadmap!!)
+            } else {
+                viewModel.fetchRoadmaps()
+            }
+        }
     }
 
     private fun setUpAdapter() {

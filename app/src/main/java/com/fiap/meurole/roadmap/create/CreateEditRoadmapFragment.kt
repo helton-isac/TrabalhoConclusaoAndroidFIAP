@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -137,6 +138,12 @@ class CreateEditRoadmapFragment : BaseAuthFragment() {
                         requireContext(),
                         getString(R.string.roadmap_registered_with_success)
                     )
+                    if (roadmap != null) {
+                        setFragmentResult(
+                            "create_edit_roadmap",
+                            bundleOf("roadmap_edited" to true)
+                        )
+                    }
                     findNavController().popBackStack()
                 }
                 is RequestState.Error -> {
