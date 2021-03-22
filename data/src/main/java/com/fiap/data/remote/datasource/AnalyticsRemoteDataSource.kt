@@ -12,4 +12,6 @@ interface AnalyticsRemoteDataSource {
     suspend fun logSuccessfullySignOut()
 
     suspend fun logShareApp()
+
+    suspend fun logCreateRoadmap()
 }

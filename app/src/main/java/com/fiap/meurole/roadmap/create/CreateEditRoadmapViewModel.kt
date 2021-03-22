@@ -8,11 +8,13 @@ import com.hitg.domain.entity.RequestState
 import com.hitg.domain.entity.Roadmap
 import com.hitg.domain.usecases.CreateRoadmapUseCase
 import com.hitg.domain.usecases.DeletePointOfInterestUseCase
+import com.hitg.domain.usecases.LogAnalyticsEventUseCase
 import kotlinx.coroutines.launch
 
 class CreateEditRoadmapViewModel(
     private val createRoadmapUseCase: CreateRoadmapUseCase,
-    private val deletePointOfInterestUseCase: DeletePointOfInterestUseCase
+    private val deletePointOfInterestUseCase: DeletePointOfInterestUseCase,
+    private val logAnalyticsEvent: LogAnalyticsEventUseCase
 ) : ViewModel() {
 
     var saveRoadmapState = MutableLiveData<RequestState<Roadmap>>()
@@ -24,6 +26,7 @@ class CreateEditRoadmapViewModel(
 
             when (response) {
                 is RequestState.Success -> {
+                    logAnalyticsEvent.logCreateRoadmap()
                     saveRoadmapState.value = RequestState.Success(roadmap)
                 }
                 is RequestState.Error -> {
