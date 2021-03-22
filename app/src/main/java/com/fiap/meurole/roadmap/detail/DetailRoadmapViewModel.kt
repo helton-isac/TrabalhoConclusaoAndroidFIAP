@@ -20,7 +20,7 @@ class DetailRoadmapViewModel(
 
     fun createRoadmap(roadmap: Roadmap) {
         viewModelScope.launch {
-            val response = createRoadmapUseCase.create(roadmap)
+            val response = createRoadmapUseCase.createOrEdit(roadmap)
 
             when (response) {
                 is RequestState.Success -> {

@@ -11,13 +11,22 @@ class RoadmapRemoteFirebaseDataSourceImpl(
     private val firebaseFirestore: FirebaseFirestore
 ) : RoadmapRemoteDataSource {
 
-    override suspend fun create(roadmap: Roadmap): RequestState<Roadmap> {
+    override suspend fun createOrEdit(roadmap: Roadmap): RequestState<Roadmap> {
         return try {
             val newRoadmapPayload = NewRoadmapPayloadMapper.mapToNewRoadmap(roadmap)
-            val document = firebaseFirestore.collection("roadmaps")
-                .add(newRoadmapPayload)
-                .await()
-            roadmap.id = document.id
+
+            if (roadmap.id == "") {
+                val document = firebaseFirestore.collection("roadmaps")
+                    .add(newRoadmapPayload)
+                    .await()
+                roadmap.id = document.id
+            } else {
+                firebaseFirestore.collection("roadmaps")
+                    .document(roadmap.id)
+                    .set(newRoadmapPayload)
+                    .await()
+            }
+
             RequestState.Success(roadmap)
         } catch (e: Exception) {
             RequestState.Error(e)
@@ -32,7 +41,7 @@ class RoadmapRemoteFirebaseDataSourceImpl(
                 .documents
 
             val roadmaps = result.map {
-                val poiIds: List<String> = it.get ("pointOfInterests") as List<String>
+                val poiIds: List<String> = it.get("pointOfInterests") as List<String>
                 val roadmap = Roadmap(
                     id = it.id,
                     name = it.getString("name") ?: "",
@@ -63,7 +72,7 @@ class RoadmapRemoteFirebaseDataSourceImpl(
                 .documents
 
             val roadmaps = result.map {
-                val poiIds: List<String> = it.get ("pointOfInterests") as List<String>
+                val poiIds: List<String> = it.get("pointOfInterests") as List<String>
                 val roadmap = Roadmap(
                     id = it.id,
                     name = it.getString("name") ?: "",

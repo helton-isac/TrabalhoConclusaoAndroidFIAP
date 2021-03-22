@@ -57,4 +57,6 @@
     <string name="telephone">Número de telefone</string>
     <string name="label_telephone">Ligar</string>
     <string name="button_save_point_interest">Salvar ponto de interesse</string>
+    <string name="edit">Editar</string>
+    <string name="edit_roadmap">Editar o Roteiro</string>
 </resources>

@@ -65,4 +65,6 @@
     <string name="telephone">Number of telephone</string>
     <string name="label_telephone">Make call</string>
     <string name="button_save_point_interest">Save point of interest</string>
+    <string name="edit">Edit</string>
+    <string name="edit_roadmap">Edit the roadmap</string>
 </resources>

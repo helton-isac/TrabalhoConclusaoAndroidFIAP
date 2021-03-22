@@ -9,7 +9,7 @@ import com.fiap.meurole.map.MapViewModel
 import com.fiap.meurole.pointOfInterest.create.CreatePointOfInterestViewModel
 import com.fiap.meurole.pointOfInterest.edit.EditPointOfInterestViewModel
 import com.fiap.meurole.profile.ProfileViewModel
-import com.fiap.meurole.roadmap.create.CreateRoadmapViewModel
+import com.fiap.meurole.roadmap.create.CreateEditRoadmapViewModel
 import com.fiap.meurole.roadmapList.RoadmapListViewModel
 import com.fiap.meurole.signup.SignUpViewModel
 import com.fiap.meurole.splash.SplashViewModel
@@ -51,7 +51,7 @@ val presentationModule = module {
         )
     }
     viewModel {
-        CreateRoadmapViewModel(
+        CreateEditRoadmapViewModel(
             createRoadmapUseCase = get(),
             deletePointOfInterestUseCase = get()
         )
