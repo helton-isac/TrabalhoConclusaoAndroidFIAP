@@ -20,7 +20,7 @@ jobs:
         with:
           gradlePath: app/build.gradle
           versionCode: ${{github.run_number}}
-          versionName: 2.0.0
+          versionName: 2.0.0-StartupOne
       - name: Creating local.properties
         env:
           MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
