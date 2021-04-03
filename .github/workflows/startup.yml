@@ -1,9 +1,9 @@
-name: Pull Requests CI
-on:  
+name: Pull Requests CI - StartupOne
+on:
   push:
-    branches: [ master ]
+    branches: [ startup ]
   pull_request:
-    branches: [ master ]
+    branches: [ startup ]
 
 jobs:
   build-and-generate-apk:
@@ -31,29 +31,15 @@ jobs:
         run: echo $FIREBASE_SECRET > app/google-services.json
       - name: Build PRD debug APK
         run: bash ./gradlew assemblePrd
-      - name: Build DEV debug APK
-        run: bash ./gradlew assembleDev
       - name: Upload PRD debug APK
         uses: actions/upload-artifact@v1
         with:
           name: app
           path: app/build/outputs/apk/prd/debug/app-prd-debug.apk
-      - name: Upload DEV APK
-        uses: actions/upload-artifact@v1
-        with:
-          name: app
-          path: app/build/outputs/apk/dev/debug/app-dev-debug.apk
       - name: upload PRD artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
-          groups: testers
+          groups: startup
           file: app/build/outputs/apk/prd/debug/app-prd-debug.apk
-      - name: upload DEV artifact to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
-        with:
-          appId: ${{ secrets.FIREBASE_DEV_APP_ID }}
-          token: ${{ secrets.FIREBASE_TOKEN }}
-          groups: testers
-          file: app/build/outputs/apk/dev/debug/app-dev-debug.apk
