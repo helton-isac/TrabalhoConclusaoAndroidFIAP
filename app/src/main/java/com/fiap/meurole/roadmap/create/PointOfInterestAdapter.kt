@@ -10,7 +10,7 @@ import com.hitg.domain.entity.PointOfInterest
 
 class PointOfInterestAdapter(
     private var items: List<PointOfInterest>,
-    private var clickListener: (PointOfInterest) -> Unit
+    private var clickListener: ((PointOfInterest) -> Unit)? = null
 ) : RecyclerView.Adapter<PointOfInterestAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,7 +33,7 @@ class PointOfInterestAdapter(
             item: PointOfInterest,
             isFirst: Boolean,
             isLast: Boolean,
-            clickListener: (PointOfInterest) -> Unit
+            clickListener: ((PointOfInterest) -> Unit)?
         ) {
             val title = itemView.findViewById<TextView>(R.id.tvPoiTitle)
             val description = itemView.findViewById<TextView>(R.id.tvPoiDescription)
@@ -44,7 +44,7 @@ class PointOfInterestAdapter(
             description.text = item.description
             vContinuousLineTop.visibility = if (isFirst) View.GONE else View.VISIBLE
             vContinuousLineBottom.visibility = if (isLast) View.GONE else View.VISIBLE
-            itemView.setOnClickListener { clickListener(item) }
+            clickListener?.let { itemView.setOnClickListener { it(item) } }
         }
     }
 }
