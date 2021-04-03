@@ -67,4 +67,5 @@
     <string name="button_save_point_interest">Save point of interest</string>
     <string name="edit">Edit</string>
     <string name="edit_roadmap">Edit the roadmap</string>
+    <string name="start_roadmap">Start Roadmap</string>
 </resources>

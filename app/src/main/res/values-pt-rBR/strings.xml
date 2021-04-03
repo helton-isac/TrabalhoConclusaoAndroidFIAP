@@ -59,4 +59,5 @@
     <string name="button_save_point_interest">Salvar ponto de interesse</string>
     <string name="edit">Editar</string>
     <string name="edit_roadmap">Editar o Roteiro</string>
+    <string name="start_roadmap">Iniciar o Roteiro</string>
 </resources>
