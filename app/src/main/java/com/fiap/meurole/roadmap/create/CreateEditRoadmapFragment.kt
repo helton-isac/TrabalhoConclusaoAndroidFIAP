@@ -39,6 +39,17 @@ class CreateEditRoadmapFragment : BaseAuthFragment() {
 
     private var roadmap: Roadmap? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        if (arguments?.containsKey("roadmap") == true) {
+            roadmap = arguments?.getSerializable("roadmap") as Roadmap
+        }
+        roadmap?.let {
+            pointOfInterests.addAll(it.pointOfInterests)
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         if (roadmap != null) {
@@ -52,9 +63,6 @@ class CreateEditRoadmapFragment : BaseAuthFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         registerObserver()
-        if (arguments?.containsKey("roadmap") == true) {
-            roadmap = arguments?.getSerializable("roadmap") as Roadmap
-        }
 
         setUpView(view)
 
@@ -64,7 +72,6 @@ class CreateEditRoadmapFragment : BaseAuthFragment() {
     private fun fillValues(roadmap: Roadmap) {
         etRoadmapName.setText(roadmap.name)
         etRoadmapDescription.setText(roadmap.description)
-        pointOfInterests.addAll(roadmap.pointOfInterests)
         rvPointOfInterest.adapter?.notifyDataSetChanged()
     }
 

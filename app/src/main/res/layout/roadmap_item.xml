@@ -26,7 +26,7 @@
 
             <TextView
                 style="@style/customCardTitle"
-                android:id="@+id/tvTitle"
+                android:id="@+id/tvPoiTitle"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvPoiTitle"
                 tools:text="Lorem ipsum dolor sit amet" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

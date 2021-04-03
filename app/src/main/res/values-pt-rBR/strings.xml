@@ -60,4 +60,5 @@
     <string name="edit">Editar</string>
     <string name="edit_roadmap">Editar o Roteiro</string>
     <string name="start_roadmap">Iniciar o Roteiro</string>
+    <string name="point_of_interest">Ponto de Interesse</string>
 </resources>
