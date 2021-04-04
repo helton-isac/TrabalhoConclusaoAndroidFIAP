@@ -167,13 +167,16 @@ class CreateEditRoadmapFragment : BaseAuthFragment() {
             when (it) {
                 is RequestState.Success -> {
                     hideLoading()
-                    DialogUtils.showToastMessage(
-                        requireContext(),
-                        getString(R.string.poi_deleted_with_success)
-                    )
                     val index = pointOfInterests.indexOfFirst { poi -> poi.id == it.data }
-                    pointOfInterests.removeAt(index)
-                    rvPointOfInterest.adapter?.notifyDataSetChanged()
+                    if (index > 0) {
+                        pointOfInterests.removeAt(index)
+                        rvPointOfInterest.adapter?.notifyDataSetChanged()
+
+                        DialogUtils.showToastMessage(
+                            requireContext(),
+                            getString(R.string.poi_deleted_with_success)
+                        )
+                    }
                 }
                 is RequestState.Error -> {
                     hideLoading()
