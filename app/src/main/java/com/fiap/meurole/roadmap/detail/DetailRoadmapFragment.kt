@@ -5,14 +5,19 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.fiap.meurole.R
 import com.fiap.meurole.base.auth.BaseAuthFragment
+import com.fiap.meurole.roadmap.create.PointOfInterestAdapter
+import com.fiap.meurole.utils.DialogUtils
+import com.hitg.domain.entity.PointOfInterest
 import com.hitg.domain.entity.RequestState
 import com.hitg.domain.entity.Roadmap
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -33,10 +38,20 @@ class DetailRoadmapFragment : BaseAuthFragment() {
     private lateinit var ivDetailPhoto: ImageView
     private lateinit var tvDetailRoadmapTitle: TextView
     private lateinit var tvDetailRoadmapDescription: TextView
+    private lateinit var rvDetailPointOfInterests: RecyclerView
+    private lateinit var bvStartRoadmap: Button
+
+    private var pointOfInterests: MutableList<PointOfInterest> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
+        roadmap = arguments?.getSerializable("roadmap") as Roadmap
+        roadmap.let {
+            pointOfInterests.addAll(it.pointOfInterests)
+        }
+        imageResource = arguments?.getInt("imageResource")!!
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -54,9 +69,6 @@ class DetailRoadmapFragment : BaseAuthFragment() {
 
         registerObserver()
 
-        roadmap = arguments?.getSerializable("roadmap") as Roadmap
-        imageResource = arguments?.getInt("imageResource")!!
-
         setUpView(view)
     }
 
@@ -69,6 +81,18 @@ class DetailRoadmapFragment : BaseAuthFragment() {
         tvDetailRoadmapTitle.text = roadmap.name
         tvDetailRoadmapDescription = view.findViewById(R.id.tvDetailRoadmapDescription)
         tvDetailRoadmapDescription.text = roadmap.description
+
+        rvDetailPointOfInterests = view.findViewById(R.id.rvDetailPointOfInterests)
+        rvDetailPointOfInterests.adapter = PointOfInterestAdapter(pointOfInterests)
+
+        bvStartRoadmap = view.findViewById<Button>(R.id.bvStartRoadmap)
+        bvStartRoadmap.setOnClickListener {
+            DialogUtils.showSimpleMessageWithTitle(
+                requireContext(),
+                getString(R.string.working_on_it),
+                "Ops, ainda não implementamos o iniciar roteiro. Aguarde nas próximas versões."
+            )
+        }
     }
 
     private fun registerObserver() {

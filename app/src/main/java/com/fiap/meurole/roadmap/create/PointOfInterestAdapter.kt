@@ -10,7 +10,7 @@ import com.hitg.domain.entity.PointOfInterest
 
 class PointOfInterestAdapter(
     private var items: List<PointOfInterest>,
-    private var clickListener: (PointOfInterest) -> Unit
+    private var clickListener: ((PointOfInterest) -> Unit)? = null
 ) : RecyclerView.Adapter<PointOfInterestAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,19 +24,27 @@ class PointOfInterestAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position], clickListener)
+        holder.bind(items[position], position == 0, position == items.size - 1, clickListener)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: PointOfInterest, clickListener: (PointOfInterest) -> Unit) {
-            val date = itemView.findViewById<TextView>(R.id.tvDate)
-            val time = itemView.findViewById<TextView>(R.id.tvTime)
-            val title = itemView.findViewById<TextView>(R.id.tvTitle)
+        fun bind(
+            item: PointOfInterest,
+            isFirst: Boolean,
+            isLast: Boolean,
+            clickListener: ((PointOfInterest) -> Unit)?
+        ) {
+            val title = itemView.findViewById<TextView>(R.id.tvPoiTitle)
+            val description = itemView.findViewById<TextView>(R.id.tvPoiDescription)
+            val vContinuousLineTop = itemView.findViewById<View>(R.id.vContinuousLineTop)
+            val vContinuousLineBottom = itemView.findViewById<View>(R.id.vContinuousLineBottom)
 
             title.text = item.name
-
-            itemView.setOnClickListener { clickListener(item) }
+            description.text = item.description
+            vContinuousLineTop.visibility = if (isFirst) View.GONE else View.VISIBLE
+            vContinuousLineBottom.visibility = if (isLast) View.GONE else View.VISIBLE
+            clickListener?.let { itemView.setOnClickListener { it(item) } }
         }
     }
 }

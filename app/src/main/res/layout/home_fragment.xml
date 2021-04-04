@@ -41,6 +41,7 @@
         android:id="@+id/btSearchMap"
         style="@style/button_large"
         android:layout_marginTop="148dp"
+        android:drawableEnd="@drawable/ic_airplane_map"
         android:text="@string/button_search_maps"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +52,7 @@
         android:id="@+id/btCreateRoadmap"
         android:layout_marginTop="32dp"
         android:text="@string/create_roadmap"
+        android:drawableEnd="@drawable/ic_pin_drop_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btSearchMap" />

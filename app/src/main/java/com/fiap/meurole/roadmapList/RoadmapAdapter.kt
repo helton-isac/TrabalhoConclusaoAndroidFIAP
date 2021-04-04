@@ -48,7 +48,7 @@ class RoadmapAdapter(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: Roadmap, placeHolderImage: Int, clickListener: (Roadmap, Int) -> Unit) {
-            val tvTitle = itemView.findViewById<TextView>(R.id.tvTitle)
+            val tvTitle = itemView.findViewById<TextView>(R.id.tvPoiTitle)
             tvTitle.text = item.name
             val ivPhoto = itemView.findViewById<ImageView>(R.id.ivPhoto)
             ivPhoto.setImageResource(placeHolderImage)

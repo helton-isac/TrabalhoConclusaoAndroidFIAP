@@ -3,41 +3,81 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_height="100dp">
 
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Date" />
-
-    <TextView
-        android:id="@+id/tvTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvPoiItemImageBg"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:backgroundTint="@color/cello"
+        android:elevation="12dp"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        android:thicknessRatio="1.9"
+        app:cardCornerRadius="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDate"
-        tools:text="Time" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/point_of_interest"
+            android:src="@drawable/ic_pin_drop_24" />
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/vContinuousLineTop"
+        android:layout_width="4dp"
+        android:layout_height="0dp"
+        android:background="@color/cello"
+        app:layout_constraintBottom_toTopOf="@+id/cvPoiItemImageBg"
+        app:layout_constraintEnd_toEndOf="@+id/cvPoiItemImageBg"
+        app:layout_constraintStart_toStartOf="@+id/cvPoiItemImageBg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/vContinuousLineBottom"
+        android:layout_width="4dp"
+        android:layout_height="0dp"
+        android:background="@color/cello"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cvPoiItemImageBg"
+        app:layout_constraintStart_toStartOf="@+id/cvPoiItemImageBg"
+        app:layout_constraintTop_toBottomOf="@+id/cvPoiItemImageBg" />
 
     <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/tvPoiTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="bottom|start"
+        android:textColor="@color/cello"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvPoiDescription"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cvPoiItemImageBg"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Title" />
+        app:layout_constraintVertical_bias="0.50"
+        tools:text="Nome do ponto turistico" />
+
+    <TextView
+        android:id="@+id/tvPoiDescription"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="start|top"
+        android:textColor="@color/wedgewood"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvPoiTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvPoiTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvPoiTitle"
+        tools:text="Breve descrição do ponto turistico" />
 </androidx.constraintlayout.widget.ConstraintLayout>

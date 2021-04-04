@@ -87,7 +87,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bvStartRoadmap"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_min="200dp"
         app:layout_constraintHorizontal_bias="0.0"
@@ -95,6 +95,19 @@
         app:layout_constraintTop_toBottomOf="@+id/tvDetailRoadmapDescription"
         app:spanCount="2"
         tools:listitem="@layout/point_of_interest_item" />
+
+    <Button
+        android:id="@+id/bvStartRoadmap"
+        style="@style/button"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:drawableEnd="@drawable/ic_compass"
+        android:text="@string/start_roadmap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

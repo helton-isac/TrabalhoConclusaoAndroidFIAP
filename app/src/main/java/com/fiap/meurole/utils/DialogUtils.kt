@@ -7,17 +7,17 @@ import com.fiap.meurole.R
 
 object DialogUtils {
 
-    fun showSimpleMessage(context: Context, errorMessage: String) {
+    fun showSimpleMessage(context: Context, message: String) {
         AlertDialog.Builder(context)
-            .setMessage(errorMessage)
+            .setMessage(message)
             .setPositiveButton(context.getString(android.R.string.ok), null)
             .show()
     }
 
-    fun showSimpleMessageWithTitle(context: Context, title: String, errorMessage: String) {
+    fun showSimpleMessageWithTitle(context: Context, title: String, message: String) {
         AlertDialog.Builder(context)
             .setTitle(title)
-            .setMessage(errorMessage)
+            .setMessage(message)
             .setPositiveButton(context.getString(android.R.string.ok), null)
             .show()
     }
