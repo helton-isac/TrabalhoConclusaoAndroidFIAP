@@ -1,8 +1,6 @@
 package com.fiap.meurole.pointOfInterest.create
 
 import android.app.AlertDialog
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -36,8 +34,6 @@ class CreatePointOfInterestFragment : BaseAuthFragment(), OnMapReadyCallback {
 
     private lateinit var etName: EditText
     private lateinit var etDescription: EditText
-    private lateinit var etTelephone: EditText
-    private lateinit var btCall: Button
     private lateinit var mMap: GoogleMap
     private lateinit var btAdd: Button
 
@@ -61,16 +57,6 @@ class CreatePointOfInterestFragment : BaseAuthFragment(), OnMapReadyCallback {
     private fun setUpView(view: View) {
         etName = view.findViewById(R.id.etPointOfInterestName)
         etDescription = view.findViewById(R.id.etPointOfInterestDescription)
-        etTelephone = view.findViewById(R.id.etTelephone)
-
-        btCall = view.findViewById(R.id.btCall)
-        btCall.setOnClickListener {
-            if (etTelephone.text.isNotBlank()) {
-                val number = etTelephone.text.toString().trim()
-                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + Uri.encode(number)))
-                startActivity(intent)
-            }
-        }
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.viewMap) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -85,7 +71,6 @@ class CreatePointOfInterestFragment : BaseAuthFragment(), OnMapReadyCallback {
                     longitude = mLatLng!!.longitude,
                     name = etName.text.toString(),
                     description = etDescription.text.toString(),
-                    telephone = etTelephone.text.toString()
                 )
 
                 viewModel.create(poi)
